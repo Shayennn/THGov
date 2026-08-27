@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { renderOg } from './og.mjs';
 
-const SITE_URL = (process.env.PUBLIC_SITE_URL || 'https://thgov.pages.dev').replace(/\/+$/, '');
+const SITE_URL = (process.env.PUBLIC_SITE_URL || 'https://www.thgov.co').replace(/\/+$/, '');
 
 const PAGE = `<!doctype html>
 <html lang="th">

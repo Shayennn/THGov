@@ -1,0 +1,23 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "thgov",
+	"compatibility_date": "2026-08-26",
+
+	// THGov is a fully prerendered static site — there is no Worker script, only
+	// an assets directory. `npm run build` produces it.
+	"assets": {
+		"directory": "./build",
+
+		// Serve /services.html at /services and redirect /services/ -> /services,
+		// matching SvelteKit's `trailingSlash: 'never'`.
+		"html_handling": "auto-trailing-slash",
+
+		// Unknown paths get the prerendered bilingual 404 page with a 404 status,
+		// rather than an SPA shell or a bare Cloudflare error.
+		"not_found_handling": "404-page"
+	},
+
+	"observability": {
+		"enabled": true
+	}
+}

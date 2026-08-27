@@ -1,9 +1,21 @@
 import type { LocalizedString } from '$lib/i18n';
 
-/** Canonical origin. Override at build time with PUBLIC_SITE_URL (no trailing slash). */
+/**
+ * Canonical origin for this build. `scripts/build.mjs` sets PUBLIC_SITE_URL from
+ * the branch: production is www.thgov.co, and a preview branch gets its own
+ * `<branch>-thgov.phitchawat.workers.dev` origin so canonicals are always
+ * self-referential rather than pointing at a site serving different content.
+ */
 export const SITE_URL: string = (
-	import.meta.env.PUBLIC_SITE_URL || 'https://thgov.pages.dev'
+	import.meta.env.PUBLIC_SITE_URL || 'https://www.thgov.co'
 ).replace(/\/+$/, '');
+
+/**
+ * True on preview deployments. Previews carry the full site while production
+ * still serves the holding page, so they must never be indexed — an indexed
+ * preview would compete with www.thgov.co for its own content.
+ */
+export const IS_PREVIEW: boolean = import.meta.env.PUBLIC_IS_PREVIEW === 'true';
 
 export const SITE = {
 	url: SITE_URL,
@@ -21,8 +33,9 @@ export const SITE = {
 		en: 'An independent directory of Thai government online services, with plain-language explanations, step-by-step guides and direct links to the official websites — including services that never appear in Google because their robots.txt blocks crawlers.'
 	} satisfies LocalizedString,
 	/** Editorial contact shown in the footer & JSON-LD. */
-	contactEmail: 'hello@thgov.pages.dev',
+	contactEmail: 'hello@thgov.co',
 	repo: 'https://github.com/Shayennn/THGov',
+	prodUrl: 'https://www.thgov.co',
 	locales: ['th', 'en'] as const,
 	defaultLocale: 'th' as const,
 	themeColor: '#F05223',

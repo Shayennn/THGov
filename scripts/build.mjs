@@ -26,10 +26,36 @@ process.chdir(ROOT);
 const STATIC = path.join(ROOT, 'static');
 const BUILD = path.join(ROOT, 'build');
 
-const branch = process.env.CF_PAGES_BRANCH || '';
-const mode =
-	process.env.SITE_MODE ||
-	(branch === 'main' || branch === 'master' ? 'coming-soon' : 'full');
+// Cloudflare Workers Builds sets WORKERS_CI_BRANCH; Pages sets CF_PAGES_BRANCH.
+const branch =
+	process.env.WORKERS_CI_BRANCH || process.env.CF_PAGES_BRANCH || process.env.BRANCH || '';
+const isProdBranch = branch === 'main' || branch === 'master' || branch === '';
+const mode = process.env.SITE_MODE || (isProdBranch ? 'coming-soon' : 'full');
+
+const PROD_URL = 'https://www.thgov.co';
+/** Preview deployments land on `<branch>-thgov.phitchawat.workers.dev`. */
+const PREVIEW_SUFFIX = process.env.PUBLIC_PREVIEW_SUFFIX || 'thgov.phitchawat.workers.dev';
+
+/** Cloudflare derives a version alias from the branch name this way. */
+function previewOrigin(name) {
+	const alias = name
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-+|-+$/g, '')
+		.slice(0, 28);
+	return alias ? `https://${alias}-${PREVIEW_SUFFIX}` : PROD_URL;
+}
+
+const isPreview = Boolean(branch) && !isProdBranch;
+
+// One source of truth for the origin: everything downstream (canonicals,
+// hreflang, sitemap, OG image URLs, robots.txt) reads these two variables.
+const SITE_URL = (
+	process.env.PUBLIC_SITE_URL || (isPreview ? previewOrigin(branch) : PROD_URL)
+).replace(/\/+$/, '');
+
+process.env.PUBLIC_SITE_URL = SITE_URL;
+process.env.PUBLIC_IS_PREVIEW = String(isPreview);
 
 const t0 = Date.now();
 const step = (msg) => console.log(`\x1b[36m▸\x1b[0m ${msg}`);
@@ -179,8 +205,56 @@ function verifyBuild(content) {
 	return { problems, pages: pages.length };
 }
 
+/**
+ * Generated rather than shipped as a static file, because the sitemap URL and
+ * the crawl policy both depend on which environment is being built. A preview
+ * carries the full site while production still serves the holding page, so a
+ * preview must refuse crawlers outright or it would compete with www.thgov.co.
+ */
+function writeRobots() {
+	const body = isPreview
+		? `# Preview deployment of THGov — not the public site.
+# The production site is ${PROD_URL}. This copy must not be indexed.
+
+User-agent: *
+Disallow: /
+`
+		: `# THGov — an independent directory of Thai government online services.
+# We publish this file the way we wish every agency would: open, explicit,
+# and pointing at a sitemap. See /robots-report for why that matters.
+
+User-agent: *
+Allow: /
+
+# Search result pages carry no unique content — skip them, keep the rest.
+Disallow: /search?
+Disallow: /en/search?
+
+# Well-behaved AI assistants are welcome. Citizens increasingly ask them
+# where to find a government service, and we would rather they answer
+# correctly than guess.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: ${SITE_URL}/sitemap.xml
+`;
+	fs.writeFileSync(path.join(BUILD, 'robots.txt'), body);
+}
+
 async function main() {
-	console.log(`\nTHGov build — mode: \x1b[1m${mode}\x1b[0m${branch ? ` (branch: ${branch})` : ''}\n`);
+	console.log(
+		`\nTHGov build — mode: \x1b[1m${mode}\x1b[0m${branch ? ` · branch: ${branch}` : ''}` +
+			`${isPreview ? ' · \x1b[33mpreview (noindex)\x1b[0m' : ''}\n  origin: ${SITE_URL}\n`
+	);
 
 	if (mode === 'coming-soon') {
 		step('Generating icons');
@@ -210,6 +284,10 @@ async function main() {
 
 	step('Building SvelteKit site');
 	await run('npx', ['vite', 'build']);
+
+	step('Writing robots.txt');
+	writeRobots();
+	done(isPreview ? 'robots.txt (preview — crawling disallowed)' : 'robots.txt');
 
 	step('Installing the static 404 page');
 	const notFound = path.join(BUILD, 'not-found.html');

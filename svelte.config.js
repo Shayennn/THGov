@@ -15,7 +15,7 @@ const config = {
 		prerender: {
 			handleHttpError: 'fail',
 			handleMissingId: 'fail',
-			origin: 'https://thgov.pages.dev'
+			origin: process.env.PUBLIC_SITE_URL || 'https://www.thgov.co'
 		},
 		alias: {
 			$content: 'src/lib/content',

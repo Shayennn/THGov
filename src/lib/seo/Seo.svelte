@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { LOCALES, HTML_LANG, localizeHref, type Locale } from '$lib/i18n';
-	import { SITE, SITE_URL, OG_DEFAULT } from '$lib/site';
+	import { SITE, SITE_URL, OG_DEFAULT, IS_PREVIEW } from '$lib/site';
 	import { abs } from './jsonld';
 
 	interface Props {
@@ -57,7 +57,7 @@
 	{/each}
 	<link rel="alternate" hreflang="x-default" href={abs(localizeHref(path, 'th'))} />
 
-	{#if noindex}
+	{#if noindex || IS_PREVIEW}
 		<meta name="robots" content="noindex, follow" />
 	{:else}
 		<meta

@@ -18,7 +18,7 @@ personal data, takes no payments and has no login.
 - **SvelteKit 2 + Svelte 5**, fully prerendered with `@sveltejs/adapter-static`
 - **Zero runtime dependencies** — the output is plain HTML, CSS and a small JS bundle
 - **Self-hosted [Prompt](https://fonts.google.com/specimen/Prompt)** (SIL OFL 1.1), Thai + Latin subsets only
-- Deployed to **Cloudflare Pages**
+- Deployed to **Cloudflare Workers** static assets at [www.thgov.co](https://www.thgov.co)
 
 ## Getting started
 
@@ -35,35 +35,53 @@ npm run check        # svelte-check type pass
 `npm run build` does everything — Cloudflare Pages needs no extra configuration
 beyond the build command and the `build` output directory:
 
-1. Loads the content registry (via esbuild, so build scripts and the app share one source of truth)
-2. Generates the favicon, PWA icons and `favicon.ico`
-3. Renders an Open Graph image per page with [satori](https://github.com/vercel/satori) + [resvg](https://github.com/yisibl/resvg-js)
-4. Runs `vite build` (prerenders every route in both languages)
-5. Verifies every page has a `<title>`, meta description, canonical, `hreflang`, JSON-LD and an `<h1>` — and fails the build if any is missing
+1. Resolves the origin and indexing policy for the branch being built
+2. Loads the content registry (via esbuild, so build scripts and the app share one source of truth)
+3. Generates the favicon, PWA icons and `favicon.ico`
+4. Renders an Open Graph image per page with [satori](https://github.com/vercel/satori) + [resvg](https://github.com/yisibl/resvg-js)
+5. Runs `vite build` (prerenders every route in both languages)
+6. Writes `robots.txt` for the target environment
+7. Replaces the SPA-shell `404.html` with the prerendered 404 page
+8. Verifies every page has a `<title>`, meta description, canonical, `hreflang`, JSON-LD and an `<h1>` — and fails the build if any is missing
 
 ### Branch behaviour
 
-Cloudflare sets `CF_PAGES_BRANCH` during the build, and the build script reads it:
+The build reads the CI branch (`WORKERS_CI_BRANCH`, or `CF_PAGES_BRANCH`) and
+decides both what to build and which origin to build it for:
 
-| Branch          | Output                            |
-| --------------- | --------------------------------- |
-| `main` / `master` | Standalone bilingual coming-soon page |
-| any other branch  | The full directory                |
+| Branch            | Output                                | Origin                                  | Indexed |
+| ----------------- | ------------------------------------- | --------------------------------------- | ------- |
+| `main` / `master` | Standalone bilingual coming-soon page | `https://www.thgov.co`                  | Yes     |
+| any other branch  | The full directory                    | `https://<branch>-thgov.phitchawat.workers.dev` | **No** |
+
+Preview deployments carry the full site while production still serves the
+holding page, so they are deliberately locked down: every page gets
+`noindex, follow` and `robots.txt` disallows everything. An indexed preview
+would compete with `www.thgov.co` for its own content.
+
+Canonicals are always self-referential — a preview points at the preview
+origin, never at production, which serves different content.
 
 Override locally with `SITE_MODE=full` or `SITE_MODE=coming-soon`, or use
-`npm run build:full` / `npm run build:coming-soon`.
+`npm run build:full` / `npm run build:coming-soon`. Set `PUBLIC_SITE_URL`
+explicitly to override the derived origin.
 
-### Cloudflare Pages settings
+### Deployment (Cloudflare Workers)
 
-| Setting              | Value          |
-| -------------------- | -------------- |
-| Build command        | `npm run build` |
-| Build output directory | `build`      |
-| Node version         | 20 or newer    |
+The site ships as a static assets Worker — there is no Worker script. The
+`assets` block in `wrangler.jsonc` points at `build/` and configures
+`html_handling` to match SvelteKit's `trailingSlash: 'never'`, plus
+`not_found_handling: "404-page"` so unknown paths get the prerendered
+bilingual 404 with a real 404 status.
 
-Set `PUBLIC_SITE_URL` to the production origin (no trailing slash) once a custom
-domain is attached; it defaults to `https://thgov.pages.dev` and feeds canonicals,
-`hreflang`, the sitemap and OG image URLs.
+| Setting        | Value                          |
+| -------------- | ------------------------------ |
+| Build command  | `npm run build`                |
+| Deploy command | `npx wrangler versions upload` |
+| Node version   | 20 or newer                    |
+
+Deploy from a terminal with `npm run deploy` (uploads a version) or
+`npm run deploy:live` (uploads and activates it).
 
 ## Adding a page
 
