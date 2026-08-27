@@ -156,6 +156,7 @@ function verifyBuild(content) {
 		const html = fs.readFileSync(file, 'utf8');
 		const rel = path.relative(BUILD, file);
 		if (rel === '404.html') continue;
+		if (rel === 'not-found.html' || rel.startsWith('not-found/')) continue;
 		if (!/<title>[^<]{5,}<\/title>/.test(html)) problems.push(`${rel}: missing or empty <title>`);
 		if (!/<meta name="description" content="[^"]{40,}"/.test(html))
 			problems.push(`${rel}: missing or short meta description`);
@@ -209,6 +210,19 @@ async function main() {
 
 	step('Building SvelteKit site');
 	await run('npx', ['vite', 'build']);
+
+	step('Installing the static 404 page');
+	const notFound = path.join(BUILD, 'not-found.html');
+	if (fs.existsSync(notFound)) {
+		// adapter-static writes an empty SPA shell to 404.html; replace it with a
+		// prerendered page so an unknown URL shows content without waiting for JS.
+		fs.copyFileSync(notFound, path.join(BUILD, '404.html'));
+		fs.rmSync(notFound);
+		fs.rmSync(path.join(BUILD, 'not-found'), { recursive: true, force: true });
+		done('404.html');
+	} else {
+		console.warn('  ! not-found.html was not prerendered; 404.html left as the SPA shell');
+	}
 
 	step('Verifying output');
 	const { problems, pages } = verifyBuild(content);

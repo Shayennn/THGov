@@ -11,6 +11,13 @@
 	const locale = $derived(currentLocale());
 	const basePath = $derived(stripLocale(page.url.pathname));
 
+	/**
+	 * Routes outside the `[[lang]]` tree (the static 404) exist in one language
+	 * only, so the switcher points at the locale home rather than a path that
+	 * was never prerendered.
+	 */
+	const localizable = $derived(page.data.locale !== undefined);
+
 	const links = $derived([
 		{ path: '/services', key: 'nav.services' as const },
 		{ path: '/categories', key: 'nav.categories' as const },
@@ -65,7 +72,7 @@
 			<div class="lang" role="group" aria-label={t('lang.switch')}>
 				{#each LOCALES as l (l)}
 					<a
-						href={localizeHref(basePath, l)}
+						href={localizeHref(localizable ? basePath : '/', l)}
 						class="lang-opt"
 						class:active={l === locale}
 						hreflang={l === 'th' ? 'th-TH' : 'en'}

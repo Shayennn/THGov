@@ -208,6 +208,40 @@ export const AGENCIES: Agency[] = [
 			th: 'บริหารสิทธิหลักประกันสุขภาพแห่งชาติ หรือ “บัตรทอง” ให้คนไทยกว่า 47 ล้านคน',
 			en: 'Administers Thailand’s Universal Coverage Scheme — the “Gold Card” — for more than 47 million people.'
 		}
+	},
+	{
+		slug: 'ocsc',
+		name: { th: 'สำนักงานคณะกรรมการข้าราชการพลเรือน', en: 'Office of the Civil Service Commission' },
+		abbr: { th: 'ก.พ.', en: 'OCSC' },
+		ministry: { th: 'สำนักนายกรัฐมนตรี', en: 'Office of the Prime Minister' },
+		site: 'https://www.ocsc.go.th/',
+		blurb: {
+			th: 'กำหนดมาตรฐานกำลังคนภาครัฐ จัดสอบวัดความรู้ความสามารถทั่วไป และดูแลทุนรัฐบาล',
+			en: 'Sets civil-service standards, runs the national aptitude examination and administers government scholarships.'
+		}
+	},
+	{
+		slug: 'nbtc',
+		name: {
+			th: 'สำนักงานคณะกรรมการกิจการกระจายเสียง กิจการโทรทัศน์ และกิจการโทรคมนาคมแห่งชาติ',
+			en: 'National Broadcasting and Telecommunications Commission'
+		},
+		abbr: { th: 'กสทช.', en: 'NBTC' },
+		site: 'https://www.nbtc.go.th/',
+		blurb: {
+			th: 'กำกับดูแลคลื่นความถี่ กิจการโทรคมนาคม และการคุ้มครองผู้บริโภคด้านมือถือและอินเทอร์เน็ต',
+			en: 'Regulates spectrum, telecommunications, and consumer protection for mobile and internet services.'
+		}
+	},
+	{
+		slug: 'moph',
+		name: { th: 'กระทรวงสาธารณสุข', en: 'Ministry of Public Health' },
+		abbr: { th: 'สธ.', en: 'MOPH' },
+		site: 'https://www.moph.go.th/',
+		blurb: {
+			th: 'กำกับดูแลระบบสาธารณสุขของประเทศ โรงพยาบาลรัฐ การควบคุมโรค และมาตรฐานบริการทางการแพทย์',
+			en: 'Oversees Thailand’s public health system, state hospitals, disease control and clinical service standards.'
+		}
 	}
 ];
 

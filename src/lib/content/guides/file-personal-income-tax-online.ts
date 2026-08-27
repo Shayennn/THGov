@@ -59,7 +59,7 @@ export const guide: Guide = {
 		{
 			title: { th: 'รวบรวมเอกสารก่อนเปิดหน้าจอ', en: 'Gather the paperwork before you start' },
 			text: {
-				th: 'หัวใจของงานนี้คือหนังสือรับรองการหักภาษี ณ ที่จ่าย หรือที่เรียกกันติดปากว่าใบ 50 ทวิ ซึ่งต้องขอจากนายจ้างทุกรายในปีนั้น ไม่ใช่เฉพาะที่ทำงานปัจจุบัน แล้วค่อยรวบรวมเอกสารฝั่งค่าลดหย่อนให้ครบ การเตรียมของให้พร้อมก่อนช่วยให้กรอกรวดเดียวจบ',
+				th: 'หัวใจของงานนี้คือหนังสือรับรองการหักภาษี ณ ที่จ่าย หรือใบ 50 ทวิ ซึ่งต้องขอจากนายจ้างทุกรายในปีนั้น ไม่ใช่เฉพาะที่ทำงานปัจจุบัน แล้วค่อยรวบรวมเอกสารฝั่งค่าลดหย่อนให้ครบ การเตรียมของให้พร้อมช่วยให้กรอกรวดเดียวจบ',
 				en: 'The centrepiece is the withholding tax certificate — the หนังสือรับรองการหักภาษี ณ ที่จ่าย everyone calls a 50 ทวิ — and you need one from every employer you had that year, not just your current one. Then collect the deduction side in full. Having it all to hand is what lets you finish in one sitting.'
 			}
 		},
@@ -90,7 +90,7 @@ export const guide: Guide = {
 				en: 'Read the result, then refund or pay'
 			},
 			text: {
-				th: 'ระบบจะสรุปว่าเหลือเป็นยอดต้องชำระเพิ่มหรือยอดขอคืนเท่าไร ถ้าต่างจากที่คาดไว้มาก ให้ย้อนไปดูช่องเงินได้และค่าลดหย่อนก่อน มักเป็นการพิมพ์เกินหลักหรือกรอกซ้ำสองครั้ง เมื่อยืนยันแล้วให้เก็บหลักฐานการยื่นไว้ และถ้าเป็นยอดขอคืนให้ผูกบัญชีธนาคารในชื่อคุณเอง หรือพร้อมเพย์ที่ผูกกับเลขประจำตัวประชาชน',
+				th: 'ระบบจะสรุปว่าเหลือเป็นยอดต้องชำระเพิ่มหรือยอดขอคืนเท่าไร ถ้าต่างจากที่คาดไว้มาก ให้ย้อนไปดูช่องเงินได้และค่าลดหย่อนก่อน มักเป็นการพิมพ์เกินหลักหรือกรอกซ้ำ เมื่อยืนยันแล้วให้เก็บหลักฐานการยื่นไว้ ถ้าเป็นยอดขอคืนให้ผูกบัญชีธนาคารในชื่อคุณเอง หรือพร้อมเพย์ที่ผูกกับเลขประจำตัวประชาชน',
 				en: 'The system shows whether you owe a balance or are due a refund. If it is far from what you expected, revisit the income and allowance fields first — a stray digit or a figure entered twice explains most surprises. Save the confirmation once you submit, and for a refund link a bank account in your own name or PromptPay registered to your national ID.'
 			}
 		}
@@ -103,7 +103,7 @@ export const guide: Guide = {
 		{
 			type: 'p',
 			text: {
-				th: 'ภาษีเงินได้บุคคลธรรมดาคิดจากเงินได้ที่คุณรับมาตลอดปีปฏิทิน หักค่าใช้จ่ายและค่าลดหย่อนตามที่กฎหมายให้ แล้วจึงคำนวณภาษีจากยอดสุทธิที่เหลือ เรื่องนี้ไม่ได้เป็นหน้าที่ของมนุษย์เงินเดือนเท่านั้น แต่ครอบคลุมถึงฟรีแลนซ์ แม่ค้าออนไลน์ คนปล่อยเช่าห้อง และผู้รับดอกเบี้ยหรือเงินปันผลด้วย การที่นายจ้างหักภาษีให้ทุกเดือนเป็นเพียงการประมาณการล่วงหน้า ส่วนการยื่นแบบประจำปีคือการคิดบัญชีจริงของปีนั้น',
+				th: 'ภาษีเงินได้บุคคลธรรมดาคิดจากเงินได้ตลอดปีปฏิทิน หักค่าใช้จ่ายและค่าลดหย่อนตามที่กฎหมายให้ แล้วคำนวณภาษีจากยอดสุทธิที่เหลือ เรื่องนี้ไม่ใช่หน้าที่ของมนุษย์เงินเดือนเท่านั้น แต่ครอบคลุมถึงฟรีแลนซ์ แม่ค้าออนไลน์ คนปล่อยเช่าห้อง และผู้รับดอกเบี้ยหรือเงินปันผล การหักภาษีทุกเดือนเป็นเพียงการประมาณการล่วงหน้า ส่วนการยื่นประจำปีคือการคิดบัญชีจริงของปีนั้น',
 				en: 'Personal income tax is worked out from what you received across the calendar year, less the expenses and allowances the law grants, with tax charged on what remains. It is not a salaried person’s concern alone: it reaches freelancers, online sellers, landlords and anyone drawing interest or dividends. Monthly withholding is only an advance estimate — the annual return is where the real arithmetic happens.'
 			}
 		},
@@ -260,8 +260,8 @@ export const guide: Guide = {
 			tone: 'warn',
 			title: { th: 'ตัวเลขเปลี่ยนทุกปี อย่าเชื่อของเก่า', en: 'The numbers change every year' },
 			text: {
-				th: 'ตารางนี้ตั้งใจไม่ระบุจำนวนเงินไว้เลย เพราะเพดานของแต่ละรายการ อัตราภาษีแบบขั้นบันได เกณฑ์ขั้นต่ำที่ต้องยื่น และกำหนดเวลายื่นแบบ ล้วนปรับปรุงได้ตามกฎหมายและมาตรการของแต่ละปี ไฟล์สรุปหรือคลิปที่ทำไว้เมื่อสองสามปีก่อนจึงพาคุณกรอกผิดได้ง่ายมาก ให้ยืนยันตัวเลขของปีภาษีที่กำลังยื่นจากเว็บไซต์ทางการเสมอ',
-				en: 'This table carries no baht figures on purpose. Allowance ceilings, the progressive rate bands, the threshold that triggers a duty to file and the filing deadline are all revised from year to year. A cheat sheet or video made a couple of years ago is a fast route to a wrong entry, so confirm every figure against the Revenue Department’s official site.'
+				th: 'ตารางนี้ตั้งใจไม่ระบุจำนวนเงินไว้เลย เพราะเพดานของแต่ละรายการ อัตราภาษีขั้นบันได เกณฑ์ขั้นต่ำที่ต้องยื่น และกำหนดเวลายื่นแบบ ปรับปรุงได้ตามกฎหมายและมาตรการของแต่ละปี ไฟล์สรุปที่ทำไว้เมื่อสองสามปีก่อนจึงพาคุณกรอกผิดได้ง่าย ให้ยืนยันตัวเลขของปีภาษีที่กำลังยื่นจากเว็บไซต์ทางการเสมอ',
+				en: 'This table carries no baht figures on purpose. Allowance ceilings, the rate bands, the threshold that triggers a duty to file and the deadline are all revised from year to year. A cheat sheet made a couple of years ago is a fast route to a wrong entry, so confirm every figure against the Revenue Department’s official site.'
 			}
 		},
 		{
@@ -276,11 +276,11 @@ export const guide: Guide = {
 					en: 'Pre-filled income does not match your 50 ทวิ: trust the document, and ask HR or the payer to check what they submitted. Do not confirm while the gap is unexplained — fixing it beforehand is always easier.'
 				},
 				{
-					th: 'ไม่มีใบ 50 ทวิ จากนายจ้างเก่า ผู้จ่ายเงินได้มีหน้าที่ออกให้ตามกฎหมาย ให้ขอเป็นลายลักษณ์อักษรพร้อมระบุปีภาษี ระหว่างรอให้เก็บสลิปเงินเดือนไว้ และถ้าติดต่อไม่ได้จริง ๆ ให้นำหลักฐานเท่าที่มีไปปรึกษาสำนักงานสรรพากรพื้นที่สาขา',
+					th: 'ไม่มีใบ 50 ทวิ จากนายจ้างเก่า ผู้จ่ายเงินได้มีหน้าที่ออกให้ตามกฎหมาย ให้ขอเป็นลายลักษณ์อักษรพร้อมระบุปีภาษี ระหว่างรอให้เก็บสลิปเงินเดือนไว้ ถ้าติดต่อไม่ได้จริง ๆ ให้นำหลักฐานเท่าที่มีไปปรึกษาสรรพากรพื้นที่สาขา',
 					en: 'A missing 50 ทวิ from a former employer: the payer is legally required to issue one, so request it in writing and name the tax year. Keep your payslips meanwhile, and if the company is truly unreachable, take what evidence you have to an area revenue office.'
 				},
 				{
-					th: 'ยื่นไม่ทันกำหนด ยังต้องยื่นอยู่ดีและควรยื่นให้เร็วที่สุด เพราะการยื่นล่าช้ามีเบี้ยปรับและเงินเพิ่มตามที่กฎหมายกำหนด ให้ตรวจสอบกับกรมสรรพากรว่าปีภาษีนั้นยังยื่นออนไลน์ได้ หรือต้องยื่นที่สำนักงานสรรพากรพื้นที่สาขา',
+					th: 'ยื่นไม่ทันกำหนด ยังต้องยื่นอยู่ดีและควรยื่นให้เร็วที่สุด เพราะการยื่นล่าช้ามีเบี้ยปรับและเงินเพิ่มตามกฎหมาย ให้ตรวจสอบกับกรมสรรพากรว่าปีภาษีนั้นยังยื่นออนไลน์ได้ หรือต้องยื่นที่สรรพากรพื้นที่สาขา',
 					en: 'You missed the deadline: you must still file, and the sooner the better, because late filing carries surcharges and penalties set by law. Check with the Revenue Department whether that year can still go through the online channel or must be lodged at an area office.'
 				}
 			]
@@ -292,7 +292,7 @@ export const guide: Guide = {
 		{
 			type: 'p',
 			text: {
-				th: 'ช่วงฤดูยื่นภาษีคือช่วงที่มิจฉาชีพขยันที่สุด เพราะรู้ว่ามีคนจำนวนมากกำลังรอเงินคืนอยู่จริง รูปแบบที่พบบ่อยคือ SMS หรืออีเมลบอกว่าเงินคืนภาษีของคุณรอการยืนยัน พร้อมลิงก์ให้กรอกเลขบัตรประชาชน เลขบัญชีธนาคาร หรือรหัส OTP บางรายทำหน้าเว็บเลียนแบบและใช้ชื่อโดเมนที่สะกดใกล้เคียงจนแทบไม่ทันสังเกต',
+				th: 'ช่วงฤดูยื่นภาษีคือช่วงที่มิจฉาชีพขยันที่สุด เพราะรู้ว่ามีคนจำนวนมากกำลังรอเงินคืนอยู่จริง รูปแบบที่พบบ่อยคือ SMS หรืออีเมลบอกว่าเงินคืนภาษีของคุณรอการยืนยัน พร้อมลิงก์ให้กรอกเลขบัตรประชาชน เลขบัญชี หรือรหัส OTP บางรายทำหน้าเว็บเลียนแบบและใช้โดเมนที่สะกดใกล้เคียงจนแทบไม่ทันสังเกต',
 				en: 'Filing season is peak season for fraud, precisely because so many people really are waiting on a refund. The usual approach is an SMS or email saying your refund is pending confirmation, with a link asking for your ID number, bank account or an OTP. Some build a lookalike page on a domain spelled just closely enough to slip past a quick glance.'
 			}
 		},
@@ -325,8 +325,8 @@ export const guide: Guide = {
 				en: 'My income is low. Do I still need to file?'
 			},
 			a: {
-				th: 'หน้าที่ยื่นแบบกับหน้าที่เสียภาษีเป็นคนละเรื่องกัน ผู้ที่มีเงินได้ถึงเกณฑ์ที่กฎหมายกำหนดต้องยื่นแบบ แม้คำนวณแล้วไม่มีภาษีต้องชำระก็ตาม เกณฑ์นี้ต่างกันตามประเภทเงินได้และสถานะสมรส และปรับปรุงเป็นระยะ จึงควรตรวจสอบตัวเลขของปีภาษีนั้นจากเว็บไซต์กรมสรรพากร',
-				en: 'The duty to file and the duty to pay are separate. If your income reaches the statutory threshold you must file, even when the calculation leaves nothing payable. That threshold varies by income type and marital status and is revised periodically, so check the figure for your tax year on the Revenue Department site.'
+				th: 'หน้าที่ยื่นแบบกับหน้าที่เสียภาษีเป็นคนละเรื่องกัน ผู้ที่มีเงินได้ถึงเกณฑ์ที่กฎหมายกำหนดต้องยื่นแบบ แม้คำนวณแล้วไม่มีภาษีต้องชำระก็ตาม เกณฑ์นี้ปรับปรุงเป็นระยะ จึงควรตรวจสอบตัวเลขของปีภาษีนั้นจากเว็บไซต์กรมสรรพากร',
+				en: 'The duty to file and the duty to pay are separate. If your income reaches the statutory threshold you must file, even when the calculation leaves nothing payable. The threshold is revised periodically, so check the figure for your tax year on the Revenue Department site.'
 			}
 		},
 		{
@@ -345,8 +345,8 @@ export const guide: Guide = {
 				en: 'I have a salary and freelance work. Which form?'
 			},
 			a: {
-				th: 'ต้องใช้ ภ.ง.ด.90 เพราะมีเงินได้มากกว่าหนึ่งประเภท เงินเดือนกรอกในส่วนเงินได้จากการจ้างแรงงาน ส่วนค่าจ้างฟรีแลนซ์กรอกในประเภทที่ตรงกับลักษณะงานของคุณ และควรมีหนังสือรับรองการหักภาษี ณ ที่จ่ายจากผู้จ่ายแต่ละราย ถ้าไม่แน่ใจว่ารายได้จัดอยู่ในประเภทใด ให้สอบถามสำนักงานสรรพากรพื้นที่สาขาก่อนยื่น',
-				en: 'PND 90, because you have more than one category of income. Salary goes in the employment section; freelance fees go under the category matching the nature of the work, and each payer should give you a withholding tax certificate. If you are unsure which category your earnings fall into, ask an area revenue office before submitting.'
+				th: 'ต้องใช้ ภ.ง.ด.90 เพราะมีเงินได้มากกว่าหนึ่งประเภท เงินเดือนกรอกในส่วนเงินได้จากการจ้างแรงงาน ส่วนค่าจ้างฟรีแลนซ์กรอกในประเภทที่ตรงกับลักษณะงานของคุณ ถ้าไม่แน่ใจว่ารายได้จัดอยู่ในประเภทใด ให้สอบถามสำนักงานสรรพากรพื้นที่สาขาก่อนยื่น',
+				en: 'PND 90, because you have more than one category of income. Salary goes in the employment section; freelance fees go under the category matching the nature of the work. If you are unsure which category your earnings fall into, ask an area revenue office before submitting.'
 			}
 		},
 		{
@@ -355,7 +355,7 @@ export const guide: Guide = {
 				en: 'How does a refund reach me, and can I track it?'
 			},
 			a: {
-				th: 'ทางที่สะดวกที่สุดคือผูกพร้อมเพย์กับเลขประจำตัวประชาชนของคุณเอง หรือแจ้งบัญชีธนาคารที่เป็นชื่อคุณ เงินจะโอนเข้าบัญชีนั้นโดยตรง และคุณเข้าไปดูสถานะการคืนภาษีในระบบได้ด้วยตัวเอง บางกรณีเจ้าหน้าที่อาจขอเอกสารเพิ่มก่อนอนุมัติ ซึ่งจะแจ้งผ่านช่องทางทางการ ไม่ใช่ลิงก์ที่ส่งมาทาง SMS',
+				th: 'ทางที่สะดวกที่สุดคือผูกพร้อมเพย์กับเลขประจำตัวประชาชนของคุณเอง หรือแจ้งบัญชีธนาคารที่เป็นชื่อคุณ เงินจะโอนเข้าบัญชีนั้นโดยตรง และคุณดูสถานะการคืนภาษีในระบบได้เอง บางกรณีเจ้าหน้าที่อาจขอเอกสารเพิ่มก่อนอนุมัติ ซึ่งจะแจ้งผ่านช่องทางทางการ ไม่ใช่ลิงก์ทาง SMS',
 				en: 'The smoothest route is PromptPay registered to your own national ID, or a bank account in your name; the money transfers straight there. You can follow the refund’s status yourself inside the system. Officers sometimes request supporting documents before approving, and they ask through official channels — never a link by SMS.'
 			}
 		},

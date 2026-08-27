@@ -48,14 +48,14 @@ export const guide: Guide = {
 				en: 'Start from the expiry date, not the website'
 			},
 			text: {
-				th: 'ภาษีรถหมดอายุตามวันที่ในเล่มทะเบียนและบนป้ายที่ติดกระจกหน้า ไม่ได้หมดพร้อมกันทุกคัน กรมการขนส่งทางบกเปิดให้ชำระล่วงหน้าได้ระยะหนึ่งก่อนถึงวันนั้น ควรจัดการช่วงนั้น เพราะถ้าติดปัญหาจะยังมีเวลาแก้',
+				th: 'ภาษีรถหมดอายุตามวันที่ในเล่มทะเบียนและบนป้ายที่ติดกระจกหน้า ไม่ได้หมดพร้อมกันทุกคัน กรมเปิดให้ชำระล่วงหน้าได้ระยะหนึ่งก่อนถึงวันนั้น ควรจัดการช่วงนั้น เพราะถ้าติดปัญหาจะยังมีเวลาแก้',
 				en: 'Road tax expires on the date printed in your registration book and on the sticker in the windscreen — no two vehicles share a date. The department opens a window for paying ahead of it, and that is when to act, because a snag still leaves room to fix it.'
 			}
 		},
 		{
 			title: { th: 'ทำ พ.ร.บ. ให้มีผลคุ้มครองก่อน', en: 'Get compulsory insurance in force first' },
 			text: {
-				th: 'พ.ร.บ. คือประกันภัยรถภาคบังคับตามกฎหมาย และเป็นเงื่อนไขตั้งต้นของการชำระภาษี ถ้าหมดอายุหรือขาดช่วง ระบบจะไม่ให้ทำรายการต่อ ทั้งออนไลน์และที่เคาน์เตอร์ ซื้อจากบริษัทประกันหรือตัวแทน แล้วรอให้ข้อมูลเข้าระบบก่อน',
+				th: 'พ.ร.บ. คือประกันภัยรถภาคบังคับตามกฎหมาย และเป็นเงื่อนไขตั้งต้นของการชำระภาษี ถ้าหมดอายุหรือขาดช่วง ระบบจะไม่ให้ทำรายการต่อ ซื้อจากบริษัทประกันหรือตัวแทนก่อน แล้วรอให้ข้อมูลเข้าระบบ',
 				en: 'Compulsory motor insurance — พ.ร.บ. — is required by law and is the precondition for paying the tax. If it has expired or lapsed, nothing goes further, online or at a counter. Buy it through an insurer or agent, then give the record time to reach the department’s system.'
 			}
 		},
@@ -65,7 +65,7 @@ export const guide: Guide = {
 				en: 'If the vehicle is old enough, get it inspected'
 			},
 			text: {
-				th: 'รถที่ใช้งานมานานถึงเกณฑ์ของรถประเภทนั้น ต้องผ่านการตรวจจากสถานตรวจสภาพรถเอกชนที่ได้รับอนุญาต หรือ ตรอ. ก่อน เกณฑ์ของรถยนต์กับรถจักรยานยนต์ไม่เท่ากัน ควรยืนยันเกณฑ์ปัจจุบันจากเว็บไซต์ทางการก่อนขับไป',
+				th: 'รถที่ใช้งานมานานถึงเกณฑ์ของรถประเภทนั้น ต้องผ่านการตรวจจากสถานตรวจสภาพรถเอกชนที่ได้รับอนุญาต หรือ ตรอ. ก่อน เกณฑ์ของรถยนต์กับรถจักรยานยนต์ไม่เท่ากัน ควรเช็กเกณฑ์ปัจจุบันจากเว็บไซต์ทางการก่อนขับไป',
 				en: 'Once a vehicle passes the age threshold set for its class, it must clear a check at a licensed private inspection centre — a ตรอ. Thresholds differ between cars and motorcycles, so confirm the current rule on the official site before driving over.'
 			}
 		},
@@ -75,38 +75,25 @@ export const guide: Guide = {
 				en: 'Open the official system and enter the details'
 			},
 			text: {
-				th: 'พิมพ์ที่อยู่เว็บไซต์ของกรมด้วยตัวเอง หรือใช้ลิงก์ที่บันทึกไว้ อย่ากดผ่านโฆษณาหรือลิงก์ในแชท จากนั้นกรอกประเภทรถ เลขทะเบียน จังหวัด และเลขตัวรถให้ตรงทุกตัวอักษร ระบบจะตรวจให้เองว่ารถคันนี้ต่อออนไลน์ได้ไหม',
+				th: 'พิมพ์ที่อยู่เว็บไซต์ของกรมเอง หรือใช้ลิงก์ที่บันทึกไว้ อย่ากดผ่านโฆษณาหรือลิงก์ในแชท จากนั้นกรอกประเภทรถ เลขทะเบียน จังหวัด และเลขตัวรถให้ตรงทุกตัวอักษร ระบบจะตรวจให้เองว่ารถคันนี้ต่อออนไลน์ได้ไหม',
 				en: 'Type the department’s address yourself, or use a link you saved — never arrive through an advertisement or a forwarded message. Then enter the vehicle class, plate number, province and chassis number exactly as registered; the lookup is literal, and the system checks eligibility for you.'
 			}
 		},
 		{
-			title: {
-				th: 'ดูยอดที่ระบบคำนวณ ตรวจที่อยู่ แล้วจ่าย',
-				en: 'Check the amount, check the address, then pay'
-			},
+			title: { th: 'ตรวจยอด ตรวจที่อยู่ แล้วชำระเงิน', en: 'Check the amount and the address, then pay' },
 			text: {
-				th: 'ยอดภาษีไม่เท่ากันทุกคัน เพราะคิดตามประเภทรถ ขนาดเครื่องยนต์หรือน้ำหนัก และอายุการใช้งาน ให้ยึดตัวเลขที่ระบบทางการแสดงเป็นหลัก ก่อนกดยืนยัน ตรวจที่อยู่จัดส่งให้เป็นที่อยู่ปัจจุบัน เพราะป้ายภาษีส่งทางไปรษณีย์',
+				th: 'ยอดภาษีไม่เท่ากันทุกคัน เพราะคิดตามประเภทรถ ขนาดเครื่องยนต์หรือน้ำหนัก และอายุการใช้งาน ให้ยึดตัวเลขที่ระบบทางการแสดง ก่อนกดยืนยัน ตรวจที่อยู่จัดส่งให้เป็นที่อยู่ปัจจุบัน เพราะป้ายภาษีส่งทางไปรษณีย์',
 				en: 'The amount differs from vehicle to vehicle, following the class, the engine size or weight, and the age, so trust the figure the official system produces. Before confirming, re-read the delivery address — the sticker is posted to it, not handed over a counter.'
 			}
 		},
 		{
 			title: {
-				th: 'เก็บหลักฐานไว้ในรถระหว่างรอป้าย',
-				en: 'Keep the receipt in the car while the sticker travels'
+				th: 'รับหลักฐาน รอป้าย และแผนสำรองถ้าระบบไม่รับ',
+				en: 'Receipt, sticker, and the fallback if you are refused'
 			},
 			text: {
-				th: 'ชำระสำเร็จแล้วระบบจะออกหลักฐานให้ทันที ส่วนป้ายภาษีตามมาทางไปรษณีย์ ให้เก็บไฟล์นั้นไว้ในรถเผื่อถูกเรียกตรวจระหว่างที่ป้ายยังมาไม่ถึง และเผื่อเวลาจัดส่งให้ป้ายมาถึงก่อนภาษีเดิมหมดอายุ',
-				en: 'A receipt is issued the moment payment clears; the sticker follows by post. Keep it on your phone and in the car so you have something to show if you are stopped, and allow enough delivery time for the sticker to land before the old tax runs out.'
-			}
-		},
-		{
-			title: {
-				th: 'ถ้าระบบปฏิเสธ ให้จองคิวไปที่สำนักงาน',
-				en: 'If the system refuses, book a queue and go in person'
-			},
-			text: {
-				th: 'ระบบออนไลน์ไม่ได้รับรถทุกคัน ถ้าขึ้นข้อความว่าทำรายการไม่ได้ แปลว่ารถคันนั้นต้องดำเนินการที่สำนักงานขนส่ง ให้จองคิวล่วงหน้าผ่านช่องทางของกรม แล้วเตรียมเล่มทะเบียน หลักฐาน พ.ร.บ. และใบตรวจสภาพถ้าต้องใช้',
-				en: 'Not every vehicle is accepted online. A refusal means this one has to be handled by a person at a transport office. Book a queue in advance through the department’s own channel, and bring the registration book, proof of insurance and the inspection certificate if one applies.'
+				th: 'เมื่อจ่ายสำเร็จ ระบบจะออกหลักฐานให้ทันที เก็บไฟล์นั้นไว้ในรถระหว่างรอป้ายที่ส่งมาทางไปรษณีย์ และเผื่อเวลาให้ป้ายมาถึงก่อนภาษีเดิมหมดอายุ ถ้าระบบแจ้งว่าทำรายการไม่ได้ ให้จองคิวล่วงหน้าแล้วไปที่สำนักงานขนส่ง พร้อมเล่มทะเบียน หลักฐาน พ.ร.บ. และใบตรวจสภาพถ้าต้องใช้',
+				en: 'Payment produces a receipt at once; keep it in the car while the sticker travels by post, and leave enough time for it to arrive before the old tax expires. If the system says it cannot process the vehicle, book a queue in advance and go to a transport office with the registration book, proof of insurance and, where it applies, the inspection certificate.'
 			}
 		}
 	],
@@ -118,7 +105,7 @@ export const guide: Guide = {
 		{
 			type: 'p',
 			text: {
-				th: 'การต่อภาษีรถประจำปีคือการจ่ายภาษีให้รัฐ เพื่อให้รถวิ่งบนถนนได้อย่างถูกกฎหมายต่อไปอีกหนึ่งปี สิ่งที่ได้กลับมาคือป้ายภาษีสำหรับติดกระจกหน้า ที่หลายคนยังเรียกติดปากว่า “ป้ายวงกลม” ความสับสนที่พบบ่อยที่สุดคือการเหมารวมว่าภาษีรถ พ.ร.บ. และการตรวจสภาพเป็นเรื่องเดียวกัน ทั้งสามอย่างเกี่ยวข้องกัน แต่เป็นคนละรายการ ทำคนละที่ และมีวันหมดอายุของตัวเอง',
+				th: 'ต่อภาษีรถประจำปีคือการจ่ายภาษีให้รัฐ เพื่อให้รถวิ่งบนถนนได้อย่างถูกกฎหมายอีกหนึ่งปี สิ่งที่ได้กลับมาคือป้ายภาษีสำหรับติดกระจกหน้า ที่หลายคนยังเรียกติดปากว่า “ป้ายวงกลม” ความสับสนที่พบบ่อยที่สุดคือการเหมารวมว่าภาษีรถ พ.ร.บ. และการตรวจสภาพเป็นเรื่องเดียวกัน ทั้งสามอย่างเกี่ยวข้องกัน แต่เป็นคนละรายการ ทำคนละที่ และมีวันหมดอายุของตัวเอง',
 				en: 'Renewing road tax means paying the state for another year of legal use of the vehicle. What comes back is the windscreen sticker, still widely called ป้ายวงกลม — “the round one” — after the shape of an older design. The most common confusion is treating road tax, compulsory insurance and the roadworthiness inspection as a single errand. They are connected, but they are three separate items, obtained in three different places, each with its own expiry date.'
 			}
 		},
@@ -129,8 +116,8 @@ export const guide: Guide = {
 		{
 			type: 'p',
 			text: {
-				th: 'ภาษีรถเป็นปลายทางของเงื่อนไขอื่น ไม่ใช่จุดเริ่มต้น ถ้าเริ่มจากการเปิดหน้าเว็บต่อภาษีเป็นอย่างแรก มักถูกตีกลับกลางทางแล้วต้องเริ่มใหม่',
-				en: 'Road tax sits at the end of a chain, not the start of one. Opening the renewal page first is the reliable way to get bounced halfway and start over.'
+				th: 'ภาษีรถเป็นปลายทางของเงื่อนไขอื่น ไม่ใช่จุดเริ่มต้น คนที่เปิดหน้าเว็บต่อภาษีเป็นอย่างแรกจึงมักถูกตีกลับกลางทาง',
+				en: 'Road tax sits at the end of a chain, not the start of one, which is why opening the renewal page first is the reliable way to get bounced halfway.'
 			}
 		},
 		{
@@ -166,8 +153,8 @@ export const guide: Guide = {
 		{
 			type: 'p',
 			text: {
-				th: 'ช่องทางออนไลน์ออกแบบมาสำหรับกรณีตรงไปตรงมา รถที่มีเงื่อนไขซับซ้อนกว่านั้นยังต้องให้เจ้าหน้าที่ดูด้วยตา ข้อจำกัดหลักคืออายุการใช้งานและสถานะทางทะเบียน ซึ่งกำหนดต่างกันตามประเภทรถ ข้อดีคือไม่ต้องจำเกณฑ์เอง เพราะระบบจะตรวจให้ทันทีที่กรอกข้อมูลรถ',
-				en: 'The online channel is built for straightforward cases; anything more tangled still needs a person to look at it. The limits are the vehicle’s age and its registration status, both set differently by class. The useful part is that you need not memorise any of it — the check runs the moment you enter the details.'
+				th: 'ช่องทางออนไลน์ออกแบบมาสำหรับกรณีตรงไปตรงมา รถที่มีเงื่อนไขซับซ้อนกว่านั้นยังต้องให้เจ้าหน้าที่ดู ข้อจำกัดหลักคืออายุการใช้งานและสถานะทางทะเบียน ข้อดีคือไม่ต้องจำเกณฑ์เอง เพราะระบบจะตรวจให้ทันทีที่กรอกข้อมูลรถ',
+				en: 'The online channel is built for straightforward cases; anything more tangled still needs a person to look at it. The limits are the vehicle’s age and its registration status. The useful part is that you need not memorise any of it — the check runs the moment you enter the details.'
 			}
 		},
 		{
@@ -202,8 +189,8 @@ export const guide: Guide = {
 		{
 			type: 'p',
 			text: {
-				th: 'ภาษีที่เลยกำหนดไม่ได้หายไปเฉย ๆ แต่จะสะสมเป็นเงินเพิ่มตามระยะเวลาที่ค้าง ยิ่งทิ้งไว้นาน ยอดในวันที่กลับมาต่อก็ยิ่งสูง และถ้าขาดต่อเนื่องจนถึงระยะที่กฎหมายกำหนด ทะเบียนรถจะถูกระงับ เจ้าของต้องนำแผ่นป้ายไปคืนที่สำนักงานขนส่ง หากจะใช้รถคันนั้นอีกก็ต้องจดทะเบียนใหม่ ซึ่งยุ่งและแพงกว่าการต่อภาษีตามปกติมาก อัตราเงินเพิ่มและกรอบเวลาต่างกันตามประเภทรถ ควรตรวจสอบจากประกาศของกรมโดยตรง',
-				en: 'Overdue tax does not quietly disappear: a surcharge accrues for as long as it stays unpaid, so the bill grows the longer it is left. Let the lapse run long enough and the registration itself is suspended — the owner must surrender the plates at a transport office, and putting the vehicle back on the road then means registering it afresh, far more work and more money than a routine renewal. Surcharges and timeframes vary by vehicle class, so read them from the department’s own announcements.'
+				th: 'ภาษีที่เลยกำหนดไม่ได้หายไปเฉย ๆ แต่จะสะสมเป็นเงินเพิ่มตามระยะเวลาที่ค้าง ยิ่งทิ้งไว้นานยอดก็ยิ่งสูง และถ้าขาดต่อเนื่องจนถึงระยะที่กฎหมายกำหนด ทะเบียนรถจะถูกระงับ เจ้าของต้องนำแผ่นป้ายไปคืน ถ้าจะใช้รถคันนั้นอีกก็ต้องจดทะเบียนใหม่ ซึ่งยุ่งและแพงกว่ากันมาก อัตราเงินเพิ่มและกรอบเวลาต่างกันตามประเภทรถ ควรดูจากประกาศของกรมโดยตรง',
+				en: 'Overdue tax does not quietly disappear: a surcharge accrues for as long as it stays unpaid, so the bill grows the longer it is left. Let the lapse run long enough and the registration itself is suspended — the owner must surrender the plates, and putting the vehicle back on the road then means registering it afresh, far more work and more money than a routine renewal. Surcharges and timeframes vary by vehicle class, so read them from the department’s own announcements.'
 			}
 		},
 		{
@@ -213,7 +200,7 @@ export const guide: Guide = {
 		{
 			type: 'p',
 			text: {
-				th: 'ทุกช่วงที่คนค้นหาเรื่องต่อภาษีรถกันมาก จะมีเว็บไซต์หน้าตาคล้ายระบบราชการโผล่ขึ้นมาเป็นกลุ่ม บางแห่งรับเงินแล้วเงียบหาย ไม่มีป้ายภาษีส่งมาให้จริง บางแห่งบวกค่าบริการซ้อนโดยไม่แจ้ง และหลายแห่งซื้อโฆษณาให้ขึ้นเหนือผลการค้นหาจริง คนที่กำลังรีบและกดลิงก์แรกที่เห็นจึงตกเป็นเหยื่อได้ง่าย',
+				th: 'ทุกช่วงที่คนค้นหาเรื่องต่อภาษีรถกันมาก จะมีเว็บไซต์หน้าตาคล้ายระบบราชการโผล่ขึ้นมาเป็นกลุ่ม บางแห่งรับเงินแล้วเงียบหาย ไม่มีป้ายภาษีส่งมาให้จริง บางแห่งบวกค่าบริการซ้อนโดยไม่แจ้ง และหลายแห่งซื้อโฆษณาให้ขึ้นเหนือผลการค้นหาจริง คนที่รีบและกดลิงก์แรกที่เห็นจึงตกเป็นเหยื่อได้ง่าย',
 				en: 'Whenever searches for road tax renewal spike, a crop of sites appears wearing the look of an official system. Some take the money and go quiet, and no sticker ever comes. Some stack an undisclosed service fee on top. Many buy advertising so they sit above the genuine result — and someone in a hurry, tapping the first link they see, is exactly the target.'
 			}
 		},
@@ -243,7 +230,7 @@ export const guide: Guide = {
 			tone: 'danger',
 			title: { th: 'ถ้าเผลอจ่ายให้เว็บปลอมไปแล้ว', en: 'If you have already paid a fake site' },
 			text: {
-				th: 'รีบติดต่อธนาคารหรือผู้ให้บริการชำระเงินทันทีเพื่อขอระงับรายการ เก็บภาพหน้าจอ สลิป และที่อยู่เว็บไซต์ไว้เป็นหลักฐาน แล้วแจ้งความหรือแจ้งผ่านช่องทางรับแจ้งอาชญากรรมทางเทคโนโลยี จากนั้นให้ถือว่าภาษียังไม่ได้ชำระ',
+				th: 'รีบติดต่อธนาคารหรือผู้ให้บริการชำระเงินเพื่อขอระงับรายการ เก็บภาพหน้าจอ สลิป และที่อยู่เว็บไซต์ไว้เป็นหลักฐาน แล้วแจ้งความหรือแจ้งผ่านช่องทางรับแจ้งอาชญากรรมทางเทคโนโลยี จากนั้นให้ถือว่าภาษียังไม่ได้ชำระ',
 				en: 'Contact your bank or payment provider at once and ask them to stop the transaction. Keep screenshots, the receipt and the web address as evidence, then file a police report or use the official channel for reporting online crime. After that, treat the tax as still unpaid and do it again through the official system.'
 			}
 		},
@@ -252,8 +239,8 @@ export const guide: Guide = {
 			tone: 'info',
 			title: { th: 'เกี่ยวกับหน้านี้', en: 'About this page' },
 			text: {
-				th: 'THGov เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดกรมการขนส่งทางบกหรือหน่วยงานใด เราไม่รับชำระภาษี ไม่รับดำเนินการแทน และไม่เก็บข้อมูลส่วนบุคคล ส่วนอัตราภาษี เกณฑ์อายุรถ และกำหนดเวลา ให้ยึดตามประกาศทางการล่าสุด',
-				en: 'THGov is an independent directory, not affiliated with the Department of Land Transport or any other agency. We take no payments, act on no one’s behalf, and collect none of your personal data. For rates, age thresholds and deadlines, always defer to the latest official announcement.'
+				th: 'THGov เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดกรมการขนส่งทางบกหรือหน่วยงานใด เราไม่รับชำระภาษีและไม่เก็บข้อมูลส่วนบุคคล ส่วนอัตราภาษี เกณฑ์อายุรถ และกำหนดเวลา ให้ยึดตามประกาศทางการล่าสุด',
+				en: 'THGov is an independent directory, not affiliated with the Department of Land Transport or any other agency. We take no payments and collect none of your personal data. For rates, age thresholds and deadlines, always defer to the latest official announcement.'
 			}
 		}
 	],
@@ -261,8 +248,8 @@ export const guide: Guide = {
 		{
 			q: { th: 'รถทุกคันต้องตรวจสภาพก่อนต่อภาษีไหม', en: 'Does every vehicle need an inspection first?' },
 			a: {
-				th: 'ไม่ใช่ทุกคัน การตรวจที่ ตรอ. จำเป็นเมื่อรถมีอายุถึงเกณฑ์ที่กำหนดสำหรับรถประเภทนั้น รถที่ใหม่กว่านั้นยังไม่ต้องตรวจ เกณฑ์ของรถยนต์กับรถจักรยานยนต์ไม่เท่ากันและปรับปรุงเป็นระยะ ให้ดูเกณฑ์ปัจจุบันจากเว็บไซต์ของกรม',
-				en: 'No. A ตรอ. inspection becomes necessary once the vehicle reaches the age threshold for its class; newer ones are exempt. The threshold differs between cars and motorcycles and is revised periodically, so check the current rule on the department’s site — or enter the details in the renewal system and let it answer.'
+				th: 'ไม่ใช่ทุกคัน การตรวจที่ ตรอ. จำเป็นเมื่อรถมีอายุถึงเกณฑ์ของรถประเภทนั้น รถที่ใหม่กว่านั้นยังไม่ต้องตรวจ เกณฑ์ของรถยนต์กับรถจักรยานยนต์ไม่เท่ากันและปรับปรุงเป็นระยะ ให้ดูเกณฑ์ปัจจุบันจากเว็บไซต์ของกรม',
+				en: 'No. A ตรอ. inspection becomes necessary once the vehicle reaches the age threshold for its class; newer ones are exempt. The threshold differs between cars and motorcycles and is revised periodically, so check the current rule on the department’s site.'
 			}
 		},
 		{
@@ -271,7 +258,7 @@ export const guide: Guide = {
 				en: 'My tax lapsed a while ago — can I still renew online?'
 			},
 			a: {
-				th: 'ขึ้นอยู่กับว่าขาดมานานแค่ไหน ช่องทางออนไลน์รองรับการค้างชำระได้ในระดับหนึ่ง เกินกว่านั้นต้องไปที่สำนักงานขนส่ง ทุกกรณีจะมีเงินเพิ่มสะสมตามระยะเวลาที่ค้าง และถ้าขาดนานถึงระยะที่กฎหมายกำหนด ทะเบียนจะถูกระงับ',
+				th: 'ขึ้นอยู่กับว่าขาดมานานแค่ไหน ช่องทางออนไลน์รองรับการค้างชำระได้ในระดับหนึ่ง เกินกว่านั้นต้องไปที่สำนักงานขนส่ง ทุกกรณีจะมีเงินเพิ่มสะสม และถ้าขาดนานถึงระยะที่กฎหมายกำหนด ทะเบียนจะถูกระงับ',
 				en: 'It depends how long. The online channel tolerates a certain amount of arrears and refuses beyond that, at which point it becomes a transport-office job. Either way a surcharge has been accruing, and a long enough lapse leads to the registration being suspended.'
 			}
 		},

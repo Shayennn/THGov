@@ -128,6 +128,31 @@ export const CATEGORIES: Category[] = [
 		]
 	},
 	{
+		slug: 'land-property',
+		name: { th: 'ที่ดินและอสังหาริมทรัพย์', en: 'Land & Property' },
+		blurb: {
+			th: 'โฉนดที่ดิน การตรวจสอบแปลงที่ดิน และการโอนกรรมสิทธิ์',
+			en: 'Title deeds, land-parcel checks and property transfer.'
+		},
+		icon: 'map',
+		intro: [
+			{
+				type: 'p',
+				text: {
+					th: 'ที่ดินเป็นทรัพย์สินที่มีมูลค่าสูงที่สุดของครอบครัวไทยจำนวนมาก และเป็นเรื่องที่ความผิดพลาดมีราคาแพงที่สุดเช่นกัน เอกสารสิทธิในที่ดินของไทยมีหลายประเภทและให้สิทธิไม่เท่ากัน ตั้งแต่โฉนดที่ดินซึ่งเป็นกรรมสิทธิ์เต็ม ไปจนถึงหนังสือรับรองการทำประโยชน์ที่ให้เพียงสิทธิครอบครองและมีข้อจำกัดในการซื้อขาย การเข้าใจว่าเอกสารที่ถืออยู่เป็นประเภทใดจึงเป็นเรื่องแรกที่ต้องรู้',
+					en: 'Land is the most valuable asset many Thai families hold, and the one where mistakes cost the most. Thai land documents come in several types conferring very different rights — from a full title deed down to certificates that grant only a right of use and restrict transfer. Knowing which document is actually in play is the first thing to establish.'
+				}
+			},
+			{
+				type: 'p',
+				text: {
+					th: 'การซื้อขายที่ดินในประเทศไทยยังเป็นเป้าหมายของการฉ้อโกงอยู่เสมอ ทั้งเอกสารสิทธิปลอม การอ้างสิทธิในที่ดินที่ไม่ใช่ของตน และการรับมัดจำแล้วหายไป เครื่องมือออนไลน์ของกรมที่ดินช่วยตรวจสอบเบื้องต้นได้ แต่ไม่ได้แทนการตรวจสอบที่สำนักงานที่ดินก่อนวางเงิน ซึ่งเป็นขั้นตอนที่ไม่ควรข้ามไม่ว่ากรณีใด',
+					en: 'Land transactions in Thailand remain a persistent target for fraud — forged deeds, people purporting to sell land they do not own, and deposits taken by someone who then disappears. The Department of Lands’ online tools support a first check, but they do not replace verifying at the land office before any money changes hands, a step that should never be skipped.'
+				}
+			}
+		]
+	},
+	{
 		slug: 'law-gazette',
 		name: { th: 'กฎหมายและราชกิจจานุเบกษา', en: 'Law & Gazette' },
 		blurb: {
