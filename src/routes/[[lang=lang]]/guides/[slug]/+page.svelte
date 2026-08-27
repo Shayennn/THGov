@@ -94,7 +94,9 @@
 		gap: clamp(2rem, 5vw, 3.5rem);
 		padding-block: clamp(2rem, 4vw, 3rem) clamp(3rem, 8vw, 5.5rem);
 	}
-	.main > * + * {
+	/* Sections rendered by child components carry their own scoping class, not
+	   this page's, so the stack rule has to reach past Svelte's style scoping. */
+	.main > :global(* + *) {
 		margin-top: clamp(2.5rem, 5vw, 3.75rem);
 	}
 	.rail {

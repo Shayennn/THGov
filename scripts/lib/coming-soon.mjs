@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { renderOg } from './og.mjs';
+import { markSvg } from './mark.mjs';
 
 const SITE_URL = (process.env.PUBLIC_SITE_URL || 'https://www.thgov.co').replace(/\/+$/, '');
 
@@ -94,7 +95,10 @@ background:rgba(20,17,48,.7);backdrop-filter:blur(8px);border:1px solid var(--li
 .lang button{padding:.3rem .7rem;border:0;background:none;color:var(--muted);font:inherit;font-size:.75rem;
 border-radius:999px;cursor:pointer}
 .lang button[aria-pressed=true]{background:rgba(255,255,255,.08);color:var(--brand);font-weight:500}
-[lang=en]{display:none}
+/* Scoped to the body: the switcher also sets lang on <html>, and an
+   unscoped [lang=en] would hide the whole document for anyone whose
+   browser is not Thai. */
+body [lang=en]{display:none}
 html[data-lang=en] [lang=th]{display:none}
 html[data-lang=en] [lang=en]{display:revert}
 :focus-visible{outline:3px solid #6cb6f5;outline-offset:2px;border-radius:4px}
@@ -112,12 +116,7 @@ html[data-lang=en] [lang=en]{display:revert}
 
 <main class="wrap">
 <div class="mark">
-<svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true">
-<defs><linearGradient id="m" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F05223"/><stop offset="100%" stop-color="#EE9B20"/></linearGradient></defs>
-<rect x="1.5" y="1.5" width="29" height="29" rx="9" fill="url(#m)"/>
-<path d="M9 12h14M16 12v11" stroke="#fff" stroke-width="2.6" stroke-linecap="round" fill="none"/>
-<circle cx="16" cy="8.5" r="1.9" fill="#fff"/>
-</svg>
+__MARK__
 <b>THGov</b>
 </div>
 
@@ -226,7 +225,10 @@ export async function buildComingSoon({ root, staticDir, buildDir }) {
 		/* content not buildable yet — fall through with zeroes */
 	}
 
-	const html = PAGE.replaceAll('__SITE__', SITE_URL)
+	// The holding page ships as one self-contained file, so the mark is
+	// inlined from the same source the icons are generated from.
+	const html = PAGE.replaceAll('__MARK__', markSvg({ size: 34 }).replace('<svg ', '<svg aria-hidden="true" '))
+		.replaceAll('__SITE__', SITE_URL)
 		.replaceAll('__REPO__', 'https://github.com/Shayennn/THGov')
 		.replaceAll('__SERVICES__', String(services))
 		.replaceAll('__DOMAINS__', String(domains))
