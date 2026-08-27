@@ -1,0 +1,57 @@
+# ---- Dependencies & build output ----
+node_modules/
+/build/
+/.svelte-kit/
+/dist/
+.vercel/
+.wrangler/
+.output/
+
+# ---- Generated at build time by scripts/build.mjs ----
+/static/og/
+/static/icons/
+/static/favicon.svg
+/static/favicon.ico
+
+# ---- Env & secrets ----
+.env
+.env.*
+!.env.example
+*.pem
+
+# ---- AI / assistant related files (must not be committed) ----
+CLAUDE.md
+CLAUDE.local.md
+AGENTS.md
+AGENT.md
+GEMINI.md
+.cursorrules
+.cursor/
+.claude/
+.claude-*/
+.aider*
+.continue/
+.codeium/
+.github/copilot-instructions.md
+.windsurfrules
+FINAL_TARGET.md
+AI_NOTES.md
+**/*.ai.md
+/ai/
+/.ai/
+/scratchpad/
+/design-reference/
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# ---- Logs ----
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log

@@ -1,0 +1,27 @@
+# THGov — an independent directory of Thai government online services.
+# We publish this file the way we wish every agency would: open, explicit,
+# and pointing at a sitemap. See /robots-report for why that matters.
+
+User-agent: *
+Allow: /
+
+# Search result pages carry no unique content — skip them, keep the rest.
+Disallow: /search?
+Disallow: /en/search?
+
+# Well-behaved AI assistants are welcome. Citizens increasingly ask them
+# where to find a government service, and we would rather they answer
+# correctly than guess.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://thgov.pages.dev/sitemap.xml

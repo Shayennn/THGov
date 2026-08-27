@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="%thgov.lang%" class="text-size-md">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.svg" type="image/svg+xml" />
+		<link rel="alternate icon" href="%sveltekit.assets%/favicon.ico" sizes="any" />
+		<link rel="apple-touch-icon" href="%sveltekit.assets%/icons/apple-touch-icon.png" />
+		<link rel="manifest" href="%sveltekit.assets%/manifest.webmanifest" />
+		<meta name="theme-color" content="#f05223" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#0b0820" media="(prefers-color-scheme: dark)" />
+
+		<link
+			rel="preload"
+			href="%sveltekit.assets%/fonts/prompt-thai-400.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="%sveltekit.assets%/fonts/prompt-thai-600.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+
+		<script>
+			// Apply accessibility preferences before first paint so there is no flash.
+			// Keys mirror the DGA pattern (see ../design-reference/dga/tokens.css).
+			(function () {
+				try {
+					var d = document.documentElement;
+					var size = localStorage.getItem('thgov:fontSize');
+					if (size === 'sm' || size === 'md' || size === 'lg') {
+						d.classList.remove('text-size-sm', 'text-size-md', 'text-size-lg');
+						d.classList.add('text-size-' + size);
+					}
+					var mode = localStorage.getItem('thgov:colorMode');
+					if (!mode || mode === 'auto') {
+						mode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+					}
+					if (mode === 'dark') d.classList.add('color-mode-dark');
+					else if (mode === 'contrast') d.classList.add('color-mode-contrast');
+				} catch (e) {
+					/* storage unavailable — fall back to the light default */
+				}
+			})();
+		</script>
+
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
