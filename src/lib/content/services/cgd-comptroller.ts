@@ -348,12 +348,13 @@ export const service: Service = {
 	crawl: {
 		host: 'www.cgd.go.th',
 		verdict: 'waf-blocked',
+		kind: 'waf-rule',
 		status: 403,
-		snippet: 'User-Agent: Googlebot/2.1\n  GET /robots.txt  ->  403\n  GET /            ->  403\nUser-Agent: Chrome (desktop browser)\n  GET /            ->  403',
+		snippet: 'Full desktop-Chrome request profile\n  GET /  ->  403  (Cloudflare WAF rule (hard block))\nGooglebot user-agent\n  GET /  ->  403\nGET /robots.txt  ->  403',
 		checkedAt: '2026-08-27',
 		note: {
-			th: 'เซิร์ฟเวอร์ปฏิเสธคำขอจากเครื่องที่เราใช้ตรวจสอบด้วยรหัส 403 ทั้งกรณีที่ระบุตัวเป็น Googlebot และกรณีที่ใช้เบราว์เซอร์ทั่วไป จึงอ่านไฟล์ robots.txt เพื่อยืนยันนโยบายไม่ได้ การปิดกั้นลักษณะนี้มักเป็นการกรองทราฟฟิกจากศูนย์ข้อมูลโดยรวม ไม่ใช่การเจาะจงปิดกั้นเครื่องมือค้นหา เราจึงไม่สรุปว่า Googlebot ตัวจริงเข้าไม่ได้ แต่ผลที่ตามมาคือเครื่องมือภายนอกตรวจสอบความพร้อมใช้งานของเว็บไซต์นี้ไม่ได้',
-			en: 'The server refuses our audit host with 403 both when it identifies as Googlebot and when it presents as an ordinary browser, so robots.txt cannot be read to confirm the policy. A block shaped like this usually filters datacentre traffic as a whole rather than targeting search engines, so we do not conclude that the genuine Googlebot is shut out — but it does mean no outside tool can verify this site’s availability.'
+			th: 'แม้จะเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ ทั้งส่วนหัวการระบุตัวตนเบราว์เซอร์ ภาษา และ fetch metadata ครบถ้วน เซิร์ฟเวอร์ก็ยังปฏิเสธคำขอด้วยหน้าบล็อกของระบบไฟร์วอลล์ การปิดกั้นลักษณะนี้มักกรองทราฟฟิกจากศูนย์ข้อมูลเป็นวงกว้าง เราจึงยืนยันนโยบายที่แท้จริงของเว็บไซต์จากภายนอกไม่ได้ และไม่สรุปว่า Googlebot ตัวจริงถูกปิดกั้นด้วยหรือไม่',
+			en: 'Even with a full browser request profile — complete client hints, language and fetch-metadata headers — the server refuses with a firewall block page. Blocks shaped like this usually filter datacentre traffic broadly, so the site’s real policy cannot be verified from outside, and we draw no conclusion about whether the genuine Googlebot is refused too.'
 		}
 	},
 	priority: 82,

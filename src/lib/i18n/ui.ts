@@ -102,6 +102,28 @@ export const UI = {
 		th: 'วิธีตรวจสอบ',
 		en: 'How we checked'
 	},
+	'kind.robots-disallow-all': { th: 'robots.txt ปิดกั้นทั้งเว็บไซต์', en: 'robots.txt blocks the whole site' },
+	'kind.googlebot-exception': { th: 'เปิดให้เฉพาะ Google', en: 'Open to Google only' },
+	'kind.js-challenge': { th: 'ต้องผ่านการตรวจสอบด้วยจาวาสคริปต์', en: 'JavaScript challenge required' },
+	'kind.waf-rule': { th: 'ถูกปฏิเสธโดยไฟร์วอลล์', en: 'Refused by a firewall rule' },
+	'kind.origin-403': { th: 'เซิร์ฟเวอร์ต้นทางปฏิเสธ', en: 'Origin server refused' },
+	'kind.ua-spoof-guard': { th: 'ป้องกันบอตปลอม', en: 'Fake-crawler protection' },
+	'kind.redirect-loop': { th: 'เปลี่ยนเส้นทางวนซ้ำไม่สิ้นสุด', en: 'Endless redirect loop' },
+	'kind.no-robots': { th: 'ไม่มีไฟล์ robots.txt', en: 'No robots.txt' },
+	'kind.html-not-robots': { th: 'robots.txt ตอบกลับเป็นหน้าเว็บ', en: 'robots.txt returns a web page' },
+	'kind.unreachable': { th: 'เชื่อมต่อไม่ได้', en: 'Could not connect' },
+	'kind.partial': { th: 'ปิดกั้นบางเส้นทาง', en: 'Some paths disallowed' },
+	'kind.allowed': { th: 'เปิดให้เก็บข้อมูลทั้งหมด', en: 'Fully crawlable' },
+
+	'crawl.mechanism': { th: 'กลไกที่ตรวจพบ', en: 'Mechanism observed' },
+	'crawl.jsChallengeExplain': {
+		th: 'เว็บไซต์นี้ใช้หน้าท้าทายของ Cloudflare ที่ต้องประมวลผลจาวาสคริปต์ก่อนจึงจะเข้าถึงเนื้อหาได้ เบราว์เซอร์จริงผ่านได้ตามปกติ และบอตของเครื่องมือค้นหาที่ยืนยันตัวตนแล้วมักได้รับการยกเว้น แต่บริการเก็บถาวรเว็บ เครื่องมือตรวจสอบภายนอก และผู้ช่วย AI ที่ไม่ประมวลผลจาวาสคริปต์จะเข้าไม่ได้',
+		en: 'This site uses a Cloudflare challenge that must be solved by running JavaScript before content is served. Real browsers pass it, and verified search-engine crawlers are normally exempted — but web archives, third-party monitoring and AI assistants that do not execute JavaScript cannot get through.'
+	},
+	'crawl.googlebotOnlyExplain': {
+		th: 'ไฟล์ robots.txt ของเว็บไซต์นี้ปิดกั้นบอตทุกตัว แล้วเขียนข้อยกเว้นให้เฉพาะ Googlebot จึงยังค้นเจอผ่าน Google ได้ แต่เครื่องมือค้นหาอื่นและผู้ช่วย AI ถูกปฏิเสธทั้งหมด',
+		en: 'This site’s robots.txt blocks every crawler and then writes an exception for Googlebot alone. It stays findable through Google while every other search engine and AI assistant is refused.'
+	},
 	'crawl.robotsSnippet': { th: 'เนื้อหาใน robots.txt', en: 'robots.txt contents' },
 	'crawl.checkedOn': { th: 'ตรวจสอบเมื่อ {date}', en: 'Checked on {date}' },
 

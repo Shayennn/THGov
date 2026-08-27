@@ -365,12 +365,13 @@ export const service: Service = {
 	crawl: {
 		host: 'www.bora.dopa.go.th',
 		verdict: 'none',
-		status: 404,
+		kind: 'no-robots',
+		status: 200,
 		snippet: 'GET /robots.txt  ->  HTTP 404 Not Found',
 		checkedAt: '2026-08-27',
 		note: {
-			th: 'สำนักบริหารการทะเบียนไม่มีไฟล์ robots.txt ตามมาตรฐานจึงถือว่าเปิดให้เครื่องมือค้นหาเก็บข้อมูลได้ แต่บริการที่ต้องยืนยันตัวตนยังคงอยู่หลังการเข้าสู่ระบบ',
-			en: 'The Bureau of Registration Administration serves no robots.txt, which conventionally means crawling is allowed — though identity-verified services remain behind a login.'
+			th: 'เว็บไซต์นี้ไม่มีไฟล์ robots.txt ซึ่งตามมาตรฐานถือว่าอนุญาตให้เครื่องมือค้นหาเก็บข้อมูลได้ทั้งหมด แต่เนื้อหาที่อยู่หลังการเข้าสู่ระบบยังคงไม่ปรากฏในผลการค้นหาอยู่ดี',
+			en: 'The site serves no robots.txt, which by convention means crawling is permitted throughout. Content behind a sign-in still never appears in search results.'
 		}
 	},
 	priority: 90,

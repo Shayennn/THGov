@@ -308,13 +308,14 @@ export const service: Service = {
 	],
 	crawl: {
 		host: 'meaeservice.mea.or.th',
-		verdict: 'allowed',
+		verdict: 'none',
+		kind: 'no-robots',
 		status: 200,
-		snippet: 'User-agent: *\nDisallow:',
+		snippet: 'GET /  ->  200 (site reachable)\nGET /robots.txt  ->  no response',
 		checkedAt: '2026-08-27',
 		note: {
-			th: 'ไฟล์ robots.txt ของระบบเปิดให้เครื่องมือค้นหาเก็บข้อมูลได้ทั้งหมด แต่ตัวระบบต้องเข้าสู่ระบบก่อนจึงจะเห็นข้อมูล ทำให้เนื้อหาส่วนใหญ่ไม่ปรากฏในผลการค้นหาอยู่ดี',
-			en: 'The system’s robots.txt permits full crawling, but the service itself sits behind a sign-in, so most of its content still never appears in search results.'
+			th: 'เว็บไซต์นี้ไม่มีไฟล์ robots.txt ซึ่งตามมาตรฐานถือว่าอนุญาตให้เครื่องมือค้นหาเก็บข้อมูลได้ทั้งหมด แต่เนื้อหาที่อยู่หลังการเข้าสู่ระบบยังคงไม่ปรากฏในผลการค้นหาอยู่ดี',
+			en: 'The site serves no robots.txt, which by convention means crawling is permitted throughout. Content behind a sign-in still never appears in search results.'
 		}
 	},
 	priority: 100,

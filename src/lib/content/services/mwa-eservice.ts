@@ -356,12 +356,13 @@ export const service: Service = {
 	crawl: {
 		host: 'www.mwa.co.th',
 		verdict: 'allowed',
+		kind: 'allowed',
 		status: 200,
-		snippet: 'User-agent: *\nAllow: /',
-		checkedAt: '2026-08-28',
+		snippet: '# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nAllow: /\n\n# ---------------------------\n# END YOAST BLOCK',
+		checkedAt: '2026-08-27',
 		note: {
-			th: 'ไฟล์ robots.txt อนุญาตให้เครื่องมือค้นหาเก็บข้อมูลได้ทั้งเว็บไซต์ อย่างไรก็ตาม บริการที่ต้องเข้าสู่ระบบยังคงไม่ปรากฏในผลการค้นหาตามปกติของระบบที่ต้องยืนยันตัวตน',
-			en: 'The robots.txt permits crawling of the whole site. Services behind a sign-in still do not appear in search results, as is normal for authenticated systems.'
+			th: 'ไฟล์ robots.txt อนุญาตให้เครื่องมือค้นหาเก็บข้อมูลได้ทั้งเว็บไซต์ อย่างไรก็ตาม บริการที่ต้องเข้าสู่ระบบยังคงไม่ปรากฏในผลการค้นหา ซึ่งเป็นเรื่องปกติของระบบที่ต้องยืนยันตัวตน',
+			en: 'The robots.txt permits crawling across the whole site. Services behind a sign-in still do not appear in search results, which is normal for authenticated systems.'
 		}
 	},
 	priority: 84,

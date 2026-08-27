@@ -331,12 +331,13 @@ export const service: Service = {
 	crawl: {
 		host: 'www.dlt.go.th',
 		verdict: 'none',
-		status: 404,
+		kind: 'no-robots',
+		status: 200,
 		snippet: 'GET /robots.txt  ->  HTTP 404 Not Found',
 		checkedAt: '2026-08-27',
 		note: {
-			th: 'เว็บไซต์กรมการขนส่งทางบกไม่มีไฟล์ robots.txt ซึ่งตามมาตรฐานถือว่าอนุญาตให้เครื่องมือค้นหาเก็บข้อมูลได้ทั้งหมด',
-			en: 'The department’s website serves no robots.txt, which by convention means search engines may crawl the whole site.'
+			th: 'เว็บไซต์นี้ไม่มีไฟล์ robots.txt ซึ่งตามมาตรฐานถือว่าอนุญาตให้เครื่องมือค้นหาเก็บข้อมูลได้ทั้งหมด แต่เนื้อหาที่อยู่หลังการเข้าสู่ระบบยังคงไม่ปรากฏในผลการค้นหาอยู่ดี',
+			en: 'The site serves no robots.txt, which by convention means crawling is permitted throughout. Content behind a sign-in still never appears in search results.'
 		}
 	},
 	priority: 89,

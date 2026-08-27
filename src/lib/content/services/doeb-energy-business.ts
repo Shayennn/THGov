@@ -329,12 +329,13 @@ export const service: Service = {
 	crawl: {
 		host: 'www.doeb.go.th',
 		verdict: 'blocked',
+		kind: 'robots-disallow-all',
 		status: 200,
 		snippet: 'User-agent: *\nDisallow: /',
 		checkedAt: '2026-08-27',
 		note: {
-			th: 'เว็บไซต์กรมธุรกิจพลังงานปิดกั้นเครื่องมือค้นหาทุกตัวทั้งเว็บไซต์ ทำให้ประกาศเรื่องคุณภาพน้ำมันและมาตรฐานความปลอดภัยไม่ถูกจัดทำดัชนี',
-			en: 'The department’s website blocks every crawler across the whole site, so its fuel-quality announcements and safety standards are never indexed.'
+			th: 'ไฟล์ robots.txt ของเว็บไซต์นี้สั่งห้ามเครื่องมือค้นหาทุกตัวเก็บข้อมูลทุกหน้า และไม่มีข้อยกเว้นให้ Googlebot นี่เป็นหลักฐานที่หนักแน่นที่สุด เพราะไฟล์ robots.txt เป็นสาธารณะและให้ผลเหมือนกันกับทุกคนที่เรียกดู ใครก็ตรวจสอบซ้ำได้',
+			en: 'This site’s robots.txt instructs every crawler not to fetch any page, with no exception for Googlebot. This is the strongest form of evidence available, because robots.txt is public and identical for every requester — anyone can reproduce the check.'
 		}
 	},
 	priority: 74,

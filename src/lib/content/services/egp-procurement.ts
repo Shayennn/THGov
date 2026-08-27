@@ -328,12 +328,13 @@ export const service: Service = {
 	crawl: {
 		host: 'www.gprocurement.go.th',
 		verdict: 'blocked',
+		kind: 'robots-disallow-all',
 		status: 200,
 		snippet: 'User-agent: *\nDisallow: /',
 		checkedAt: '2026-08-27',
 		note: {
-			th: 'ไฟล์ robots.txt ของระบบมีเพียงสองบรรทัด สั่งห้ามเครื่องมือค้นหาทุกตัวเก็บข้อมูลทุกหน้าของเว็บไซต์ และไม่มีข้อยกเว้นให้ Googlebot ระบบย่อย process3.gprocurement.go.th ก็ตั้งค่าแบบเดียวกัน',
-			en: 'The robots.txt is just two lines telling every crawler not to fetch any page, with no exception for Googlebot. The sub-system at process3.gprocurement.go.th carries the identical rule.'
+			th: 'ไฟล์ robots.txt ของเว็บไซต์นี้สั่งห้ามเครื่องมือค้นหาทุกตัวเก็บข้อมูลทุกหน้า และไม่มีข้อยกเว้นให้ Googlebot นี่เป็นหลักฐานที่หนักแน่นที่สุด เพราะไฟล์ robots.txt เป็นสาธารณะและให้ผลเหมือนกันกับทุกคนที่เรียกดู ใครก็ตรวจสอบซ้ำได้',
+			en: 'This site’s robots.txt instructs every crawler not to fetch any page, with no exception for Googlebot. This is the strongest form of evidence available, because robots.txt is public and identical for every requester — anyone can reproduce the check.'
 		}
 	},
 	priority: 96,

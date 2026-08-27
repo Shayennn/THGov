@@ -33,8 +33,9 @@
 	];
 
 	const blocked = $derived(data.evidence);
-	const uaGuard = $derived(data.uaGuardCount);
-	const blanket = $derived(data.blanketCount);
+	const challenge = $derived(data.challengeCount);
+	const hardBlock = $derived(data.hardBlockCount);
+	const googlebotOnly = $derived(data.googlebotOnlyCount);
 
 	function count(key: 'all' | CrawlVerdict): number {
 		return key === 'all' ? data.total : (data.counts[key] ?? 0);
@@ -129,19 +130,49 @@
 		<div class="card stat-card danger">
 			<span class="big">{formatNumber(blocked.length, data.locale)}</span>
 			<h3>{lc({ th: 'ปิดกั้นเครื่องมือค้นหาทั้งเว็บไซต์', en: 'Block search engines site-wide' })}</h3>
-			<p>{lc({ th: 'ยืนยันได้จากไฟล์ robots.txt ของเว็บไซต์เอง', en: 'Confirmed from the site’s own robots.txt.' })}</p>
+			<p>
+				{lc({
+					th: 'ประกาศไว้ในไฟล์ robots.txt ของเว็บไซต์เอง เป็นหลักฐานที่ใครก็ตรวจซ้ำได้',
+					en: 'Declared in the site’s own robots.txt — evidence anyone can reproduce.'
+				})}
+			</p>
 		</div>
 		<div class="card stat-card warn">
-			<span class="big">{formatNumber(blanket, data.locale)}</span>
-			<h3>{lc({ th: 'ปฏิเสธคำขอทุกชนิดจากเครื่องตรวจสอบ', en: 'Refuse every request from our host' })}</h3>
-			<p>{lc({ th: 'ตอบ 403 ทั้งกับ Googlebot และเบราว์เซอร์ทั่วไป', en: 'A 403 to both the Googlebot and browser user-agents.' })}</p>
+			<span class="big">{formatNumber(hardBlock, data.locale)}</span>
+			<h3>{lc({ th: 'ปฏิเสธแม้แต่เบราว์เซอร์จริง', en: 'Refuse even a real browser' })}</h3>
+			<p>
+				{lc({
+					th: 'ตอบกลับด้วยหน้าบล็อกหรือเปลี่ยนเส้นทางวนซ้ำ แม้เรียกด้วยโปรไฟล์เบราว์เซอร์เต็มรูปแบบ',
+					en: 'A block page or an endless redirect, even with a full browser request profile.'
+				})}
+			</p>
 		</div>
-		<div class="card stat-card ok">
-			<span class="big">{formatNumber(uaGuard, data.locale)}</span>
-			<h3>{lc({ th: 'ปฏิเสธเฉพาะบอตที่อ้างตัวเป็น Googlebot', en: 'Refuse only self-declared Googlebot' })}</h3>
-			<p>{lc({ th: 'พฤติกรรมป้องกันบอตปลอมตามมาตรฐาน ไม่กระทบ Google ตัวจริง', en: 'Standard anti-spoofing; the genuine crawler is unaffected.' })}</p>
+		<div class="card stat-card info">
+			<span class="big">{formatNumber(challenge, data.locale)}</span>
+			<h3>{lc({ th: 'ต้องผ่านการตรวจสอบด้วยจาวาสคริปต์', en: 'Sit behind a JavaScript challenge' })}</h3>
+			<p>
+				{lc({
+					th: 'เบราว์เซอร์และบอตที่ยืนยันตัวตนแล้วผ่านได้ แต่บริการเก็บถาวรและผู้ช่วย AI เข้าไม่ได้',
+					en: 'Browsers and verified crawlers pass; archives and AI assistants do not.'
+				})}
+			</p>
 		</div>
 	</div>
+
+	{#if googlebotOnly}
+		<aside class="callout callout-info gb-note">
+			<Icon name="robot" size={18} class="c-icon" />
+			<div>
+				<strong>{lc({ th: 'กรณีพิเศษ: เปิดให้เฉพาะ Google', en: 'A special case: open to Google alone' })}</strong>
+				<p>
+					{lc({
+						th: 'มีเว็บไซต์ที่ปิดกั้นบอตทุกตัวใน robots.txt แล้วเขียนข้อยกเว้นให้ Googlebot โดยเฉพาะ เว็บไซต์เหล่านี้ยังค้นเจอผ่าน Google ได้ แต่เครื่องมือค้นหาอื่น บริการเก็บถาวรเว็บ และผู้ช่วย AI ถูกปฏิเสธทั้งหมด ซึ่งเท่ากับผูกการเข้าถึงข้อมูลสาธารณะไว้กับบริษัทเดียว',
+						en: 'One site blocks every crawler in robots.txt and then writes an exception for Googlebot alone. It stays findable through Google while every other search engine, web archive and AI assistant is refused — which ties access to public information to a single company.'
+					})}
+				</p>
+			</div>
+		</aside>
+	{/if}
 
 	{#if blocked.length}
 		<section class="evidence">
@@ -322,8 +353,11 @@
 	.stat-card.warn .big {
 		color: var(--warn);
 	}
-	.stat-card.ok .big {
-		color: var(--ok);
+	.stat-card.info .big {
+		color: var(--blue);
+	}
+	.gb-note {
+		margin-bottom: 3rem;
 	}
 	.evidence h3 {
 		font-size: var(--fs-h3);

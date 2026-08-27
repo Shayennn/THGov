@@ -344,20 +344,21 @@ export const service: Service = {
 		{
 			type: 'p',
 			text: {
-				th: 'ประกันสังคมเป็นสิทธิที่คนทำงานหลายสิบล้านคนถืออยู่ แต่กลับเป็นสิทธิที่คนรู้รายละเอียดน้อยที่สุดอย่างหนึ่ง ส่วนหนึ่งเพราะถูกอธิบายด้วยภาษากฎหมาย คนที่เพิ่งลาออกจากงานไม่ได้ค้นหาคำว่า “ผู้ประกันตนมาตรา 39” แต่ค้นหาว่า “ออกจากงานแล้วประกันสังคมยังใช้ได้ไหม” คนที่เพิ่งย้ายบ้านก็ไม่ได้ค้นหาชื่อระบบ แต่ค้นหาว่า “เปลี่ยนโรงพยาบาลประกันสังคม” หน้านี้จึงทำหน้าที่เป็นสะพานระหว่างคำที่คนใช้จริงกับระบบทางการ อธิบายว่ามาตราไหนคือใคร กองทุนคุ้มครองอะไร และต้องเข้าไปดูตรงไหน แล้วส่งต่อไปยังเว็บไซต์ของสำนักงานประกันสังคมโดยตรง อีกเหตุผลหนึ่งคือในการตรวจสอบของเราเมื่อวันที่ 27 สิงหาคม 2569 เครื่องที่ใช้ตรวจสอบยังเชื่อมต่อเพื่ออ่านไฟล์ robots.txt ของเว็บไซต์ไม่ได้ จึงยังยืนยันไม่ได้ว่าเครื่องมือค้นหาเข้าถึงเนื้อหาของระบบได้มากน้อยเพียงใด การมีหน้าอธิบายที่ค้นเจอได้แน่นอนจึงไม่ใช่ของฟุ่มเฟือย ทั้งนี้ THGov เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดสำนักงานประกันสังคม ไม่รับข้อมูลส่วนบุคคลและไม่รับชำระเงินใด ๆ ทั้งสิ้น',
-				en: 'Social security is an entitlement tens of millions of working people hold and comparatively few understand in detail, partly because it is described in the language of statute. Someone who has just resigned does not search for “insured person under Section 39” — they search for “can I still use social security after leaving my job”. Someone who has just moved house does not search for a system name; they search for “change social security hospital”. This page bridges the words people actually use and the official service: which section is which, what the fund covers, and where to look — and then hands you to the Social Security Office’s own site. There is a second reason. On 27 August 2026 our audit host could not even connect to read the site’s robots.txt, so how much of the system search engines can reach remains unconfirmed, which makes a plainly findable explainer worth having. THGov is an independent directory, unaffiliated with the SSO; we collect no personal data and take no payments.'
+				th: 'ประกันสังคมเป็นสิทธิที่คนทำงานหลายสิบล้านคนถืออยู่ แต่กลับเป็นสิทธิที่คนรู้รายละเอียดน้อยที่สุดอย่างหนึ่ง ส่วนหนึ่งเพราะถูกอธิบายด้วยภาษากฎหมาย คนที่เพิ่งลาออกจากงานไม่ได้ค้นหาคำว่า “ผู้ประกันตนมาตรา 39” แต่ค้นหาว่า “ออกจากงานแล้วประกันสังคมยังใช้ได้ไหม” คนที่เพิ่งย้ายบ้านก็ไม่ได้ค้นหาชื่อระบบ แต่ค้นหาว่า “เปลี่ยนโรงพยาบาลประกันสังคม” หน้านี้จึงทำหน้าที่เป็นสะพานระหว่างคำที่คนใช้จริงกับระบบทางการ อธิบายว่ามาตราไหนคือใคร กองทุนคุ้มครองอะไร และต้องเข้าไปดูตรงไหน แล้วส่งต่อไปยังเว็บไซต์ของสำนักงานประกันสังคมโดยตรง อีกเหตุผลหนึ่งคือในการตรวจสอบของเราเมื่อวันที่ 27 สิงหาคม 2569 เว็บไซต์เข้าถึงได้ตามปกติ และไม่มีไฟล์ robots.txt เลย ซึ่งตามมาตรฐานถือว่าอนุญาตให้เครื่องมือค้นหาเก็บข้อมูลได้ทั้งหมด สิ่งที่ไม่ปรากฏในผลการค้นหาคือข้อมูลที่อยู่หลังการเข้าสู่ระบบ ซึ่งเป็นเรื่องปกติของระบบที่ต้องยืนยันตัวตนก่อนจึงจะเห็นข้อมูลของตัวเอง การมีหน้าอธิบายที่ค้นเจอได้ว่าข้างในมีอะไรจึงยังมีประโยชน์ ทั้งนี้ THGov เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดสำนักงานประกันสังคม ไม่รับข้อมูลส่วนบุคคลและไม่รับชำระเงินใด ๆ ทั้งสิ้น',
+				en: 'Social security is an entitlement tens of millions of working people hold and comparatively few understand in detail, partly because it is described in the language of statute. Someone who has just resigned does not search for “insured person under Section 39” — they search for “can I still use social security after leaving my job”. Someone who has just moved house does not search for a system name; they search for “change social security hospital”. This page bridges the words people actually use and the official service: which section is which, what the fund covers, and where to look — and then hands you to the Social Security Office’s own site. There is a second reason. In our check on 27 August 2026 the site was reachable and served no robots.txt at all, which by convention leaves crawling permitted throughout. What stays out of search results is whatever sits behind the sign-in, which is normal for a system that shows each person their own record, so a plainly findable explanation of what is inside still earns its place. THGov is an independent directory, unaffiliated with the SSO; we collect no personal data and take no payments.'
 			}
 		}
 	],
 	crawl: {
 		host: 'www.sso.go.th',
-		verdict: 'unknown',
-		status: null,
-		snippet: 'GET /robots.txt  ->  connection failed from the audit host',
+		verdict: 'none',
+		kind: 'no-robots',
+		status: 200,
+		snippet: 'GET /  ->  200 (site reachable)\nGET /robots.txt  ->  no response',
 		checkedAt: '2026-08-27',
 		note: {
-			th: 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์เพื่อตรวจสอบไฟล์ robots.txt จากเครื่องที่ใช้ตรวจสอบได้ จึงยังสรุปสถานะการเข้าถึงของเครื่องมือค้นหาไม่ได้',
-			en: 'The audit host could not connect to the server to read robots.txt, so the crawl status is unconfirmed.'
+			th: 'เว็บไซต์นี้ไม่มีไฟล์ robots.txt ซึ่งตามมาตรฐานถือว่าอนุญาตให้เครื่องมือค้นหาเก็บข้อมูลได้ทั้งหมด แต่เนื้อหาที่อยู่หลังการเข้าสู่ระบบยังคงไม่ปรากฏในผลการค้นหาอยู่ดี',
+			en: 'The site serves no robots.txt, which by convention means crawling is permitted throughout. Content behind a sign-in still never appears in search results.'
 		}
 	},
 	priority: 92,

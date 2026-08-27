@@ -333,12 +333,13 @@ export const service: Service = {
 	crawl: {
 		host: 'www.hii.or.th',
 		verdict: 'partial',
+		kind: 'googlebot-exception',
 		status: 200,
 		snippet: 'User-agent: *\nDisallow: /\n\nUser-agent: Googlebot\nAllow: /\n\nUser-agent: Bingbot\nAllow: /',
 		checkedAt: '2026-08-27',
 		note: {
-			th: 'เว็บไซต์สถาบันสารสนเทศทรัพยากรน้ำปิดกั้นบอตทุกตัวเป็นค่าเริ่มต้น แต่เปิดข้อยกเว้นให้ Googlebot และ Bingbot เข้าถึงได้ จึงยังค้นเจอผ่านสองเครื่องมือนี้ แต่เครื่องมือค้นหาอื่นและผู้ช่วย AI ที่ใช้บอตชื่ออื่นจะถูกปฏิเสธทั้งหมด',
-			en: 'The institute’s website blocks all bots by default but grants explicit exceptions to Googlebot and Bingbot. It therefore remains findable through those two, while every other search engine and AI assistant crawler is refused.'
+			th: 'ไฟล์ robots.txt ปิดกั้นบอตทุกตัวเป็นค่าเริ่มต้น แต่เขียนข้อยกเว้นให้ Googlebot เข้าถึงได้ เว็บไซต์จึงยังค้นเจอผ่าน Google ได้ตามปกติ ขณะที่เครื่องมือค้นหาอื่น บริการเก็บถาวรเว็บ และผู้ช่วย AI ที่ประชาชนเริ่มใช้ค้นหาบริการภาครัฐ ถูกปฏิเสธทั้งหมด',
+			en: 'The robots.txt blocks every crawler by default but writes an explicit exception for Googlebot. The site therefore remains findable through Google, while other search engines, web-archiving services and the AI assistants people increasingly use to look up government services are all refused.'
 		}
 	},
 	priority: 78,

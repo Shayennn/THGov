@@ -450,6 +450,8 @@ a.chip:hover { border-color: var(--brand); color: var(--brand); }
 .chip-blocked { background: var(--danger-bg); border-color: transparent; color: var(--danger); font-weight: 600; }
 .chip-partial { background: var(--warn-bg); border-color: transparent; color: var(--warn); font-weight: 600; }
 .chip-allowed { background: var(--ok-bg); border-color: transparent; color: var(--ok); font-weight: 600; }
+.callout-info { background: var(--info-bg); border-color: transparent; }
+
 .chip-unknown { background: var(--bg-sunken); border-color: transparent; color: var(--text-faint); font-weight: 600; }
 
 /* =========================== prose =========================== */

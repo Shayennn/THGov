@@ -345,12 +345,13 @@ export const service: Service = {
 	crawl: {
 		host: 'www.sec.or.th',
 		verdict: 'waf-blocked',
+		kind: 'waf-rule',
 		status: 403,
-		snippet: 'User-Agent: Googlebot/2.1\n  GET /robots.txt  ->  403\n  GET /            ->  403\nUser-Agent: Chrome (desktop browser)\n  GET /            ->  403',
+		snippet: 'Full desktop-Chrome request profile\n  GET /  ->  403  (F5 BIG-IP ASM block page)\nGooglebot user-agent\n  GET /  ->  403\nGET /robots.txt  ->  403',
 		checkedAt: '2026-08-27',
 		note: {
-			th: 'ทุกคำขอจากเครื่องที่เราใช้ตรวจสอบถูกปฏิเสธด้วยรหัส 403 ไม่ว่าจะระบุตัวเป็น Googlebot หรือเบราว์เซอร์ทั่วไป จึงไม่สามารถอ่าน robots.txt เพื่อยืนยันนโยบายของเว็บไซต์ได้ นี่เป็นลักษณะของการกรองทราฟฟิกจากศูนย์ข้อมูลมากกว่าการปิดกั้นเครื่องมือค้นหาโดยเจาะจง เราจึงไม่ระบุว่า Googlebot ตัวจริงถูกปิดกั้น',
-			en: 'Every request from our audit host is refused with 403, whether it identifies as Googlebot or as a normal browser, so we cannot read robots.txt to confirm the site’s policy. The pattern looks like datacentre-traffic filtering rather than a deliberate block on search engines, so we make no claim that the genuine Googlebot is blocked.'
+			th: 'แม้จะเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ ทั้งส่วนหัวการระบุตัวตนเบราว์เซอร์ ภาษา และ fetch metadata ครบถ้วน เซิร์ฟเวอร์ก็ยังปฏิเสธคำขอด้วยหน้าบล็อกของระบบไฟร์วอลล์ การปิดกั้นลักษณะนี้มักกรองทราฟฟิกจากศูนย์ข้อมูลเป็นวงกว้าง เราจึงยืนยันนโยบายที่แท้จริงของเว็บไซต์จากภายนอกไม่ได้ และไม่สรุปว่า Googlebot ตัวจริงถูกปิดกั้นด้วยหรือไม่',
+			en: 'Even with a full browser request profile — complete client hints, language and fetch-metadata headers — the server refuses with a firewall block page. Blocks shaped like this usually filter datacentre traffic broadly, so the site’s real policy cannot be verified from outside, and we draw no conclusion about whether the genuine Googlebot is refused too.'
 		}
 	},
 	priority: 86,

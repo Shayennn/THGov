@@ -12,7 +12,8 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "audit:robots": "node scripts/audit-robots.mjs",
     "deploy": "npm run build && wrangler versions upload",
-    "deploy:live": "npm run build && wrangler deploy"
+    "deploy:live": "npm run build && wrangler deploy",
+    "sync:crawl": "node scripts/sync-crawl.mjs"
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",

@@ -9,10 +9,27 @@ export type CrawlVerdict =
 	| 'none' // no robots.txt at all
 	| 'unknown';
 
+/** The mechanism behind a verdict — see scripts/audit-robots.mjs. */
+export type CrawlKind =
+	| 'robots-disallow-all'
+	| 'googlebot-exception'
+	| 'js-challenge'
+	| 'waf-rule'
+	| 'origin-403'
+	| 'ua-spoof-guard'
+	| 'redirect-loop'
+	| 'no-robots'
+	| 'html-not-robots'
+	| 'unreachable'
+	| 'partial'
+	| 'allowed';
+
 export interface CrawlAudit {
 	/** Host we actually requested robots.txt from. */
 	host: string;
 	verdict: CrawlVerdict;
+	/** How the verdict was reached. Populated by `npm run sync:crawl`. */
+	kind?: CrawlKind;
 	/** HTTP status returned for /robots.txt. */
 	status: number | null;
 	/** Verbatim excerpt of the relevant robots.txt group, for transparency. */

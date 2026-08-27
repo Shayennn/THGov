@@ -21,8 +21,35 @@
 	const related = $derived(data.related);
 	const guides = $derived(data.guides);
 
-	const hardToFind = $derived(
-		service.crawl.verdict === 'blocked' || service.crawl.verdict === 'waf-blocked'
+	/**
+	 * Show the access notice whenever something meaningfully stands between a
+	 * crawler and this service — including the cases that are not outright
+	 * blocks, like a JavaScript challenge or a Google-only exemption.
+	 */
+	const NOTABLE_KINDS = [
+		'robots-disallow-all',
+		'googlebot-exception',
+		'js-challenge',
+		'waf-rule',
+		'origin-403',
+		'redirect-loop'
+	];
+	const notable = $derived(
+		service.crawl.verdict === 'blocked' ||
+			service.crawl.verdict === 'waf-blocked' ||
+			NOTABLE_KINDS.includes(service.crawl.kind ?? '')
+	);
+	const kindLabel = $derived(
+		service.crawl.kind ? t(`kind.${service.crawl.kind}` as never) : ''
+	);
+	const headline = $derived(
+		service.crawl.kind === 'js-challenge'
+			? t('crawl.jsChallengeExplain')
+			: service.crawl.kind === 'googlebot-exception'
+				? t('crawl.googlebotOnlyExplain')
+				: service.crawl.verdict === 'blocked'
+					? t('crawl.blockedExplain')
+					: t('crawl.wafExplain')
 	);
 	const host = $derived(
 		(() => {
@@ -116,19 +143,22 @@
 		</aside>
 
 		<div class="main">
-			{#if hardToFind}
-				<aside class="crawl-notice">
+			{#if notable}
+				<aside class="crawl-notice" class:soft={service.crawl.verdict === 'partial'}>
 					<div class="cn-head">
 						<Icon name={service.crawl.verdict === 'blocked' ? 'lock' : 'shield'} size={19} />
 						<h2>
-							{service.crawl.verdict === 'blocked' ? t('crawl.blocked') : t('crawl.waf')}
+							{service.crawl.verdict === 'blocked'
+								? t('crawl.blocked')
+								: service.crawl.verdict === 'partial'
+									? kindLabel
+									: t('crawl.waf')}
 						</h2>
+						{#if service.crawl.kind && service.crawl.verdict !== 'partial'}
+							<span class="cn-kind">{kindLabel}</span>
+						{/if}
 					</div>
-					<p>
-						{service.crawl.verdict === 'blocked'
-							? t('crawl.blockedExplain')
-							: t('crawl.wafExplain')}
-					</p>
+					<p>{headline}</p>
 					{#if service.crawl.note}
 						<p class="cn-note">{lc(service.crawl.note)}</p>
 					{/if}
@@ -317,11 +347,28 @@
 		border-radius: var(--r);
 		background: var(--danger-bg);
 	}
+	/* A challenge or a Google-only exemption is a caveat, not an outright block. */
+	.crawl-notice.soft {
+		border-inline-start-color: var(--warn);
+		background: var(--warn-bg);
+	}
+	.crawl-notice.soft .cn-head {
+		color: var(--warn);
+	}
 	.cn-head {
 		display: flex;
 		align-items: center;
 		gap: 0.6rem;
 		color: var(--danger);
+		flex-wrap: wrap;
+	}
+	.cn-kind {
+		font-size: var(--fs-xs);
+		font-weight: 500;
+		padding: 0.15rem 0.55rem;
+		border-radius: var(--r-pill);
+		border: 1px solid currentColor;
+		opacity: 0.85;
 	}
 	.cn-head h2 {
 		font-size: var(--fs-h4);

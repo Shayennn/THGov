@@ -337,12 +337,13 @@ export const service: Service = {
 	crawl: {
 		host: 'efiling.rd.go.th',
 		verdict: 'none',
-		status: 404,
+		kind: 'no-robots',
+		status: 200,
 		snippet: 'GET /robots.txt  ->  HTTP 404 Not Found',
 		checkedAt: '2026-08-27',
 		note: {
-			th: 'ระบบยื่นแบบออนไลน์ไม่มีไฟล์ robots.txt ซึ่งตามมาตรฐานหมายความว่าเปิดให้เก็บข้อมูลได้ แต่เนื้อหาส่วนใหญ่อยู่หลังการเข้าสู่ระบบจึงไม่ปรากฏในผลการค้นหาอยู่ดี ส่วนเว็บไซต์หลัก www.rd.go.th เปิดให้เก็บข้อมูลได้เกือบทั้งหมด',
-			en: 'The e-filing system serves no robots.txt, which by convention means crawling is permitted — but almost everything sits behind a login, so little of it is indexable anyway. The main site, www.rd.go.th, is broadly open to crawlers.'
+			th: 'เว็บไซต์นี้ไม่มีไฟล์ robots.txt ซึ่งตามมาตรฐานถือว่าอนุญาตให้เครื่องมือค้นหาเก็บข้อมูลได้ทั้งหมด แต่เนื้อหาที่อยู่หลังการเข้าสู่ระบบยังคงไม่ปรากฏในผลการค้นหาอยู่ดี',
+			en: 'The site serves no robots.txt, which by convention means crawling is permitted throughout. Content behind a sign-in still never appears in search results.'
 		}
 	},
 	priority: 98,

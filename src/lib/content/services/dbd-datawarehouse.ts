@@ -358,12 +358,13 @@ export const service: Service = {
 	crawl: {
 		host: 'datawarehouse.dbd.go.th',
 		verdict: 'waf-blocked',
-		status: 302,
-		snippet: 'GET /            ->  307/302 redirect to itself (loops past the redirect limit)\nGET /robots.txt  ->  307/302 redirect to itself\nSame result for both the Googlebot and browser user-agents',
+		kind: 'redirect-loop',
+		status: null,
+		snippet: 'Full desktop-Chrome request profile\n  GET /            ->  redirects to itself, still looping after 5 hops\n  GET /robots.txt  ->  same loop\nTypically a cookie or session challenge that a crawler cannot complete.',
 		checkedAt: '2026-08-27',
 		note: {
-			th: 'ทุกคำขอไปยังโดเมนนี้ถูกเปลี่ยนเส้นทางกลับมายังที่อยู่เดิมซ้ำไปเรื่อย ๆ จนเกินขีดจำกัดการเปลี่ยนเส้นทาง ทั้งกรณีที่ระบุตัวเป็น Googlebot และกรณีที่ใช้เบราว์เซอร์ทั่วไป ลักษณะนี้เกิดจากระบบที่บังคับให้ต้องมีเซสชันหรือคุกกี้ก่อนจึงจะแสดงเนื้อหา ผลคือแม้แต่ไฟล์ robots.txt ก็อ่านไม่ได้ และเครื่องมือค้นหาที่ไม่ประมวลผลจาวาสคริปต์และคุกกี้แบบเบราว์เซอร์เต็มรูปแบบจะเก็บเนื้อหาหน้าใดไม่ได้เลย',
-			en: 'Every request to this domain is redirected back to the same address, repeating past the redirect limit — identically for the Googlebot and browser user-agents. The pattern is characteristic of a system that requires a session or cookie before it will serve content. The practical effect is that even robots.txt cannot be read, and any crawler that does not execute a full browser session captures no page content at all.'
+			th: 'ทุกคำขอไปยังโดเมนนี้ถูกเปลี่ยนเส้นทางกลับมายังที่อยู่เดิมซ้ำไปเรื่อย ๆ จนเกินขีดจำกัดการเปลี่ยนเส้นทาง ทั้งเมื่อเรียกด้วยเบราว์เซอร์เต็มรูปแบบและเมื่อระบุตัวเป็น Googlebot ลักษณะนี้เกิดจากระบบที่บังคับให้มีเซสชันหรือคุกกี้ก่อนจึงจะแสดงเนื้อหา ผลคือแม้แต่ไฟล์ robots.txt ก็อ่านไม่ได้ และเครื่องมือค้นหาที่ไม่จำลองเบราว์เซอร์เต็มรูปแบบจะเก็บเนื้อหาหน้าใดไม่ได้เลย',
+			en: 'Every request to this domain is redirected back to the same address, repeating past the redirect limit — with a full browser profile and with a Googlebot user-agent alike. The pattern is characteristic of a system requiring a session or cookie before serving content. Even robots.txt cannot be read, and any crawler that does not emulate a full browser captures no page content at all.'
 		}
 	},
 	priority: 99,

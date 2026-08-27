@@ -139,26 +139,52 @@ Reproduce or refresh it:
 npm run audit:robots                          # sweep build-assets/domains.txt, rewrite audit.ts
 npm run audit:robots -- example.go.th         # dry run for specific domains
 npm run audit:robots -- --limit 20
+npm run sync:crawl                            # push results into the service pages
+npm run sync:crawl -- --check                 # fail if any page has drifted
 ```
 
-For each domain it requests `/robots.txt` and `/` as Googlebot, then `/` as a
-desktop browser, following redirects on `robots.txt` up to five hops.
+The network sweep is a plain bash + curl script (`scripts/audit.sh`) so a few
+hundred domains finish quickly; `scripts/audit-robots.mjs` classifies its TSV
+output and regenerates `src/lib/content/audit.ts`. Each domain gets three
+requests: `/robots.txt` and `/` with a full desktop-Chrome profile (redirects
+followed), then `/` again as Googlebot.
 
-Verdicts are deliberately conservative:
+**Sending only a Chrome `User-Agent` string is not enough.** WAFs fingerprint the
+whole request, so a bare curl still reads as a bot and you will record blocks
+that are not there. The sweep sends the client hints, `Accept-Language` and
+`Sec-Fetch-*` headers a real Chrome navigation sends, then classifies by the
+*mechanism* doing the refusing — because these are not equivalent:
+
+| Kind | What it means |
+| ---- | ------------- |
+| `robots-disallow-all` | `robots.txt` disallows everything for Googlebot |
+| `googlebot-exception` | `robots.txt` blocks all crawlers, then exempts Googlebot alone |
+| `js-challenge` | Cloudflare managed challenge; browsers and verified crawlers pass, archives and AI assistants do not |
+| `waf-rule` | A firewall block page, even for a full browser profile |
+| `origin-403` | The origin server itself refuses |
+| `ua-spoof-guard` | 403 only to a self-declared Googlebot; a browser is served normally |
+| `redirect-loop` | Redirects to itself past the limit — usually a cookie or session challenge |
+
+Those roll up into six verdicts:
 
 | Verdict        | Meaning                                                                        |
 | -------------- | ------------------------------------------------------------------------------ |
 | `blocked`      | The site's own `robots.txt` disallows everything for Googlebot. Authoritative.  |
-| `waf-blocked`  | Our audit host was refused (403 to every user-agent) or trapped in a redirect loop. **Not** proof that Google is blocked. |
-| `partial`      | Some paths disallowed — or a 403 shown only to a self-declared Googlebot while a browser is served normally (ordinary anti-spoofing). |
+| `waf-blocked`  | A full browser profile was refused outright. **Not** proof that Google is blocked. |
+| `partial`      | Some paths disallowed, a JavaScript challenge, a Google-only exemption, or anti-spoofing. |
 | `none`         | No `robots.txt`, which conventionally permits crawling.                        |
 | `allowed`      | Fully crawlable.                                                               |
 | `unknown`      | No response from the audit host.                                               |
 
-The distinction matters: a 403 from one machine is not evidence about the real
-Googlebot, which crawls from Google's own IP ranges and verifies itself by
-reverse DNS. Only `robots.txt` content is reproducible by anyone, so only that
-produces a `blocked` verdict.
+Two limits are stated on the report page itself rather than hidden here: a
+refusal aimed at one machine is not evidence about the real Googlebot, which
+crawls from Google's own IP ranges and verifies itself by reverse DNS; and some
+sites tighten their limits as repeated requests arrive from the same address, so
+a few domains land differently between runs. Only `robots.txt` content is
+reproducible by anyone, so only that produces a `blocked` verdict.
+
+`npm run sync:crawl` rewrites the `crawl` block of every service page from the
+audit, so page copy cannot drift from the measured data.
 
 ## Accessibility
 

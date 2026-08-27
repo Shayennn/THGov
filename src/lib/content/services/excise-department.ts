@@ -373,12 +373,13 @@ export const service: Service = {
 	crawl: {
 		host: 'www.excise.go.th',
 		verdict: 'blocked',
+		kind: 'robots-disallow-all',
 		status: 200,
 		snippet: 'User-agent: *\nDisallow: /',
 		checkedAt: '2026-08-27',
 		note: {
-			th: 'เว็บไซต์หลักของกรมสรรพสามิตปิดกั้นเครื่องมือค้นหาทั้งเว็บไซต์ผ่าน robots.txt โดยไม่มีข้อยกเว้น ทำให้ประกาศ อัตราภาษี และคู่มือผู้เสียภาษีบนเว็บไซต์ไม่ปรากฏในผลการค้นหา',
-			en: 'The Excise Department’s main website blocks all crawlers site-wide through robots.txt with no exceptions, so its announcements, tax rates and taxpayer guidance never surface in search results.'
+			th: 'ไฟล์ robots.txt ของเว็บไซต์นี้สั่งห้ามเครื่องมือค้นหาทุกตัวเก็บข้อมูลทุกหน้า และไม่มีข้อยกเว้นให้ Googlebot นี่เป็นหลักฐานที่หนักแน่นที่สุด เพราะไฟล์ robots.txt เป็นสาธารณะและให้ผลเหมือนกันกับทุกคนที่เรียกดู ใครก็ตรวจสอบซ้ำได้',
+			en: 'This site’s robots.txt instructs every crawler not to fetch any page, with no exception for Googlebot. This is the strongest form of evidence available, because robots.txt is public and identical for every requester — anyone can reproduce the check.'
 		}
 	},
 	priority: 88,

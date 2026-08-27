@@ -41,8 +41,11 @@ export const load: PageServerLoad = ({ params }) => {
 		date: AUDIT_DATE,
 		rows,
 		evidence,
-		uaGuardCount: AUDIT_ROWS.filter((r) => r.kind === 'ua-spoof-guard').length,
-		blanketCount: AUDIT_ROWS.filter((r) => r.kind === 'blanket-403').length,
+		challengeCount: AUDIT_ROWS.filter((r) => r.kind === 'js-challenge').length,
+		hardBlockCount: AUDIT_ROWS.filter(
+			(r) => r.kind === 'waf-rule' || r.kind === 'origin-403' || r.kind === 'redirect-loop'
+		).length,
+		googlebotOnlyCount: AUDIT_ROWS.filter((r) => r.kind === 'googlebot-exception').length,
 		serviceByHost: Object.fromEntries(SERVICES.map((s) => [s.crawl.host, s.slug])),
 		jsonld: graph([
 			organizationNode(locale),

@@ -340,20 +340,21 @@ export const service: Service = {
 		{
 			type: 'p',
 			text: {
-				th: 'LandsMaps ทำงานเป็นแผนที่แบบโต้ตอบ ผลของแต่ละแปลงเกิดขึ้นหลังจากผู้ใช้กรอกข้อมูลเข้าไปแล้วเท่านั้น อีกทั้งไฟล์กำหนดสิทธิ์ของเว็บไซต์ยังปิดเส้นทางภายในทั้งหมดไม่ให้เครื่องมือค้นหาเข้าไปเก็บข้อมูล ผลลัพธ์คือการพิมพ์ค้นว่า “ที่ดินแปลงนี้อยู่ตรงไหน” หรือ “เช็คโฉนดออนไลน์” ไม่มีทางพาใครไปโผล่ที่หน้าผลการค้นหาของระบบได้เลย คนจำนวนมากจึงยังไม่รู้ว่ากรมที่ดินเปิดเครื่องมือแบบนี้ให้ใช้ฟรีอยู่แล้ว หน้านี้จึงทำหน้าที่เป็นป้ายบอกทาง อธิบายด้วยคำที่คนใช้ค้นหาจริงว่าระบบทำอะไรได้และทำอะไรไม่ได้ แล้วส่งต่อไปยังที่อยู่ทางการโดยตรง THGov เป็นเว็บไซต์รวบรวมข้อมูลอิสระ ไม่ได้สังกัดหรือเกี่ยวข้องกับหน่วยงานราชการใด ไม่รับข้อมูลส่วนบุคคล และไม่เรียกเก็บค่าใช้จ่ายจากผู้ใช้',
-				en: 'LandsMaps behaves as an interactive map: a parcel result only comes into existence once someone has typed the details in, and the site’s crawler rules close every internal path to search engines. So a search for “where is this land parcel” or “check a title deed online” can never deliver anyone to a result page from the system itself, and plenty of people still do not know the Department of Lands offers the tool for free. This page works as a signpost — it explains, in the words people genuinely search with, what the service can and cannot do, then hands them the official address. THGov is an independent directory with no affiliation to any government body; it takes no personal data and charges nothing.'
+				th: 'LandsMaps ทำงานเป็นแผนที่แบบโต้ตอบ ผลของแต่ละแปลงเกิดขึ้นหลังจากผู้ใช้กรอกข้อมูลเข้าไปแล้วเท่านั้น หน้าผลลัพธ์แต่ละแปลงจึงไม่มีที่อยู่ถาวรให้เครื่องมือค้นหาเก็บไว้ล่วงหน้า นอกเหนือจากนั้น เราบอกได้ไม่มากไปกว่านี้ เพราะขณะนี้เว็บไซต์ปฏิเสธคำขอจากเครื่องที่เราใช้ตรวจสอบโดยตอบกลับเป็นหน้าบล็อกของไฟร์วอลล์ แม้จะเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบก็ตาม เราจึงอ่านไฟล์ robots.txt ซึ่งเป็นเอกสารเพียงฉบับเดียวที่ระบุนโยบายการเข้าเก็บข้อมูลต่อสาธารณะ ไม่ได้อีกต่อไป การตรวจครั้งก่อนพบว่าไฟล์นั้นเคยมีกฎเฉพาะสำหรับ Googlebot อยู่จริง แต่เรายืนยันไม่ได้ว่าปัจจุบันยังเป็นเช่นนั้นอยู่หรือไม่ และการที่เว็บไซต์ปฏิเสธเครื่องของเรา ก็ไม่ใช่หลักฐานว่าปฏิเสธ Googlebot ตัวจริงด้วย เพราะ Googlebot เข้ามาจากช่วงหมายเลขไอพีของกูเกิลเอง และพิสูจน์ตัวตนได้ด้วย reverse DNS ไม่ว่าจะอย่างไร คนจำนวนมากก็ยังไม่รู้ว่ากรมที่ดินเปิดเครื่องมือแบบนี้ให้ใช้ฟรีอยู่แล้ว หน้านี้จึงทำหน้าที่เป็นป้ายบอกทาง อธิบายด้วยคำที่คนใช้ค้นหาจริงว่าระบบทำอะไรได้และทำอะไรไม่ได้ แล้วส่งต่อไปยังที่อยู่ทางการโดยตรง THGov เป็นเว็บไซต์รวบรวมข้อมูลอิสระ ไม่ได้สังกัดหรือเกี่ยวข้องกับหน่วยงานราชการใด ไม่รับข้อมูลส่วนบุคคล และไม่เรียกเก็บค่าใช้จ่ายจากผู้ใช้',
+				en: 'LandsMaps behaves as an interactive map: a parcel result only comes into existence once someone has typed the details in, so there is no fixed address for a search engine to have collected in advance. Beyond that we can say less than we once could. The site now refuses our audit host outright — even a full desktop-browser request profile comes back as a firewall block page — and that includes robots.txt, the one document that states a crawling policy publicly and identically for every requester, which we can therefore no longer read. An earlier check did find Google-specific rules in that file, but we cannot confirm they still stand, and a refusal aimed at our own host is no evidence about the real Googlebot, which crawls from Google’s own IP ranges and verifies itself by reverse DNS. Either way, plenty of people still do not know the Department of Lands offers the tool for free. This page works as a signpost — it explains, in the words people genuinely search with, what the service can and cannot do, then hands them the official address. THGov is an independent directory with no affiliation to any government body; it takes no personal data and charges nothing.'
 			}
 		}
 	],
 	crawl: {
 		host: 'landsmaps.dol.go.th',
-		verdict: 'partial',
+		verdict: 'waf-blocked',
+		kind: 'waf-rule',
 		status: 200,
-		snippet: 'User-agent: Googlebot\nUser-agent: Googlebot-Image\nUser-agent: Mediapartners-Google\nUser-agent: AdsBot-Google\nAllow: /$\nAllow: /index.html\nAllow: /assets/\nAllow: /static/\nAllow: /public/\nDisallow: /',
-		checkedAt: '2026-08-28',
+		snippet: 'GET /robots.txt  ->  200, but the body is a block page\n(Imperva / Incapsula interstitial served with a 200 status)',
+		checkedAt: '2026-08-27',
 		note: {
-			th: 'ไฟล์ robots.txt มีกลุ่มกฎเฉพาะสำหรับบอตของ Google ซึ่งอนุญาตให้เก็บข้อมูลได้เพียงหน้าแรกและไฟล์ประกอบอย่างรูปภาพและสคริปต์เท่านั้น ส่วนเส้นทางอื่นทั้งหมดถูกปิดกั้นด้วย Disallow: / ผลคือหน้าแรกอาจปรากฏในผลการค้นหา แต่ผลการค้นหาแปลงที่ดินรายแปลงจะไม่ถูกจัดทำดัชนีเลย',
-			en: 'The robots.txt carries a Google-specific group that permits only the homepage and supporting assets, while every other path is closed by a blanket Disallow. The front page may appear in search results, but individual parcel lookups are never indexed.'
+			th: 'แม้จะเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ ทั้งส่วนหัวการระบุตัวตนเบราว์เซอร์ ภาษา และ fetch metadata ครบถ้วน เซิร์ฟเวอร์ก็ยังปฏิเสธคำขอด้วยหน้าบล็อกของระบบไฟร์วอลล์ การปิดกั้นลักษณะนี้มักกรองทราฟฟิกจากศูนย์ข้อมูลเป็นวงกว้าง เราจึงยืนยันนโยบายที่แท้จริงของเว็บไซต์จากภายนอกไม่ได้ และไม่สรุปว่า Googlebot ตัวจริงถูกปิดกั้นด้วยหรือไม่',
+			en: 'Even with a full browser request profile — complete client hints, language and fetch-metadata headers — the server refuses with a firewall block page. Blocks shaped like this usually filter datacentre traffic broadly, so the site’s real policy cannot be verified from outside, and we draw no conclusion about whether the genuine Googlebot is refused too.'
 		}
 	},
 	priority: 87,

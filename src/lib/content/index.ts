@@ -69,7 +69,16 @@ export function isHardToFind(s: Service): boolean {
 	return HARD_TO_FIND.includes(s.crawl.verdict);
 }
 
-export const BLOCKED_SERVICES: Service[] = SERVICES.filter(isHardToFind);
+/**
+ * Ordered so the provable cases lead. A `blocked` verdict comes from the site's
+ * own robots.txt — public, identical for every requester, reproducible by
+ * anyone. A `waf-blocked` verdict only means our audit host was refused, which
+ * is weaker evidence, so those follow.
+ */
+export const BLOCKED_SERVICES: Service[] = SERVICES.filter(isHardToFind).sort((a, b) => {
+	const weight = (s: Service) => (s.crawl.verdict === 'blocked' ? 0 : 1);
+	return weight(a) - weight(b) || b.priority - a.priority;
+});
 
 /**
  * Resolve `related` slugs to real services, filling the gap with same-category

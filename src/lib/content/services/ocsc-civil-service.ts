@@ -314,20 +314,21 @@ export const service: Service = {
 		{
 			type: 'p',
 			text: {
-				th: 'คำที่คนไทยพิมพ์ค้นหาคือ “สอบ ก.พ.” ไม่ใช่ชื่อเต็มของหน่วยงาน และคำถามที่ค้างคามักเป็นเรื่องโครงสร้าง เช่น ภาค ก. กับภาค ข. ใครเป็นผู้จัด ซึ่งประกาศรายฉบับไม่ได้อธิบายซ้ำ ช่องว่างนี้ทำให้เพจขายคอร์สขึ้นมาอยู่เหนือต้นทางในผลการค้นหา ยิ่งไปกว่านั้น เว็บไซต์ของหน่วยงานตั้งค่าป้องกันทราฟฟิกไว้เข้มจนเครื่องมือภายนอกเก็บสำเนาไว้ตรวจสอบไม่ได้ ข้อมูลที่หมุนเวียนอยู่จึงมาจากแหล่งที่คัดลอกต่อกันมาเป็นหลัก หน้านี้อธิบายภาพรวมด้วยภาษาที่คนใช้จริง แล้วส่งคุณกลับไปอ่านประกาศฉบับปัจจุบัน โดย THGov เป็นไดเรกทอรีอิสระ ไม่เกี่ยวข้องกับสำนักงาน ก.พ. และไม่รับสมัครสอบหรือรับชำระเงิน',
-				en: 'People type “สอบ ก.พ.”, not the agency’s formal name, and what actually blocks them are structural questions such as who runs Part A versus Part B. Individual announcements do not re-explain that each time, and the gap lets course sellers outrank the source. On top of that, the site’s traffic protections are strict enough that outside tools cannot archive its pages — so most of what circulates online comes from sources copying one another. This page lays out the shape of it in the words people use, then sends you back to the official site for the current announcement. THGov is an independent directory with no connection to the OCSC, and takes no applications or payments.'
+				th: 'คำที่คนไทยพิมพ์ค้นหาคือ “สอบ ก.พ.” ไม่ใช่ชื่อเต็มของหน่วยงาน และคำถามที่ค้างคามักเป็นเรื่องโครงสร้าง เช่น ภาค ก. กับภาค ข. ใครเป็นผู้จัด ซึ่งประกาศรายฉบับไม่ได้อธิบายซ้ำ ช่องว่างนี้ทำให้เพจขายคอร์สขึ้นมาอยู่เหนือต้นทางในผลการค้นหา ยิ่งไปกว่านั้น เว็บไซต์ของหน่วยงานมีระบบป้องกันที่ให้ผู้เข้าชมประมวลผลจาวาสคริปต์ก่อนจึงจะเปิดหน้าได้ เบราว์เซอร์ทั่วไปผ่านได้ และบอตของเครื่องมือค้นหาที่ยืนยันตัวตนแล้วตามปกติก็ได้รับการยกเว้น เราจึงไม่สรุปว่า Google เข้าไม่ถึง แต่สิ่งที่เข้าไม่ถึงแน่นอนคือบริการเก็บถาวรเว็บ เครื่องมือตรวจสอบภายนอก และผู้ช่วย AI ที่ไม่ประมวลผลจาวาสคริปต์ จึงไม่มีสำเนาหน้าเว็บไว้ให้ย้อนดู และข้อมูลที่หมุนเวียนอยู่ก็มาจากแหล่งที่คัดลอกต่อกันมาเป็นหลัก หน้านี้อธิบายภาพรวมด้วยภาษาที่คนใช้จริง แล้วส่งคุณกลับไปอ่านประกาศฉบับปัจจุบัน โดย THGov เป็นไดเรกทอรีอิสระ ไม่เกี่ยวข้องกับสำนักงาน ก.พ. และไม่รับสมัครสอบหรือรับชำระเงิน',
+				en: 'People type “สอบ ก.พ.”, not the agency’s formal name, and what actually blocks them are structural questions such as who runs Part A versus Part B. Individual announcements do not re-explain that each time, and the gap lets course sellers outrank the source. On top of that, the site sits behind a protection layer that asks visitors to run JavaScript before a page will open. Ordinary browsers clear it, and search-engine crawlers that verify themselves are normally exempted, so Google most likely reaches the site. What does not get through is anything that executes no JavaScript — web archives, outside monitoring and AI assistants — which leaves no archived copy to check against, so most of what circulates online comes from sources copying one another. This page lays out the shape of it in the words people use, then sends you back to the official site for the current announcement. THGov is an independent directory with no connection to the OCSC, and takes no applications or payments.'
 			}
 		}
 	],
 	crawl: {
 		host: 'www.ocsc.go.th',
-		verdict: 'waf-blocked',
+		verdict: 'partial',
+		kind: 'js-challenge',
 		status: 403,
-		snippet: 'User-Agent: Googlebot/2.1\n  GET /robots.txt  ->  200\n  GET /            ->  403\nUser-Agent: Chrome\n  GET /            ->  403',
-		checkedAt: '2026-08-28',
+		snippet: 'Full desktop-Chrome request profile\n  GET /  ->  403  (Cloudflare managed challenge (JavaScript interstitial))\nGooglebot user-agent\n  GET /  ->  403\nGET /robots.txt  ->  200',
+		checkedAt: '2026-08-27',
 		note: {
-			th: 'เซิร์ฟเวอร์ยอมให้อ่านไฟล์ robots.txt ได้ แต่ปฏิเสธการเรียกหน้าเว็บจริงด้วยรหัส 403 ทั้งเมื่อระบุตัวเป็น Googlebot และเมื่อใช้เบราว์เซอร์ทั่วไปจากเครื่องที่เราใช้ตรวจสอบ ลักษณะนี้มักเป็นการกรองทราฟฟิกจากศูนย์ข้อมูลโดยรวม ไม่ใช่การเจาะจงปิดกั้นเครื่องมือค้นหา เราจึงไม่สรุปว่า Googlebot ตัวจริงเข้าไม่ได้ แต่ผลคือเครื่องมือภายนอกไม่สามารถตรวจสอบหรือเก็บถาวรเนื้อหาของเว็บไซต์นี้ได้',
-			en: 'The server lets us read robots.txt but refuses the actual pages with 403 — both to a Googlebot user-agent and to an ordinary browser from our audit host. That shape usually means blanket datacentre-traffic filtering rather than a decision to exclude search engines, so we do not claim the genuine Googlebot is blocked. It does mean no outside tool can verify or archive this site.'
+			th: 'เมื่อเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ เซิร์ฟเวอร์ตอบกลับด้วยหน้าท้าทายของ Cloudflare ที่ต้องประมวลผลจาวาสคริปต์ก่อนจึงจะผ่านได้ เบราว์เซอร์จริงผ่านได้ และบอตของเครื่องมือค้นหาที่ Cloudflare ยืนยันตัวตนแล้วมักได้รับการยกเว้น เราจึงไม่สรุปว่า Google ถูกปิดกั้น แต่สิ่งที่ปิดกั้นแน่นอนคือเครื่องมือที่ไม่ประมวลผลจาวาสคริปต์ ทั้งบริการเก็บถาวรเว็บ เครื่องมือตรวจสอบภายนอก และผู้ช่วย AI',
+			en: 'Requested with a full browser profile, the server answers with a Cloudflare challenge that must be solved by running JavaScript. Real browsers pass it, and search-engine crawlers Cloudflare has verified are normally exempted — so we do not conclude that Google is blocked. What is certainly blocked is anything that does not execute JavaScript: web archives, third-party monitoring, and AI assistants.'
 		}
 	},
 	priority: 83,

@@ -162,10 +162,10 @@ export const service: Service = {
 			}
 		},
 		{
-			q: { th: 'ค้นชื่อกฎหมายใน Google แล้วไม่เจอไฟล์จากราชกิจจานุเบกษาเลย เพราะอะไร', en: 'Why does a Google search never surface the Gazette itself?' },
+			q: { th: 'ค้นชื่อกฎหมายใน Google แล้วมักเจอแต่ข่าวสรุป ไม่ค่อยเจอตัวบทจากราชกิจจานุเบกษา เพราะอะไร', en: 'Why does a Google search usually surface news coverage rather than the Gazette itself?' },
 			a: {
-				th: 'จากการตรวจสอบของเรา เว็บไซต์ตอบกลับรหัส 403 ต่อทุกคำขอจากเครื่องที่เราใช้ตรวจสอบ ไม่ว่าจะระบุตัวเป็นบอทหรือเบราว์เซอร์ทั่วไป เราจึงอ่าน robots.txt เพื่อยืนยันนโยบายไม่ได้ และในทางปฏิบัติ ผลการค้นหาที่ได้จาก Google มักเป็นข่าวหรือบทความสรุปมากกว่าตัวบทจากต้นทาง วิธีที่ได้ผลกว่าคือเข้าเว็บไซต์ทางการโดยตรงแล้วค้นจากในระบบของเว็บไซต์เอง',
-				en: 'In our own check, the site returns a 403 to requests carrying a search-engine crawler user-agent, so enacted text is largely absent from the index. What Google returns instead is news coverage and secondhand summaries. The reliable route is to go to the official site and search from inside it.'
+				th: 'เว็บไซต์อยู่หลังระบบป้องกันของ Cloudflare ที่ต้องประมวลผลจาวาสคริปต์ก่อนจึงจะเข้าถึงหน้าได้ เบราว์เซอร์ทั่วไปผ่านด่านนี้ได้เอง และบอตของเครื่องมือค้นหาที่ Cloudflare ยืนยันตัวตนแล้วมักได้รับการยกเว้น เราจึงไม่สรุปว่า Google เข้าไม่ถึงเว็บไซต์นี้ อย่างไรก็ตาม คำขอของเราอ่าน robots.txt ไม่ได้ จึงยืนยันนโยบายที่แน่ชัดจากภายนอกไม่ได้ ส่วนที่สังเกตได้ในทางปฏิบัติคือผลการค้นหามักขึ้นข่าวและบทความสรุปก่อน เพราะหน้าเหล่านั้นมีจำนวนมากกว่าและเป็นข้อความบนหน้าเว็บ ขณะที่ต้นทางเป็นไฟล์ PDF วิธีที่ได้ผลกว่าคือเข้าเว็บไซต์ทางการโดยตรงแล้วค้นจากในระบบของเว็บไซต์เอง',
+				en: 'The site sits behind a Cloudflare protection that has to be cleared by running JavaScript. Ordinary browsers clear it by themselves, and search-engine crawlers Cloudflare has verified are normally exempted, so we do not conclude that Google is shut out. Our requests could not read robots.txt either, so the site’s stated policy cannot be confirmed from outside. What is observable is that results tend to lead with news and summary articles: there are far more of them and they are ordinary web pages, while the source itself is a PDF. The reliable route is to go to the official site and search from inside it.'
 			}
 		},
 		{
@@ -338,27 +338,28 @@ export const service: Service = {
 		{
 			type: 'p',
 			text: {
-				th: 'ราชกิจจานุเบกษาคือแหล่งกฎหมายที่มีน้ำหนักที่สุดของประเทศ แต่จากการตรวจสอบของเราเมื่อวันที่ 27 สิงหาคม 2569 เซิร์ฟเวอร์ตอบกลับรหัส 403 ต่อทุกคำขอจากเครื่องที่เราใช้ตรวจสอบ ทั้งเมื่อระบุตัวเป็น Googlebot และเมื่อใช้เบราว์เซอร์ทั่วไป เราจึงยืนยันนโยบายของเว็บไซต์จากภายนอกไม่ได้เลย และสิ่งที่สังเกตได้คือคนที่พิมพ์ชื่อกฎหมายลงในช่องค้นหามักเจอข่าวสรุป โพสต์ในโซเชียล หรือบทความที่คัดลอกต่อ ๆ กันมาก่อนเสมอ ซึ่งอาจตกหล่นข้อความสำคัญ ตีความคลาดเคลื่อน หรือเป็นข้อมูลที่ล้าสมัยไปแล้วหลายฉบับ ทั้งที่เรื่องนี้เป็นเรื่องที่ผิดพลาดไม่ได้ เพราะปลายทางคือสิ่งที่คนต้องปฏิบัติตามจริง',
-				en: 'The Gazette is the most authoritative legal source in the country, yet in our check on 27 August 2026 the server answered every request from our audit host with 403 — as Googlebot and as an ordinary browser alike — so its policy cannot be verified from outside at all. What is observable is that typing the name of a law into a search box returns news coverage first, social posts and articles copied from one another — material that can drop crucial clauses, misread them, or be several amendments out of date. That is a poor thing to get wrong, because what is at stake is what people are actually obliged to do.'
+				th: 'ราชกิจจานุเบกษาคือแหล่งกฎหมายที่มีน้ำหนักที่สุดของประเทศ จากการตรวจสอบของเราเมื่อวันที่ 27 สิงหาคม 2569 เว็บไซต์อยู่หลังหน้าท้าทายของ Cloudflare ที่ต้องประมวลผลจาวาสคริปต์ก่อนจึงจะผ่านได้ เบราว์เซอร์จริงผ่านได้ และบอตของเครื่องมือค้นหาที่ Cloudflare ยืนยันตัวตนแล้วมักได้รับการยกเว้น จึงมีแนวโน้มสูงว่า Google เข้าถึงเว็บไซต์นี้ได้ แม้เราจะอ่าน robots.txt ไม่ได้จึงยืนยันนโยบายที่แน่ชัดจากภายนอกไม่ได้ก็ตาม สิ่งที่ถูกกันออกไปแน่ ๆ คือเครื่องมือที่ไม่ประมวลผลจาวาสคริปต์ ทั้งบริการเก็บถาวรเว็บ เครื่องมือตรวจสอบภายนอก และผู้ช่วย AI ซึ่งทุกวันนี้กลายเป็นช่องทางที่คนหันไปถามมากขึ้นเรื่อย ๆ ว่ากฎหมายฉบับหนึ่งมีผลบังคับใช้แล้วหรือยัง และคนที่พิมพ์ชื่อกฎหมายลงในช่องค้นหาก็ยังมักเจอข่าวสรุป โพสต์ในโซเชียล หรือบทความที่คัดลอกต่อ ๆ กันมาก่อนเสมอ ซึ่งอาจตกหล่นข้อความสำคัญ ตีความคลาดเคลื่อน หรือเป็นข้อมูลที่ล้าสมัยไปแล้วหลายฉบับ ทั้งที่เรื่องนี้เป็นเรื่องที่ผิดพลาดไม่ได้ เพราะปลายทางคือสิ่งที่คนต้องปฏิบัติตามจริง',
+				en: 'The Gazette is the most authoritative legal source in the country. In our check on 27 August 2026 the site sat behind a Cloudflare challenge that has to be cleared by running JavaScript. Real browsers clear it, and search-engine crawlers Cloudflare has verified are normally exempted, so Google most likely does reach the site — though robots.txt was unreadable to us as well, so the stated policy cannot be confirmed from outside. What is certainly shut out is anything that does not execute JavaScript: web archives, third-party monitoring, and AI assistants, which is increasingly how people ask whether a law is in force. Meanwhile, typing the name of a law into a search box still returns news coverage first, social posts and articles copied from one another — material that can drop crucial clauses, misread them, or be several amendments out of date. That is a poor thing to get wrong, because what is at stake is what people are actually obliged to do.'
 			}
 		},
 		{
 			type: 'p',
 			text: {
-				th: 'THGov ไม่ได้ทำสำเนาตัวบทกฎหมายมาเก็บไว้ และไม่ได้มีความเกี่ยวข้องกับหน่วยงานใด สิ่งที่หน้านี้ทำคืออธิบายด้วยคำที่คนค้นหาจริงว่าราชกิจจานุเบกษาคืออะไร ใช้อย่างไร และอ่านการอ้างอิงอย่างไร แล้วส่งคุณไปยังเว็บไซต์ทางการเพื่ออ่านฉบับเต็มด้วยตัวคุณเอง ตราบใดที่ต้นทางของกฎหมายยังไม่เปิดให้เครื่องมือค้นหาเข้าถึง สะพานเล็ก ๆ แบบนี้ก็ยังจำเป็นสำหรับคนที่ต้องการอ่านของจริง ไม่ใช่คำบอกเล่าที่ผ่านมือคนอื่นมาแล้วหลายทอด',
-				en: 'THGov keeps no copy of any statutory text and is not affiliated with any agency. What this page does is explain, in the words people actually search with, what the Gazette is, how to use it and how to read a citation — then send you to the official site to read the full document for yourself. For as long as the source of the law stays closed to search engines, a small bridge like this remains necessary for anyone who wants the real thing rather than a secondhand account of it.'
+				th: 'THGov ไม่ได้ทำสำเนาตัวบทกฎหมายมาเก็บไว้ และไม่ได้มีความเกี่ยวข้องกับหน่วยงานใด สิ่งที่หน้านี้ทำคืออธิบายด้วยคำที่คนค้นหาจริงว่าราชกิจจานุเบกษาคืออะไร ใช้อย่างไร และอ่านการอ้างอิงอย่างไร แล้วส่งคุณไปยังเว็บไซต์ทางการเพื่ออ่านฉบับเต็มด้วยตัวคุณเอง ตราบใดที่ตัวบทต้นทางยังอยู่หลังด่านที่ต้องเปิดด้วยเบราว์เซอร์จริง และยังอยู่นอกมือของบริการเก็บถาวรเว็บกับผู้ช่วย AI ที่คนหันไปถามกันมากขึ้น สะพานเล็ก ๆ แบบนี้ก็ยังจำเป็นสำหรับคนที่ต้องการอ่านของจริง ไม่ใช่คำบอกเล่าที่ผ่านมือคนอื่นมาแล้วหลายทอด',
+				en: 'THGov keeps no copy of any statutory text and is not affiliated with any agency. What this page does is explain, in the words people actually search with, what the Gazette is, how to use it and how to read a citation — then send you to the official site to read the full document for yourself. For as long as the authoritative text sits behind a challenge only a real browser can clear — out of reach of web archives and of the assistants people now put the question to — a small bridge like this remains necessary for anyone who wants the real thing rather than a secondhand account of it.'
 			}
 		}
 	],
 	crawl: {
 		host: 'ratchakitcha.soc.go.th',
-		verdict: 'waf-blocked',
+		verdict: 'partial',
+		kind: 'js-challenge',
 		status: 403,
-		snippet: 'User-Agent: Googlebot/2.1\n  GET /robots.txt  ->  403\n  GET /            ->  403\nUser-Agent: Chrome (desktop browser)\n  GET /            ->  403',
+		snippet: 'Full desktop-Chrome request profile\n  GET /  ->  403  (Cloudflare managed challenge (JavaScript interstitial))\nGooglebot user-agent\n  GET /  ->  403\nGET /robots.txt  ->  403',
 		checkedAt: '2026-08-27',
 		note: {
-			th: 'เซิร์ฟเวอร์ตอบกลับรหัส 403 ต่อทุกคำขอจากเครื่องที่เราใช้ตรวจสอบ ไม่ว่าจะระบุตัวเป็น Googlebot หรือเป็นเบราว์เซอร์ทั่วไป และเว็บไซต์สำนักเลขาธิการคณะรัฐมนตรี (www.soc.go.th) ก็ให้ผลเช่นเดียวกัน เมื่ออ่านไฟล์ robots.txt ไม่ได้ เราจึงยืนยันนโยบายที่แท้จริงของเว็บไซต์ไม่ได้ และสรุปไม่ได้ว่า Googlebot ตัวจริงถูกปิดกั้นหรือไม่ สิ่งที่ยืนยันได้คือระบบปิดกั้นทราฟฟิกจากศูนย์ข้อมูลเป็นวงกว้าง ซึ่งกระทบเครื่องมือเก็บถาวร เครื่องมือตรวจสอบภายนอก และผู้ช่วย AI ที่ประชาชนใช้ค้นกฎหมาย',
-			en: 'The server answers 403 to every request from our audit host — whether it identifies as Googlebot or as an ordinary desktop browser — and the Secretariat of the Cabinet site (www.soc.go.th) behaves identically. Because robots.txt cannot be read, we cannot confirm the site’s actual policy, and cannot conclude that the genuine Googlebot is blocked. What is verifiable is a broad block on datacentre traffic, which affects archiving services, third-party monitoring and the AI assistants people increasingly use to look up the law.'
+			th: 'เมื่อเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ เซิร์ฟเวอร์ตอบกลับด้วยหน้าท้าทายของ Cloudflare ที่ต้องประมวลผลจาวาสคริปต์ก่อนจึงจะผ่านได้ เบราว์เซอร์จริงผ่านได้ และบอตของเครื่องมือค้นหาที่ Cloudflare ยืนยันตัวตนแล้วมักได้รับการยกเว้น เราจึงไม่สรุปว่า Google ถูกปิดกั้น แต่สิ่งที่ปิดกั้นแน่นอนคือเครื่องมือที่ไม่ประมวลผลจาวาสคริปต์ ทั้งบริการเก็บถาวรเว็บ เครื่องมือตรวจสอบภายนอก และผู้ช่วย AI',
+			en: 'Requested with a full browser profile, the server answers with a Cloudflare challenge that must be solved by running JavaScript. Real browsers pass it, and search-engine crawlers Cloudflare has verified are normally exempted — so we do not conclude that Google is blocked. What is certainly blocked is anything that does not execute JavaScript: web archives, third-party monitoring, and AI assistants.'
 		}
 	},
 	priority: 94,
