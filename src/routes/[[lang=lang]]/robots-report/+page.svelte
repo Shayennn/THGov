@@ -166,7 +166,7 @@
 				<strong>{lc({ th: 'กรณีพิเศษ: เปิดให้เฉพาะ Google', en: 'A special case: open to Google alone' })}</strong>
 				<p>
 					{lc({
-						th: 'มีเว็บไซต์ที่ปิดกั้นบอตทุกตัวใน robots.txt แล้วเขียนข้อยกเว้นให้ Googlebot โดยเฉพาะ เว็บไซต์เหล่านี้ยังค้นเจอผ่าน Google ได้ แต่เครื่องมือค้นหาอื่น บริการเก็บถาวรเว็บ และผู้ช่วย AI ถูกปฏิเสธทั้งหมด ซึ่งเท่ากับผูกการเข้าถึงข้อมูลสาธารณะไว้กับบริษัทเดียว',
+						th: 'มีเว็บไซต์ที่ปิดกั้นบอตทุกตัวใน robots.txt แล้วเขียนข้อยกเว้นให้ Googlebot โดยเฉพาะ เว็บไซต์เหล่านี้ยังค้นเจอผ่าน Google ได้ แต่เครื่องมือค้นหาอื่น บริการเก็บถาวรเว็บ และผู้ช่วย AI ถูกปฏิเสธทั้งหมด แปลว่าผูกการเข้าถึงข้อมูลสาธารณะไว้กับบริษัทเดียว',
 						en: 'One site blocks every crawler in robots.txt and then writes an exception for Googlebot alone. It stays findable through Google while every other search engine, web archive and AI assistant is refused — which ties access to public information to a single company.'
 					})}
 				</p>
