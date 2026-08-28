@@ -16,6 +16,14 @@
  *   2. GET / with the same Chrome profile.
  *   3. GET / with Googlebot's user-agent.
  *
+ * curl cannot settle every host: it does not run JavaScript, does not present a
+ * browser's TLS fingerprint, and reports a dead domain, a refused connection and
+ * an expired certificate with the same silent failure. Every host the sweep
+ * leaves refused or unresolved therefore goes through a second stage in
+ * scripts/audit-browser.mjs, which drives headless Chromium — the engine
+ * Googlebot renders with — and, where it gets in, reads robots.txt over that
+ * same connection. A verdict never rests on curl alone.
+ *
  * Sending only a Chrome User-Agent string is not enough: WAFs fingerprint the
  * whole request, so a bare curl still reads as a bot. We send the client hints,
  * fetch-metadata and Accept headers a real browser sends, then classify by the
@@ -36,6 +44,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
+import { browserSweep } from './audit-browser.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'src/lib/content/audit.ts');
@@ -45,6 +54,7 @@ const args = process.argv.slice(2);
 const limitFlag = args.indexOf('--limit');
 const limit = limitFlag >= 0 ? Number(args[limitFlag + 1]) : Infinity;
 const explicit = args.filter((a) => /^[a-z0-9.-]+\.[a-z]{2,}$/i.test(a));
+const skipBrowser = args.includes('--no-browser');
 const CONCURRENCY = 12;
 const TIMEOUT_MS = 30_000;
 
@@ -173,6 +183,31 @@ function classifyRobots(txt, fallbackSnippet) {
 	return { verdict: 'allowed', kind: 'allowed', snippet, googlebotRule: match.specific };
 }
 
+/**
+ * Verdict from a robots.txt fetch, whichever stage obtained it. Only reached
+ * with a status the caller has already decided is a real answer about the file.
+ */
+function robotsVerdict(status, body) {
+	if (status === 404)
+		return {
+			verdict: 'none',
+			kind: 'no-robots',
+			snippet: 'GET /robots.txt  ->  HTTP 404 Not Found',
+			googlebotRule: false
+		};
+	if (status === 200 && (body || '').trim())
+		return classifyRobots(
+			body,
+			'GET /robots.txt  ->  200, but an HTML page was served instead of a robots.txt'
+		);
+	return {
+		verdict: 'none',
+		kind: 'no-robots',
+		snippet: `GET /robots.txt  ->  ${status ?? 'no response'}`,
+		googlebotRule: false
+	};
+}
+
 /** Classify one TSV row emitted by scripts/audit.sh. */
 function auditOne(row) {
 	const { host, robotsStatus: rc, browserStatus: hb, homeStatus: hg } = row;
@@ -181,6 +216,7 @@ function auditOne(row) {
 		robotsStatus: rc === 'LOOP' ? null : rc,
 		homeStatus: hg === 'LOOP' ? null : hg,
 		browserStatus: hb === 'LOOP' ? null : hb,
+		chromeStatus: null,
 		googlebotRule: false
 	};
 	const refused = (code) => code === 403 || code === 401 || code === 429;
@@ -226,17 +262,8 @@ function auditOne(row) {
 				`Googlebot user-agent\n  GET /  ->  ${hg}  (refused)`
 		};
 
-	if (rc === 404)
-		return { ...base, verdict: 'none', kind: 'no-robots', snippet: 'GET /robots.txt  ->  HTTP 404 Not Found' };
-
-	if (rc === 200 && row.robotsBody.trim())
-		return {
-			...base,
-			...classifyRobots(
-				row.robotsBody,
-				'GET /robots.txt  ->  200, but an HTML page was served instead of a robots.txt'
-			)
-		};
+	if (rc === 404 || (rc === 200 && row.robotsBody.trim()))
+		return { ...base, ...robotsVerdict(rc, row.robotsBody) };
 
 	if (rc !== null && rc >= 300 && rc < 400)
 		return {
