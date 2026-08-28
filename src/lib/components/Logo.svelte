@@ -64,20 +64,20 @@
 		<!-- Low in the lens on purpose: the bowl reaches further above the origin
 		     than the stem reaches below, so centring the origin on the lens would
 		     push the bowl into the ring. -->
-		<g transform="translate(19.7 14.61) scale(0.88)">
+		<g transform="translate(19.7 15.05) scale(0.84)">
 			<path
 				d="M-2.75 -2.6a2.85 2.85 0 1 1 3.55 2.95 v1.75"
 				fill="none"
 				stroke="#fff"
-				stroke-width="2.159"
+				stroke-width="2.262"
 				stroke-linecap="round"
 				stroke-linejoin="round"
 			/>
 		</g>
 		<g fill="#fff">
-			<circle cx="17.8" cy="18.7" r="0.72" />
-			<circle cx="19.7" cy="18.7" r="0.72" />
-			<circle cx="21.6" cy="18.7" r="0.72" />
+			<circle cx="17.9" cy="18.9" r="0.68" />
+			<circle cx="19.7" cy="18.9" r="0.68" />
+			<circle cx="21.5" cy="18.9" r="0.68" />
 		</g>
 	</svg>
 	{#if showText}
