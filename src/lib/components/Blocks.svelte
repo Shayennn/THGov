@@ -83,53 +83,6 @@
 {/each}
 
 <style>
-	.callout {
-		display: flex;
-		gap: 0.85rem;
-		padding: 1.05rem 1.25rem;
-		border-radius: var(--r);
-		border: 1px solid var(--line);
-		background: var(--info-bg);
-		color: var(--text);
-	}
-	.callout strong {
-		display: block;
-		margin-bottom: 0.25rem;
-		font-weight: 600;
-	}
-	.callout p {
-		color: inherit;
-		font-size: var(--fs-sm);
-		line-height: 1.7;
-		margin: 0;
-	}
-	:global(.callout .c-icon) {
-		flex: none;
-		margin-top: 0.2rem;
-		color: var(--blue);
-	}
-	.callout-warn {
-		background: var(--warn-bg);
-		border-color: transparent;
-	}
-	:global(.callout-warn .c-icon) {
-		color: var(--warn);
-	}
-	.callout-success {
-		background: var(--ok-bg);
-		border-color: transparent;
-	}
-	:global(.callout-success .c-icon) {
-		color: var(--ok);
-	}
-	.callout-danger {
-		background: var(--danger-bg);
-		border-color: transparent;
-	}
-	:global(.callout-danger .c-icon) {
-		color: var(--danger);
-	}
-
 	.table-wrap,
 	.code-wrap {
 		margin-block: 1.6em;

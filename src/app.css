@@ -450,9 +450,42 @@ a.chip:hover { border-color: var(--brand); color: var(--brand); }
 .chip-blocked { background: var(--danger-bg); border-color: transparent; color: var(--danger); font-weight: 600; }
 .chip-partial { background: var(--warn-bg); border-color: transparent; color: var(--warn); font-weight: 600; }
 .chip-allowed { background: var(--ok-bg); border-color: transparent; color: var(--ok); font-weight: 600; }
-.callout-info { background: var(--info-bg); border-color: transparent; }
 
 .chip-unknown { background: var(--bg-sunken); border-color: transparent; color: var(--text-faint); font-weight: 600; }
+
+/* =========================== callout =========================== */
+.callout {
+	display: flex;
+	gap: 0.85rem;
+	padding: 1.05rem 1.25rem;
+	border-radius: var(--r);
+	border: 1px solid var(--line);
+	background: var(--info-bg);
+	color: var(--text);
+}
+.callout strong {
+	display: block;
+	margin-bottom: 0.25rem;
+	font-weight: 600;
+}
+.callout p {
+	color: inherit;
+	font-size: var(--fs-sm);
+	line-height: 1.7;
+	margin: 0;
+}
+.callout .c-icon {
+	flex: none;
+	margin-top: 0.2rem;
+	color: var(--blue);
+}
+.callout-info { background: var(--info-bg); border-color: transparent; }
+.callout-warn { background: var(--warn-bg); border-color: transparent; }
+.callout-warn .c-icon { color: var(--warn); }
+.callout-success { background: var(--ok-bg); border-color: transparent; }
+.callout-success .c-icon { color: var(--ok); }
+.callout-danger { background: var(--danger-bg); border-color: transparent; }
+.callout-danger .c-icon { color: var(--danger); }
 
 /* =========================== prose =========================== */
 .prose { max-width: 68ch; }
