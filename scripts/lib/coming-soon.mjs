@@ -25,7 +25,7 @@ const PAGE = `<!doctype html>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ThaiGov.co">
 <meta property="og:title" content="ThaiGov.co — สารบัญบริการภาครัฐไทย">
-<meta property="og:description" content="เรามีทุกเว็บไซท์ของหน่วยงานรัฐไทยที่หายไป — เปิดให้บริการเร็ว ๆ นี้">
+<meta property="og:description" content="เรามีทุกเว็บไซต์ของหน่วยงานรัฐไทยที่หายไป — เปิดให้บริการเร็ว ๆ นี้">
 <meta property="og:url" content="__SITE__/">
 <meta property="og:image" content="__SITE__/og/coming-soon.png">
 <meta property="og:image:width" content="1200">
@@ -33,7 +33,7 @@ const PAGE = `<!doctype html>
 <meta property="og:locale" content="th_TH">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ThaiGov.co — สารบัญบริการภาครัฐไทย">
-<meta name="twitter:description" content="เรามีทุกเว็บไซท์ของหน่วยงานรัฐไทยที่หายไป">
+<meta name="twitter:description" content="เรามีทุกเว็บไซต์ของหน่วยงานรัฐไทยที่หายไป">
 <meta name="twitter:image" content="__SITE__/og/coming-soon.png">
 <link rel="preload" href="/fonts/prompt-thai-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/prompt.css">

@@ -30,7 +30,7 @@ export const PAGES: Record<string, StaticPage> = {
 			{
 				type: 'p',
 				text: {
-					th: 'บริการออนไลน์ที่ภาครัฐไทยมี ใช้งานได้ได้ดีกว่าที่หลายคนคิด แต่ประชาชนจำนวนมากหาไม่เจอ สาเหตุมีสองข้อที่ทับซ้อนกัน ข้อแรกคือชื่อระบบราชการไม่ตรงกับคำที่คนใช้ค้นหา ไม่มีใครพิมพ์ว่า “ระบบการให้บริการธุรกรรมทางอิเล็กทรอนิกส์” แต่พิมพ์ว่า “เช็คค่าไฟ” หรือ “ต่อภาษีรถ”',
+					th: 'บริการออนไลน์ที่ภาครัฐไทยมี ใช้งานได้ดีกว่าที่หลายคนคิด แต่ประชาชนจำนวนมากหาไม่เจอ สาเหตุมีสองข้อที่ทับซ้อนกัน ข้อแรกคือชื่อระบบราชการไม่ตรงกับคำที่คนใช้ค้นหา ไม่มีใครพิมพ์ว่า “ระบบการให้บริการธุรกรรมทางอิเล็กทรอนิกส์” แต่พิมพ์ว่า “เช็คค่าไฟ” หรือ “ต่อภาษีรถ”',
 					en: 'Thailand’s government online services exist, and many work better than people expect — yet citizens routinely cannot find them. Two problems overlap. The first is naming: nobody types the formal system name into a search box. They type “check my electricity bill” or “renew road tax”.'
 				}
 			},

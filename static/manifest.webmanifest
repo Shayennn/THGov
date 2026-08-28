@@ -1,7 +1,7 @@
 {
 	"name": "ThaiGov.co — สารบัญบริการภาครัฐไทย",
 	"short_name": "ThaiGov.co",
-	"description": "เรามีทุกเว็บไซท์ของหน่วยงานรัฐไทยที่หายไป",
+	"description": "เรามีทุกเว็บไซต์ของหน่วยงานรัฐไทยที่หายไป",
 	"lang": "th-TH",
 	"dir": "ltr",
 	"start_url": "/",

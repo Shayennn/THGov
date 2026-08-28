@@ -25,7 +25,7 @@ export const SITE = {
 		en: 'ThaiGov.co — Thai Government Services Directory'
 	} satisfies LocalizedString,
 	tagline: {
-		th: 'เรามีทุกเว็บไซท์ของหน่วยงานรัฐไทยที่หายไป',
+		th: 'เรามีทุกเว็บไซต์ของหน่วยงานรัฐไทยที่หายไป',
 		en: 'Every Thai government website that went missing, in one place'
 	} satisfies LocalizedString,
 	description: {
