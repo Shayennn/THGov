@@ -1,28 +1,7 @@
 import { Resvg } from '@resvg/resvg-js';
+import { markSvg } from './mark.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
-
-/** The THGov mark: a gradient rounded square with an abstract "signpost" glyph. */
-function markSvg({ padding = 0, background = null } = {}) {
-	const s = 512;
-	const inset = padding;
-	const size = s - inset * 2;
-	const r = Math.round(size * 0.28);
-	return `<svg xmlns="http://www.w3.org/2000/svg" width="${s}" height="${s}" viewBox="0 0 ${s} ${s}">
-	<defs>
-		<linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-			<stop offset="0%" stop-color="#F05223"/>
-			<stop offset="100%" stop-color="#EE9B20"/>
-		</linearGradient>
-	</defs>
-	${background ? `<rect width="${s}" height="${s}" fill="${background}"/>` : ''}
-	<rect x="${inset}" y="${inset}" width="${size}" height="${size}" rx="${r}" fill="url(#g)"/>
-	<g transform="translate(${inset},${inset}) scale(${size / 512})">
-		<circle cx="256" cy="136" r="34" fill="#fff"/>
-		<path d="M144 208h224M256 208v190" stroke="#fff" stroke-width="46" stroke-linecap="round" fill="none"/>
-	</g>
-</svg>`;
-}
 
 function toPng(svg, width) {
 	return new Resvg(svg, { fitTo: { mode: 'width', value: width } }).render().asPng();

@@ -337,21 +337,21 @@ export const service: Service = {
 		{
 			type: 'p',
 			text: {
-				th: 'คำเตือนที่ค้นไม่เจอ ก็เตือนใครไม่ได้ ในการตรวจสอบเมื่อวันที่ 27 สิงหาคม 2569 เว็บไซต์ตอบกลับรหัส 403 ต่อทุกคำขอจากเครื่องที่เราใช้ตรวจสอบ ทั้งเมื่อระบุตัวเป็น Googlebot และเมื่อใช้เบราว์เซอร์ทั่วไป เราจึงอ่าน robots.txt เพื่อยืนยันนโยบายไม่ได้ สิ่งที่สังเกตได้ในทางปฏิบัติคือ คนที่กำลังลังเลแล้วพิมพ์ชื่อบริษัทที่ชวนลงทุนลงในช่องค้นหา มักเจอหน้าโฆษณาของฝ่ายที่ชักชวนก่อนคำเตือนของหน่วยงานกำกับดูแล หน้านี้จึงทำหน้าที่เป็นป้ายบอกทางที่ค้นเจอได้ อธิบายว่าเว็บไซต์ทางการมีข้อมูลอะไรให้ตรวจสอบและควรตรวจอย่างไร ก่อนส่งผู้อ่านไปยังต้นทางโดยตรง THGov เป็นไดเรกทอรีอิสระ ไม่มีความเกี่ยวข้องกับสำนักงาน ก.ล.ต. ไม่รับเรื่องร้องเรียน และไม่รับข้อมูลส่วนบุคคลหรือเงินลงทุนแทนหน่วยงานใด',
-				en: 'A warning nobody can find warns nobody. In our check on 27 August 2026 the site answered every request from our audit host with a 403 — as Googlebot and as an ordinary browser alike — so we cannot read its robots.txt to confirm what it permits. What is observable is that someone hesitating in front of their phone and typing in the name of the company courting them tends to reach the promoter’s own landing page well before the regulator’s warning about it. This page exists to be the findable signpost: it sets out what the official site holds, how to run the check so the answer means something, and then sends the reader straight to the source. THGov is an independent directory, unaffiliated with the SEC; we take no complaints, no personal data and no money on anyone’s behalf.'
+				th: 'คำเตือนที่ค้นไม่เจอ ก็เตือนใครไม่ได้ ในการตรวจสอบเมื่อวันที่ 27 สิงหาคม 2569 เว็บไซต์ตอบกลับรหัส 403 ต่อทุกคำขอจากเครื่องที่เราใช้ตรวจสอบ ทั้งเมื่อระบุตัวเป็น Googlebot และเมื่อใช้เบราว์เซอร์ทั่วไป เราจึงอ่าน robots.txt เพื่อยืนยันนโยบายไม่ได้ สิ่งที่สังเกตได้ในทางปฏิบัติคือ คนที่กำลังลังเลแล้วพิมพ์ชื่อบริษัทที่ชวนลงทุนลงในช่องค้นหา มักเจอหน้าโฆษณาของฝ่ายที่ชักชวนก่อนคำเตือนของหน่วยงานกำกับดูแล หน้านี้จึงทำหน้าที่เป็นป้ายบอกทางที่ค้นเจอได้ อธิบายว่าเว็บไซต์ทางการมีข้อมูลอะไรให้ตรวจสอบและควรตรวจอย่างไร ก่อนส่งผู้อ่านไปยังต้นทางโดยตรง ThaiGov.co เป็นไดเรกทอรีอิสระ ไม่มีความเกี่ยวข้องกับสำนักงาน ก.ล.ต. ไม่รับเรื่องร้องเรียน และไม่รับข้อมูลส่วนบุคคลหรือเงินลงทุนแทนหน่วยงานใด',
+				en: 'A warning nobody can find warns nobody. In our check on 27 August 2026 the site answered every request from our audit host with a 403 — as Googlebot and as an ordinary browser alike — so we cannot read its robots.txt to confirm what it permits. What is observable is that someone hesitating in front of their phone and typing in the name of the company courting them tends to reach the promoter’s own landing page well before the regulator’s warning about it. This page exists to be the findable signpost: it sets out what the official site holds, how to run the check so the answer means something, and then sends the reader straight to the source. ThaiGov.co is an independent directory, unaffiliated with the SEC; we take no complaints, no personal data and no money on anyone’s behalf.'
 			}
 		}
 	],
 	crawl: {
 		host: 'www.sec.or.th',
 		verdict: 'waf-blocked',
-		kind: 'waf-rule',
+		kind: 'origin-403',
 		status: 403,
-		snippet: 'Full desktop-Chrome request profile\n  GET /  ->  403  (F5 BIG-IP ASM block page)\nGooglebot user-agent\n  GET /  ->  403\nGET /robots.txt  ->  403',
-		checkedAt: '2026-08-27',
+		snippet: 'Full desktop-Chrome request profile\n  GET /  ->  403  (origin refused the request)\nGooglebot user-agent\n  GET /  ->  403\nGET /robots.txt  ->  403\n\nHeadless Chromium (real browser engine)\n  GET /  ->  403  (refused: Block Response)',
+		checkedAt: '2026-08-28',
 		note: {
-			th: 'แม้จะเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ ทั้งส่วนหัวการระบุตัวตนเบราว์เซอร์ ภาษา และ fetch metadata ครบถ้วน เซิร์ฟเวอร์ก็ยังปฏิเสธคำขอด้วยหน้าบล็อกของระบบไฟร์วอลล์ การปิดกั้นลักษณะนี้มักกรองทราฟฟิกจากศูนย์ข้อมูลเป็นวงกว้าง เราจึงยืนยันนโยบายที่แท้จริงของเว็บไซต์จากภายนอกไม่ได้ และไม่สรุปว่า Googlebot ตัวจริงถูกปิดกั้นด้วยหรือไม่',
-			en: 'Even with a full browser request profile — complete client hints, language and fetch-metadata headers — the server refuses with a firewall block page. Blocks shaped like this usually filter datacentre traffic broadly, so the site’s real policy cannot be verified from outside, and we draw no conclusion about whether the genuine Googlebot is refused too.'
+			th: 'เซิร์ฟเวอร์ต้นทางปฏิเสธคำขอด้วยรหัส 403 แม้จะเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ และเมื่อเปิดด้วยเบราว์เซอร์ Chromium จริงที่ประมวลผลจาวาสคริปต์ครบถ้วน ก็ยังถูกปฏิเสธด้วยรหัส 403 เช่นกัน การปฏิเสธเกิดที่ตัวเซิร์ฟเวอร์เอง ไม่ใช่ที่ระบบป้องกันด้านหน้า เราจึงอ่านนโยบายของเว็บไซต์จากภายนอกไม่ได้ และไม่สรุปแทนว่าเครื่องมือค้นหาเข้าถึงได้หรือไม่',
+			en: 'The origin server itself answers 403 even to a full browser request profile — the refusal comes from the server rather than an edge protection layer. A real Chromium browser running the page’s JavaScript is refused in the same way, with 403. We therefore cannot read the site’s policy from outside, and make no claim either way about what search engines receive.'
 		}
 	},
 	priority: 86,

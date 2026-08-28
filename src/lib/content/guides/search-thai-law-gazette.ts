@@ -264,13 +264,13 @@ export const guide: Guide = {
 		},
 		{
 			type: 'h2',
-			text: { th: 'THGov อยู่ตรงไหนในเรื่องนี้', en: 'Where THGov fits in' }
+			text: { th: 'ThaiGov.co อยู่ตรงไหนในเรื่องนี้', en: 'Where ThaiGov.co fits in' }
 		},
 		{
 			type: 'p',
 			text: {
-				th: 'THGov เป็นเว็บไซต์รวบรวมบริการออนไลน์ของภาครัฐที่จัดทำขึ้นอย่างอิสระ ไม่ได้เป็นส่วนหนึ่งของหน่วยงานใด และไม่ได้เก็บสำเนาตัวบทกฎหมายไว้เอง หน้านี้อธิบายวิธีค้นและวิธีตรวจสอบ แล้วส่งคุณไปอ่านฉบับเต็มจากต้นทางเอง เพราะเรื่องแบบนี้ไม่ควรจบที่การเชื่อคำบอกเล่าของใคร รวมถึงของเราด้วย',
-				en: 'THGov is an independently built directory of Thai government online services. It is not part of any agency, and it keeps no copy of any statutory text. This page explains how to search and how to verify, then sends you to the source to read the document yourself — because a question like this should never end with taking anyone’s word for it, ours included.'
+				th: 'ThaiGov.co เป็นเว็บไซต์รวบรวมบริการออนไลน์ของภาครัฐที่จัดทำขึ้นอย่างอิสระ ไม่ได้เป็นส่วนหนึ่งของหน่วยงานใด และไม่ได้เก็บสำเนาตัวบทกฎหมายไว้เอง หน้านี้อธิบายวิธีค้นและวิธีตรวจสอบ แล้วส่งคุณไปอ่านฉบับเต็มจากต้นทางเอง เพราะเรื่องแบบนี้ไม่ควรจบที่การเชื่อคำบอกเล่าของใคร รวมถึงของเราด้วย',
+				en: 'ThaiGov.co is an independently built directory of Thai government online services. It is not part of any agency, and it keeps no copy of any statutory text. This page explains how to search and how to verify, then sends you to the source to read the document yourself — because a question like this should never end with taking anyone’s word for it, ours included.'
 			}
 		}
 	],

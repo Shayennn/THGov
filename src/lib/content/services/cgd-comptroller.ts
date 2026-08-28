@@ -340,21 +340,21 @@ export const service: Service = {
 		{
 			type: 'p',
 			text: {
-				th: 'กฎที่ตัดสินว่าใบเสร็จค่ารักษาพยาบาลใบหนึ่งจะเบิกได้หรือไม่ ตั้งอยู่บนเซิร์ฟเวอร์ที่ปฏิเสธบอตของเสิร์ชเอนจิน ผลที่ตามมาไม่ใช่แค่เรื่องเทคนิค แต่คือคนที่ควรได้อ่านตัวระเบียบกลับไปตั้งคำถามในเว็บบอร์ด กลุ่มไลน์ของเพื่อนร่วมงาน หรือกลุ่มข้าราชการบำนาญ แล้วได้คำตอบจากความทรงจำของคนอื่นซึ่งอาจอ้างหลักเกณฑ์ที่ถูกยกเลิกไปแล้วหลายปี ข้าราชการที่กำลังตัดสินใจเรื่องการรักษาของพ่อแม่ เจ้าหน้าที่การเงินที่ต้องตั้งเบิกให้ทันสิ้นปีงบประมาณ และผู้ค้าที่รอเงินงวดสุดท้าย ต่างต้องการเอกสารฉบับจริง ไม่ใช่คำบอกเล่า หน้านี้จึงอธิบายขอบเขตงานของกรมบัญชีกลางด้วยคำที่คนพิมพ์ค้นหาจริง แล้วส่งต่อไปยังเว็บไซต์ทางการเพื่อให้ไปอ่านฉบับที่มีผลบังคับใช้ด้วยตัวเอง THGov เป็นไดเรกทอรีอิสระ ไม่มีความเกี่ยวข้องกับหน่วยงาน ไม่รับเรื่องเบิกจ่าย และไม่รับข้อมูลส่วนบุคคลใด ๆ',
-				en: 'The rules that decide whether a single hospital receipt can be reimbursed sit on a server that turns search-engine crawlers away. The consequence is not merely technical: the people who ought to be reading the regulation ask in web forums, in colleagues’ chat groups or in pensioners’ groups instead, and get answers from someone else’s memory of criteria that may have been revoked years ago. An official weighing up treatment for a parent, a finance officer racing the end of the budget year, a supplier waiting on a final instalment — each needs the actual document, not a recollection of it. This page describes what the department does in the words people type into a search box, then hands them to the official site to read the version in force. THGov is an independent directory: no affiliation with the agency, no involvement in any claim, and no personal data collected here.'
+				th: 'กฎที่ตัดสินว่าใบเสร็จค่ารักษาพยาบาลใบหนึ่งจะเบิกได้หรือไม่ ตั้งอยู่บนเซิร์ฟเวอร์ที่ปฏิเสธบอตของเสิร์ชเอนจิน ผลที่ตามมาไม่ใช่แค่เรื่องเทคนิค แต่คือคนที่ควรได้อ่านตัวระเบียบกลับไปตั้งคำถามในเว็บบอร์ด กลุ่มไลน์ของเพื่อนร่วมงาน หรือกลุ่มข้าราชการบำนาญ แล้วได้คำตอบจากความทรงจำของคนอื่นซึ่งอาจอ้างหลักเกณฑ์ที่ถูกยกเลิกไปแล้วหลายปี ข้าราชการที่กำลังตัดสินใจเรื่องการรักษาของพ่อแม่ เจ้าหน้าที่การเงินที่ต้องตั้งเบิกให้ทันสิ้นปีงบประมาณ และผู้ค้าที่รอเงินงวดสุดท้าย ต่างต้องการเอกสารฉบับจริง ไม่ใช่คำบอกเล่า หน้านี้จึงอธิบายขอบเขตงานของกรมบัญชีกลางด้วยคำที่คนพิมพ์ค้นหาจริง แล้วส่งต่อไปยังเว็บไซต์ทางการเพื่อให้ไปอ่านฉบับที่มีผลบังคับใช้ด้วยตัวเอง ThaiGov.co เป็นไดเรกทอรีอิสระ ไม่มีความเกี่ยวข้องกับหน่วยงาน ไม่รับเรื่องเบิกจ่าย และไม่รับข้อมูลส่วนบุคคลใด ๆ',
+				en: 'The rules that decide whether a single hospital receipt can be reimbursed sit on a server that turns search-engine crawlers away. The consequence is not merely technical: the people who ought to be reading the regulation ask in web forums, in colleagues’ chat groups or in pensioners’ groups instead, and get answers from someone else’s memory of criteria that may have been revoked years ago. An official weighing up treatment for a parent, a finance officer racing the end of the budget year, a supplier waiting on a final instalment — each needs the actual document, not a recollection of it. This page describes what the department does in the words people type into a search box, then hands them to the official site to read the version in force. ThaiGov.co is an independent directory: no affiliation with the agency, no involvement in any claim, and no personal data collected here.'
 			}
 		}
 	],
 	crawl: {
 		host: 'www.cgd.go.th',
-		verdict: 'waf-blocked',
-		kind: 'waf-rule',
+		verdict: 'partial',
+		kind: 'browser-only',
 		status: 403,
-		snippet: 'Full desktop-Chrome request profile\n  GET /  ->  403  (Cloudflare WAF rule (hard block))\nGooglebot user-agent\n  GET /  ->  403\nGET /robots.txt  ->  403',
-		checkedAt: '2026-08-27',
+		snippet: 'Full desktop-Chrome request profile\n  GET /  ->  403  (Cloudflare edge refusal)\nGooglebot user-agent\n  GET /  ->  403\nGET /robots.txt  ->  403\n\nHeadless Chromium (real browser engine)\n  GET /  ->  200  (served normally)\n  GET /robots.txt  ->  200\n\nUser-agent: *\nAllow: /cs\n \nSitemap: http://www.cgd.go.th/sitemap.xml',
+		checkedAt: '2026-08-28',
 		note: {
-			th: 'แม้จะเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ ทั้งส่วนหัวการระบุตัวตนเบราว์เซอร์ ภาษา และ fetch metadata ครบถ้วน เซิร์ฟเวอร์ก็ยังปฏิเสธคำขอด้วยหน้าบล็อกของระบบไฟร์วอลล์ การปิดกั้นลักษณะนี้มักกรองทราฟฟิกจากศูนย์ข้อมูลเป็นวงกว้าง เราจึงยืนยันนโยบายที่แท้จริงของเว็บไซต์จากภายนอกไม่ได้ และไม่สรุปว่า Googlebot ตัวจริงถูกปิดกั้นด้วยหรือไม่',
-			en: 'Even with a full browser request profile — complete client hints, language and fetch-metadata headers — the server refuses with a firewall block page. Blocks shaped like this usually filter datacentre traffic broadly, so the site’s real policy cannot be verified from outside, and we draw no conclusion about whether the genuine Googlebot is refused too.'
+			th: 'เมื่อเรียกด้วยโปรแกรมทั่วไป เว็บไซต์นี้ปฏิเสธคำขอ แต่เมื่อเปิดด้วยเบราว์เซอร์ Chromium จริงที่ประมวลผลจาวาสคริปต์ครบถ้วน เว็บไซต์กลับตอบกลับตามปกติ และเราอ่านไฟล์ robots.txt ได้จากช่องทางนั้น ผู้ใช้ที่เปิดผ่านเบราว์เซอร์จึงไม่ได้รับผลกระทบ ขณะที่บริการเก็บถาวรเว็บ เครื่องมือตรวจสอบภายนอก และผู้ช่วย AI ที่ประชาชนเริ่มใช้ค้นหาบริการภาครัฐ เข้าไม่ถึงเนื้อหาเลย',
+			en: 'The site refuses ordinary clients but answers a real Chromium browser that runs the page’s JavaScript, and we read its robots.txt over that connection. People using a browser are unaffected, while web archives, third-party monitoring and the AI assistants people increasingly use to look up government services get nothing at all.'
 		}
 	},
 	priority: 82,

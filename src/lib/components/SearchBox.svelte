@@ -13,10 +13,10 @@
 </script>
 
 <form class="searchbox" role="search" onsubmit={submit}>
-	<label class="visually-hidden" for="thgov-q">{t('search.label')}</label>
+	<label class="visually-hidden" for="thaigov-q">{t('search.label')}</label>
 	<Icon name="search" size={19} class="icon" />
 	<input
-		id="thgov-q"
+		id="thaigov-q"
 		type="search"
 		bind:value
 		placeholder={t('search.placeholder')}

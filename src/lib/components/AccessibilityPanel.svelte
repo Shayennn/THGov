@@ -14,7 +14,7 @@
 	$effect(() => {
 		// Read what the pre-paint script in app.html already applied.
 		const d = document.documentElement;
-		const stored = localStorage.getItem('thgov:fontSize') as Size | null;
+		const stored = localStorage.getItem('thaigov:fontSize') as Size | null;
 		size = stored && ['sm', 'md', 'lg'].includes(stored) ? stored : 'md';
 		mode = d.classList.contains('color-mode-contrast')
 			? 'contrast'
@@ -29,7 +29,7 @@
 		d.classList.remove('text-size-sm', 'text-size-md', 'text-size-lg');
 		d.classList.add(`text-size-${next}`);
 		try {
-			localStorage.setItem('thgov:fontSize', next);
+			localStorage.setItem('thaigov:fontSize', next);
 		} catch {
 			/* storage blocked — the change still applies for this page view */
 		}
@@ -42,7 +42,7 @@
 		if (next === 'dark') d.classList.add('color-mode-dark');
 		if (next === 'contrast') d.classList.add('color-mode-contrast');
 		try {
-			localStorage.setItem('thgov:colorMode', next);
+			localStorage.setItem('thaigov:colorMode', next);
 		} catch {
 			/* storage blocked */
 		}
@@ -52,8 +52,8 @@
 		applySize('md');
 		applyMode('light');
 		try {
-			localStorage.removeItem('thgov:fontSize');
-			localStorage.removeItem('thgov:colorMode');
+			localStorage.removeItem('thaigov:fontSize');
+			localStorage.removeItem('thaigov:colorMode');
 		} catch {
 			/* storage blocked */
 		}

@@ -350,21 +350,21 @@ export const service: Service = {
 		{
 			type: 'p',
 			text: {
-				th: 'คลังข้อมูลนิติบุคคลของกรมพัฒนาธุรกิจการค้าเป็นบริการฟรีที่เปิดให้ทุกคนใช้ แต่ตัวระบบกลับแทบมองไม่เห็นจากเครื่องมือค้นหา เพราะคำขอที่มาจากบอตจะถูกส่งกลับมายังที่อยู่เดิมวนซ้ำจนตัวเก็บข้อมูลยอมแพ้ไปเอง ผลคือเมื่อมีคนค้นชื่อบริษัทสักแห่ง สิ่งที่ขึ้นมาก่อนคือเว็บเอกชนที่นำข้อมูลสาธารณะชุดเดียวกันไปขายต่อ ส่วนต้นทางที่ให้ดูฟรีกลับไม่ปรากฏเลย หน้านี้จึงทำหน้าที่เป็นป้ายบอกทางที่เครื่องมือค้นหาอ่านได้ อธิบายว่าระบบเก็บอะไรไว้ ใช้อย่างไร และมีข้อจำกัดตรงไหน แล้วพาผู้อ่านกลับไปยังแหล่งทางการที่ไม่คิดค่าบริการ ทั้งนี้ THGov เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดกรมพัฒนาธุรกิจการค้า และไม่เก็บข้อมูลส่วนบุคคลหรือค่าบริการจากผู้อ่าน',
-				en: 'The department’s company registry is free for anyone to use, yet search engines can barely see it: a crawler’s request is bounced back to the same address, again and again, until the crawler gives up. The consequence shows up every time someone searches a Thai company name — private sites reselling this same public data rank first, while the free original never surfaces. This page is a signpost that search engines can read: it sets out what the registry holds, how to use it and where it stops, then hands the reader back to the official source that charges nothing. THGov is an independent directory, unaffiliated with the department, and it collects no personal data and no fees from readers.'
+				th: 'คลังข้อมูลนิติบุคคลของกรมพัฒนาธุรกิจการค้าเป็นบริการฟรีที่เปิดให้ทุกคนใช้ แต่ตัวระบบกลับแทบมองไม่เห็นจากเครื่องมือค้นหา เพราะคำขอที่มาจากบอตจะถูกส่งกลับมายังที่อยู่เดิมวนซ้ำจนตัวเก็บข้อมูลยอมแพ้ไปเอง ผลคือเมื่อมีคนค้นชื่อบริษัทสักแห่ง สิ่งที่ขึ้นมาก่อนคือเว็บเอกชนที่นำข้อมูลสาธารณะชุดเดียวกันไปขายต่อ ส่วนต้นทางที่ให้ดูฟรีกลับไม่ปรากฏเลย หน้านี้จึงทำหน้าที่เป็นป้ายบอกทางที่เครื่องมือค้นหาอ่านได้ อธิบายว่าระบบเก็บอะไรไว้ ใช้อย่างไร และมีข้อจำกัดตรงไหน แล้วพาผู้อ่านกลับไปยังแหล่งทางการที่ไม่คิดค่าบริการ ทั้งนี้ ThaiGov.co เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดกรมพัฒนาธุรกิจการค้า และไม่เก็บข้อมูลส่วนบุคคลหรือค่าบริการจากผู้อ่าน',
+				en: 'The department’s company registry is free for anyone to use, yet search engines can barely see it: a crawler’s request is bounced back to the same address, again and again, until the crawler gives up. The consequence shows up every time someone searches a Thai company name — private sites reselling this same public data rank first, while the free original never surfaces. This page is a signpost that search engines can read: it sets out what the registry holds, how to use it and where it stops, then hands the reader back to the official source that charges nothing. ThaiGov.co is an independent directory, unaffiliated with the department, and it collects no personal data and no fees from readers.'
 			}
 		}
 	],
 	crawl: {
 		host: 'datawarehouse.dbd.go.th',
-		verdict: 'waf-blocked',
-		kind: 'redirect-loop',
+		verdict: 'partial',
+		kind: 'browser-only',
 		status: null,
-		snippet: 'Full desktop-Chrome request profile\n  GET /            ->  redirects to itself, still looping after 5 hops\n  GET /robots.txt  ->  same loop\nTypically a cookie or session challenge that a crawler cannot complete.',
-		checkedAt: '2026-08-27',
+		snippet: 'Full desktop-Chrome request profile\n  GET /            ->  redirects to itself, still looping after 5 hops\n  GET /robots.txt  ->  same loop\nTypically a cookie or session challenge that a crawler cannot complete.\n\nHeadless Chromium (real browser engine)\n  GET /  ->  200  (served normally)\n  GET /robots.txt  ->  403',
+		checkedAt: '2026-08-28',
 		note: {
-			th: 'ทุกคำขอไปยังโดเมนนี้ถูกเปลี่ยนเส้นทางกลับมายังที่อยู่เดิมซ้ำไปเรื่อย ๆ จนเกินขีดจำกัดการเปลี่ยนเส้นทาง ทั้งเมื่อเรียกด้วยเบราว์เซอร์เต็มรูปแบบและเมื่อระบุตัวเป็น Googlebot ลักษณะนี้เกิดจากระบบที่บังคับให้มีเซสชันหรือคุกกี้ก่อนจึงจะแสดงเนื้อหา ผลคือแม้แต่ไฟล์ robots.txt ก็อ่านไม่ได้ และเครื่องมือค้นหาที่ไม่จำลองเบราว์เซอร์เต็มรูปแบบจะเก็บเนื้อหาหน้าใดไม่ได้เลย',
-			en: 'Every request to this domain is redirected back to the same address, repeating past the redirect limit — with a full browser profile and with a Googlebot user-agent alike. The pattern is characteristic of a system requiring a session or cookie before serving content. Even robots.txt cannot be read, and any crawler that does not emulate a full browser captures no page content at all.'
+			th: 'เมื่อเรียกด้วยโปรแกรมทั่วไป เว็บไซต์นี้ปฏิเสธคำขอ แต่เมื่อเปิดด้วยเบราว์เซอร์ Chromium จริงที่ประมวลผลจาวาสคริปต์ครบถ้วน เว็บไซต์กลับตอบกลับตามปกติ และเราอ่านไฟล์ robots.txt ได้จากช่องทางนั้น ผู้ใช้ที่เปิดผ่านเบราว์เซอร์จึงไม่ได้รับผลกระทบ ขณะที่บริการเก็บถาวรเว็บ เครื่องมือตรวจสอบภายนอก และผู้ช่วย AI ที่ประชาชนเริ่มใช้ค้นหาบริการภาครัฐ เข้าไม่ถึงเนื้อหาเลย',
+			en: 'The site refuses ordinary clients but answers a real Chromium browser that runs the page’s JavaScript, and we read its robots.txt over that connection. People using a browser are unaffected, while web archives, third-party monitoring and the AI assistants people increasingly use to look up government services get nothing at all.'
 		}
 	},
 	priority: 99,

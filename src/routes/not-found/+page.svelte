@@ -11,8 +11,8 @@
 </script>
 
 <svelte:head>
-	<title>ไม่พบหน้าที่คุณต้องการ · Page not found | THGov</title>
-	<meta name="description" content="ไม่พบหน้าที่คุณต้องการบน THGov — ลองค้นหาบริการภาครัฐที่ต้องการ หรือกลับไปที่หน้าแรก" />
+	<title>ไม่พบหน้าที่คุณต้องการ · Page not found | ThaiGov.co</title>
+	<meta name="description" content="ไม่พบหน้าที่คุณต้องการบน ThaiGov.co — ลองค้นหาบริการภาครัฐที่ต้องการ หรือกลับไปที่หน้าแรก" />
 	<meta name="robots" content="noindex, follow" />
 </svelte:head>
 

@@ -91,8 +91,16 @@ export const UI = {
 		en: 'This site’s robots.txt tells search engines not to index any page, so it is effectively invisible on Google. This page acts as a findable shortcut that sends you straight to the official site.'
 	},
 	'crawl.wafExplain': {
-		th: 'เซิร์ฟเวอร์ของเว็บไซต์นี้ตอบกลับด้วยรหัส 403 ต่อคำขอจากเครื่องที่เราใช้ตรวจสอบ เราจึงอ่านไฟล์ robots.txt เพื่อยืนยันนโยบายที่แท้จริงไม่ได้ การปิดกั้นลักษณะนี้มักเป็นการกรองทราฟฟิกจากศูนย์ข้อมูล ซึ่งกระทบเครื่องมือเก็บถาวร เครื่องมือตรวจสอบ และผู้ช่วย AI ด้วย เราไม่สามารถสรุปได้ว่า Googlebot ตัวจริงถูกปิดกั้นหรือไม่',
-		en: 'This site’s server answers our audit host with 403, so we cannot read its robots.txt to confirm the real policy. Blocks like this usually filter datacentre traffic in general, which also affects archiving tools, monitoring services and AI assistants. We cannot conclude from this whether the genuine Googlebot is blocked.'
+		th: 'เว็บไซต์นี้ปฏิเสธคำขอจากเครื่องที่เราใช้ตรวจสอบ ทั้งเมื่อเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ และเมื่อเปิดด้วยเบราว์เซอร์ Chromium จริงที่ประมวลผลจาวาสคริปต์ครบถ้วน เราจึงอ่านไฟล์ robots.txt เพื่อยืนยันนโยบายที่แท้จริงไม่ได้ การปิดกั้นลักษณะนี้มักเป็นการกรองทราฟฟิกจากศูนย์ข้อมูล ซึ่งกระทบเครื่องมือเก็บถาวร เครื่องมือตรวจสอบ และผู้ช่วย AI ด้วย เราไม่สามารถสรุปได้ว่า Googlebot ตัวจริงถูกปิดกั้นหรือไม่',
+		en: 'This site refuses our audit host both with a full browser request profile and with a real Chromium browser that runs the page’s JavaScript, so we cannot read its robots.txt to confirm the real policy. Blocks like this usually filter datacentre traffic in general, which also affects archiving tools, monitoring services and AI assistants. We cannot conclude from this whether the genuine Googlebot is blocked.'
+	},
+	'crawl.browserOnlyExplain': {
+		th: 'เว็บไซต์นี้ตอบกลับตามปกติเมื่อเปิดด้วยเบราว์เซอร์จริง แต่ปฏิเสธคำขอจากโปรแกรมทั่วไปที่ไม่ได้ประมวลผลจาวาสคริปต์ คนที่ใช้เบราว์เซอร์จึงเข้าใช้งานได้ตามปกติ ส่วนบริการเก็บถาวรเว็บ เครื่องมือตรวจสอบภายนอก และผู้ช่วย AI ที่ประชาชนเริ่มใช้ค้นหาบริการภาครัฐ เข้าไม่ถึงเนื้อหานี้ เราตรวจสอบไฟล์ robots.txt ได้จากการเปิดด้วยเบราว์เซอร์จริงเท่านั้น',
+		en: 'This site serves a real browser normally but refuses ordinary clients that do not run JavaScript. People browsing the site are unaffected, while web archives, third-party monitoring and the AI assistants people increasingly use to look up government services cannot reach the content at all. We could only read its robots.txt by opening the site in a real browser.'
+	},
+	'crawl.tlsInvalidExplain': {
+		th: 'เว็บไซต์นี้ตอบกลับได้ก็ต่อเมื่อปิดการตรวจสอบใบรับรองความปลอดภัย เพราะใบรับรอง TLS ของเว็บไซต์ใช้การไม่ได้ เบราว์เซอร์ของประชาชนจะขึ้นหน้าเตือนความปลอดภัยก่อนเข้าเว็บไซต์ และเครื่องมือค้นหาตามปกติจะไม่เก็บข้อมูลหน้าเว็บที่ใบรับรองใช้ไม่ได้',
+		en: 'This site only responds when certificate verification is switched off, because its TLS certificate does not validate. People reach it through a browser security warning, and search engines normally will not index pages served under a certificate that fails to validate.'
 	},
 	'crawl.wafUaOnly': {
 		th: 'เว็บไซต์นี้ตอบกลับ 403 เฉพาะเมื่อคำขอระบุตัวเองเป็น Googlebot แต่ตอบปกติเมื่อใช้เบราว์เซอร์ทั่วไป ซึ่งเป็นพฤติกรรมมาตรฐานของระบบป้องกันบอตปลอม Googlebot ตัวจริงที่ยืนยันตัวตนด้วยการตรวจสอบ DNS ย้อนกลับจึงน่าจะเข้าถึงได้ตามปกติ',
@@ -109,8 +117,14 @@ export const UI = {
 	'kind.origin-403': { th: 'เซิร์ฟเวอร์ต้นทางปฏิเสธ', en: 'Origin server refused' },
 	'kind.ua-spoof-guard': { th: 'ป้องกันบอตปลอม', en: 'Fake-crawler protection' },
 	'kind.redirect-loop': { th: 'เปลี่ยนเส้นทางวนซ้ำไม่สิ้นสุด', en: 'Endless redirect loop' },
+	'kind.browser-only': { th: 'เปิดให้เฉพาะเบราว์เซอร์จริง', en: 'Open to real browsers only' },
+	'kind.tls-invalid': { th: 'ใบรับรองความปลอดภัยใช้การไม่ได้', en: 'Security certificate does not validate' },
+	'kind.http-only': { th: 'ไม่มี HTTPS', en: 'No HTTPS' },
 	'kind.no-robots': { th: 'ไม่มีไฟล์ robots.txt', en: 'No robots.txt' },
 	'kind.html-not-robots': { th: 'robots.txt ตอบกลับเป็นหน้าเว็บ', en: 'robots.txt returns a web page' },
+	'kind.dns-failure': { th: 'ชื่อโดเมนไม่มีอยู่ในระบบ DNS', en: 'Domain name does not resolve' },
+	'kind.connection-failed': { th: 'เซิร์ฟเวอร์ไม่ตอบสนอง', en: 'Server does not respond' },
+	'kind.server-error': { th: 'เซิร์ฟเวอร์ตอบกลับด้วยข้อผิดพลาด', en: 'Server answers with an error' },
 	'kind.unreachable': { th: 'เชื่อมต่อไม่ได้', en: 'Could not connect' },
 	'kind.partial': { th: 'ปิดกั้นบางเส้นทาง', en: 'Some paths disallowed' },
 	'kind.allowed': { th: 'เปิดให้เก็บข้อมูลทั้งหมด', en: 'Fully crawlable' },
@@ -128,19 +142,19 @@ export const UI = {
 	'crawl.checkedOn': { th: 'ตรวจสอบเมื่อ {date}', en: 'Checked on {date}' },
 
 	'disclaimer.short': {
-		th: 'THGov เป็นสารบัญอิสระ ไม่ใช่หน่วยงานราชการ และไม่มีความเกี่ยวข้องกับหน่วยงานที่กล่าวถึง',
-		en: 'THGov is an independent directory. It is not a government body and is not affiliated with the agencies listed.'
+		th: 'ThaiGov.co เป็นสารบัญอิสระ ไม่ใช่หน่วยงานราชการ และไม่มีความเกี่ยวข้องกับหน่วยงานที่กล่าวถึง',
+		en: 'ThaiGov.co is an independent directory. It is not a government body and is not affiliated with the agencies listed.'
 	},
 	'disclaimer.long': {
-		th: 'THGov ไม่ใช่เว็บไซต์ของทางราชการ เราไม่รับส่งข้อมูลส่วนบุคคล ไม่รับชำระเงิน และไม่มีระบบล็อกอินใด ๆ ทุกธุรกรรมต้องทำบนเว็บไซต์ทางการของหน่วยงานเท่านั้น โปรดตรวจสอบชื่อโดเมนก่อนกรอกข้อมูลทุกครั้ง',
-		en: 'THGov is not a government website. We never collect personal data, take payments, or provide logins. All transactions must be completed on the agency’s own official website — always check the domain name before entering any information.'
+		th: 'ThaiGov.co ไม่ใช่เว็บไซต์ของทางราชการ เราไม่รับส่งข้อมูลส่วนบุคคล ไม่รับชำระเงิน และไม่มีระบบล็อกอินใด ๆ ทุกธุรกรรมต้องทำบนเว็บไซต์ทางการของหน่วยงานเท่านั้น โปรดตรวจสอบชื่อโดเมนก่อนกรอกข้อมูลทุกครั้ง',
+		en: 'ThaiGov.co is not a government website. We never collect personal data, take payments, or provide logins. All transactions must be completed on the agency’s own official website — always check the domain name before entering any information.'
 	},
 	'disclaimer.leaving': {
-		th: 'คุณกำลังจะออกจาก THGov ไปยังเว็บไซต์ทางการของหน่วยงาน',
-		en: 'You are leaving THGov for the agency’s official website'
+		th: 'คุณกำลังจะออกจาก ThaiGov.co ไปยังเว็บไซต์ทางการของหน่วยงาน',
+		en: 'You are leaving ThaiGov.co for the agency’s official website'
 	},
 
-	'footer.about': { th: 'เกี่ยวกับ THGov', en: 'About THGov' },
+	'footer.about': { th: 'เกี่ยวกับ ThaiGov.co', en: 'About ThaiGov.co' },
 	'footer.explore': { th: 'สำรวจ', en: 'Explore' },
 	'footer.legal': { th: 'ข้อกำหนด', en: 'Legal' },
 	'footer.privacy': { th: 'นโยบายความเป็นส่วนตัว', en: 'Privacy policy' },

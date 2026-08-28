@@ -355,8 +355,8 @@ export const service: Service = {
 		{
 			type: 'p',
 			text: {
-				th: 'คนที่ค้นหาเรื่องค่าไฟแทบไม่มีใครพิมพ์ชื่อเต็มว่า “การไฟฟ้าส่วนภูมิภาค” ส่วนใหญ่พิมพ์สั้น ๆ ว่า “เช็คค่าไฟ” หรือ “จ่ายค่าไฟออนไลน์” ซึ่งให้ผลลัพธ์ปะปนกันระหว่างสองการไฟฟ้า และมักมีหน้าเว็บลอกเลียนแทรกอยู่ด้วย ความกำกวมนี้กระทบบริการนี้หนักกว่าบริการรัฐทั่วไป เพราะผู้ใช้ไฟต้องรู้ก่อนว่าบ้านตัวเองอยู่ในเขตของหน่วยงานใด จึงจะค้นเจอบิลได้ หน้านี้จึงแยกทางให้ถูกตั้งแต่ต้นด้วยคำที่คนพิมพ์จริง แล้วส่งต่อไปยังที่อยู่ทางการของ กฟภ. โดยตรง THGov เป็นไดเรกทอรีอิสระ ไม่มีความเกี่ยวข้องกับหน่วยงานใด และไม่รับข้อมูลส่วนบุคคลหรือการชำระเงินแทนหน่วยงาน',
-				en: 'Almost nobody searching about their electricity types “Provincial Electricity Authority”. They type “check electricity bill” or “pay electricity online” — phrases returning a mixture of both utilities, with imitation pages among the results. That ambiguity bites harder here than with most government services, because a customer must know which authority covers their house before they can find their bill at all. This page sends people down the right fork from the start, in the words they actually use, and hands them to PEA’s official address. THGov is an independent directory, unaffiliated with any agency, and never collects personal data or payments on an agency’s behalf.'
+				th: 'คนที่ค้นหาเรื่องค่าไฟแทบไม่มีใครพิมพ์ชื่อเต็มว่า “การไฟฟ้าส่วนภูมิภาค” ส่วนใหญ่พิมพ์สั้น ๆ ว่า “เช็คค่าไฟ” หรือ “จ่ายค่าไฟออนไลน์” ซึ่งให้ผลลัพธ์ปะปนกันระหว่างสองการไฟฟ้า และมักมีหน้าเว็บลอกเลียนแทรกอยู่ด้วย ความกำกวมนี้กระทบบริการนี้หนักกว่าบริการรัฐทั่วไป เพราะผู้ใช้ไฟต้องรู้ก่อนว่าบ้านตัวเองอยู่ในเขตของหน่วยงานใด จึงจะค้นเจอบิลได้ หน้านี้จึงแยกทางให้ถูกตั้งแต่ต้นด้วยคำที่คนพิมพ์จริง แล้วส่งต่อไปยังที่อยู่ทางการของ กฟภ. โดยตรง ThaiGov.co เป็นไดเรกทอรีอิสระ ไม่มีความเกี่ยวข้องกับหน่วยงานใด และไม่รับข้อมูลส่วนบุคคลหรือการชำระเงินแทนหน่วยงาน',
+				en: 'Almost nobody searching about their electricity types “Provincial Electricity Authority”. They type “check electricity bill” or “pay electricity online” — phrases returning a mixture of both utilities, with imitation pages among the results. That ambiguity bites harder here than with most government services, because a customer must know which authority covers their house before they can find their bill at all. This page sends people down the right fork from the start, in the words they actually use, and hands them to PEA’s official address. ThaiGov.co is an independent directory, unaffiliated with any agency, and never collects personal data or payments on an agency’s behalf.'
 			}
 		}
 	],
@@ -366,7 +366,7 @@ export const service: Service = {
 		kind: 'allowed',
 		status: 200,
 		snippet: '#\n# robots.txt\n#\n# This file is to prevent the crawling and indexing of certain parts\n# of your site by web crawlers and spiders run by sites like Yahoo!\n# and Google. By telling these "robots" where not to go on your site,\n# you save bandwidth and server resources.\n#\n# This file will be ignored unless it is at the roo',
-		checkedAt: '2026-08-27',
+		checkedAt: '2026-08-28',
 		note: {
 			th: 'ไฟล์ robots.txt อนุญาตให้เครื่องมือค้นหาเก็บข้อมูลได้ทั้งเว็บไซต์ อย่างไรก็ตาม บริการที่ต้องเข้าสู่ระบบยังคงไม่ปรากฏในผลการค้นหา ซึ่งเป็นเรื่องปกติของระบบที่ต้องยืนยันตัวตน',
 			en: 'The robots.txt permits crawling across the whole site. Services behind a sign-in still do not appear in search results, which is normal for authenticated systems.'

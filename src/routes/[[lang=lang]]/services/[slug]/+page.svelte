@@ -32,7 +32,9 @@
 		'js-challenge',
 		'waf-rule',
 		'origin-403',
-		'redirect-loop'
+		'redirect-loop',
+		'browser-only',
+		'tls-invalid'
 	];
 	const notable = $derived(
 		service.crawl.verdict === 'blocked' ||
@@ -42,14 +44,18 @@
 	const kindLabel = $derived(
 		service.crawl.kind ? t(`kind.${service.crawl.kind}` as never) : ''
 	);
+	const EXPLAIN = {
+		'js-challenge': 'crawl.jsChallengeExplain',
+		'googlebot-exception': 'crawl.googlebotOnlyExplain',
+		'browser-only': 'crawl.browserOnlyExplain',
+		'tls-invalid': 'crawl.tlsInvalidExplain'
+	} as const;
 	const headline = $derived(
-		service.crawl.kind === 'js-challenge'
-			? t('crawl.jsChallengeExplain')
-			: service.crawl.kind === 'googlebot-exception'
-				? t('crawl.googlebotOnlyExplain')
-				: service.crawl.verdict === 'blocked'
-					? t('crawl.blockedExplain')
-					: t('crawl.wafExplain')
+		EXPLAIN[service.crawl.kind as keyof typeof EXPLAIN]
+			? t(EXPLAIN[service.crawl.kind as keyof typeof EXPLAIN])
+			: service.crawl.verdict === 'blocked'
+				? t('crawl.blockedExplain')
+				: t('crawl.wafExplain')
 	);
 	const host = $derived(
 		(() => {
@@ -289,7 +295,9 @@
 		gap: clamp(2rem, 5vw, 3.5rem);
 		padding-block: clamp(2.25rem, 5vw, 3.5rem) clamp(3rem, 8vw, 5.5rem);
 	}
-	.main > * + * {
+	/* Sections rendered by child components carry their own scoping class, not
+	   this page's, so the stack rule has to reach past Svelte's style scoping. */
+	.main > :global(* + *) {
 		margin-top: clamp(2.5rem, 5vw, 3.75rem);
 	}
 

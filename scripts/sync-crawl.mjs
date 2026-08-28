@@ -22,7 +22,7 @@ const AUDIT_DATE = auditSrc.match(/export const AUDIT_DATE = '([^']+)'/)?.[1] ??
 
 const rows = new Map();
 for (const m of auditSrc.matchAll(
-	/\{ host: '([^']+)', verdict: '([^']+)', kind: '([^']+)', robotsStatus: ([^,]+), homeStatus: ([^,]+), browserStatus: ([^,]+), googlebotRule: (\w+), snippet: '((?:[^'\\]|\\.)*)' \}/g
+	/\{ host: '([^']+)', verdict: '([^']+)', kind: '([^']+)', robotsStatus: ([^,]+), homeStatus: ([^,]+), browserStatus: ([^,]+), chromeStatus: ([^,]+), googlebotRule: (\w+), snippet: '((?:[^'\\]|\\.)*)' \}/g
 )) {
 	rows.set(m[1], {
 		host: m[1],
@@ -31,9 +31,22 @@ for (const m of auditSrc.matchAll(
 		robotsStatus: m[4] === 'null' ? null : Number(m[4]),
 		homeStatus: m[5] === 'null' ? null : Number(m[5]),
 		browserStatus: m[6] === 'null' ? null : Number(m[6]),
-		snippet: m[8]
+		chromeStatus: m[7] === 'null' ? null : Number(m[7]),
+		googlebotRule: m[8] === 'true',
+		snippet: m[9]
 	});
 }
+
+/**
+ * A refusal that also survives a real browser engine is a stronger finding than
+ * one measured with curl alone, so the copy says so wherever we have it.
+ */
+const browserConfirmTh = (r) =>
+	r.chromeStatus === null ? '' : ` และเมื่อเปิดด้วยเบราว์เซอร์ Chromium จริงที่ประมวลผลจาวาสคริปต์ครบถ้วน ก็ยังถูกปฏิเสธด้วยรหัส ${r.chromeStatus} เช่นกัน`;
+const browserConfirmEn = (r) =>
+	r.chromeStatus === null
+		? ''
+		: ` A real Chromium browser running the page’s JavaScript is refused in the same way, with ${r.chromeStatus}.`;
 
 /**
  * One note per refusal mechanism. Each says what was measured, what it does and
@@ -52,13 +65,37 @@ const NOTES = {
 		th: 'เมื่อเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ เซิร์ฟเวอร์ตอบกลับด้วยหน้าท้าทายของ Cloudflare ที่ต้องประมวลผลจาวาสคริปต์ก่อนจึงจะผ่านได้ เบราว์เซอร์จริงผ่านได้ และบอตของเครื่องมือค้นหาที่ Cloudflare ยืนยันตัวตนแล้วมักได้รับการยกเว้น เราจึงไม่สรุปว่า Google ถูกปิดกั้น แต่สิ่งที่ปิดกั้นแน่นอนคือเครื่องมือที่ไม่ประมวลผลจาวาสคริปต์ ทั้งบริการเก็บถาวรเว็บ เครื่องมือตรวจสอบภายนอก และผู้ช่วย AI',
 		en: 'Requested with a full browser profile, the server answers with a Cloudflare challenge that must be solved by running JavaScript. Real browsers pass it, and search-engine crawlers Cloudflare has verified are normally exempted — so we do not conclude that Google is blocked. What is certainly blocked is anything that does not execute JavaScript: web archives, third-party monitoring, and AI assistants.'
 	}),
-	'waf-rule': () => ({
-		th: 'แม้จะเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ ทั้งส่วนหัวการระบุตัวตนเบราว์เซอร์ ภาษา และ fetch metadata ครบถ้วน เซิร์ฟเวอร์ก็ยังปฏิเสธคำขอด้วยหน้าบล็อกของระบบไฟร์วอลล์ การปิดกั้นลักษณะนี้มักกรองทราฟฟิกจากศูนย์ข้อมูลเป็นวงกว้าง เราจึงยืนยันนโยบายที่แท้จริงของเว็บไซต์จากภายนอกไม่ได้ และไม่สรุปว่า Googlebot ตัวจริงถูกปิดกั้นด้วยหรือไม่',
-		en: 'Even with a full browser request profile — complete client hints, language and fetch-metadata headers — the server refuses with a firewall block page. Blocks shaped like this usually filter datacentre traffic broadly, so the site’s real policy cannot be verified from outside, and we draw no conclusion about whether the genuine Googlebot is refused too.'
+	'waf-rule': (r) => ({
+		th: `แม้จะเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ ทั้งส่วนหัวการระบุตัวตนเบราว์เซอร์ ภาษา และ fetch metadata ครบถ้วน เซิร์ฟเวอร์ก็ยังปฏิเสธคำขอด้วยหน้าบล็อกของระบบไฟร์วอลล์${browserConfirmTh(r)} การปิดกั้นลักษณะนี้มักกรองทราฟฟิกจากศูนย์ข้อมูลเป็นวงกว้าง เราจึงยืนยันนโยบายที่แท้จริงของเว็บไซต์จากภายนอกไม่ได้ และไม่สรุปว่า Googlebot ตัวจริงถูกปิดกั้นด้วยหรือไม่`,
+		en: `Even with a full browser request profile — complete client hints, language and fetch-metadata headers — the server refuses with a firewall block page.${browserConfirmEn(r)} Blocks shaped like this usually filter datacentre traffic broadly, so the site’s real policy cannot be verified from outside, and we draw no conclusion about whether the genuine Googlebot is refused too.`
 	}),
-	'origin-403': () => ({
-		th: 'เซิร์ฟเวอร์ต้นทางปฏิเสธคำขอด้วยรหัส 403 แม้จะเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ การปฏิเสธเกิดที่ตัวเซิร์ฟเวอร์เอง ไม่ใช่ที่ระบบป้องกันด้านหน้า เราจึงอ่านนโยบายของเว็บไซต์จากภายนอกไม่ได้ และไม่สรุปแทนว่าเครื่องมือค้นหาเข้าถึงได้หรือไม่',
-		en: 'The origin server itself answers 403 even to a full browser request profile — the refusal comes from the server rather than an edge protection layer. We therefore cannot read the site’s policy from outside, and make no claim either way about what search engines receive.'
+	'origin-403': (r) => ({
+		th: `เซิร์ฟเวอร์ต้นทางปฏิเสธคำขอด้วยรหัส 403 แม้จะเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ${browserConfirmTh(r)} การปฏิเสธเกิดที่ตัวเซิร์ฟเวอร์เอง ไม่ใช่ที่ระบบป้องกันด้านหน้า เราจึงอ่านนโยบายของเว็บไซต์จากภายนอกไม่ได้ และไม่สรุปแทนว่าเครื่องมือค้นหาเข้าถึงได้หรือไม่`,
+		en: `The origin server itself answers 403 even to a full browser request profile — the refusal comes from the server rather than an edge protection layer.${browserConfirmEn(r)} We therefore cannot read the site’s policy from outside, and make no claim either way about what search engines receive.`
+	}),
+	'browser-only': () => ({
+		th: 'เมื่อเรียกด้วยโปรแกรมทั่วไป เว็บไซต์นี้ปฏิเสธคำขอ แต่เมื่อเปิดด้วยเบราว์เซอร์ Chromium จริงที่ประมวลผลจาวาสคริปต์ครบถ้วน เว็บไซต์กลับตอบกลับตามปกติ และเราอ่านไฟล์ robots.txt ได้จากช่องทางนั้น ผู้ใช้ที่เปิดผ่านเบราว์เซอร์จึงไม่ได้รับผลกระทบ ขณะที่บริการเก็บถาวรเว็บ เครื่องมือตรวจสอบภายนอก และผู้ช่วย AI ที่ประชาชนเริ่มใช้ค้นหาบริการภาครัฐ เข้าไม่ถึงเนื้อหาเลย',
+		en: 'The site refuses ordinary clients but answers a real Chromium browser that runs the page’s JavaScript, and we read its robots.txt over that connection. People using a browser are unaffected, while web archives, third-party monitoring and the AI assistants people increasingly use to look up government services get nothing at all.'
+	}),
+	'tls-invalid': () => ({
+		th: 'เว็บไซต์นี้ตอบกลับได้ก็ต่อเมื่อปิดการตรวจสอบใบรับรองความปลอดภัย เพราะใบรับรอง TLS ใช้การไม่ได้ ประชาชนที่เข้าเว็บไซต์จะพบหน้าเตือนความปลอดภัยของเบราว์เซอร์ก่อน และเครื่องมือค้นหาตามปกติจะไม่เก็บข้อมูลหน้าเว็บที่ใบรับรองใช้ไม่ได้ ทั้งที่เนื้อหาข้างในยังให้บริการอยู่',
+		en: 'The site only answers once certificate verification is switched off, because its TLS certificate does not validate. People meet a browser security warning before they reach it, and search engines normally decline to index pages served under a certificate that fails to validate — even though the content behind it is still being served.'
+	}),
+	'http-only': () => ({
+		th: 'โดเมนนี้ไม่มีบริการผ่าน HTTPS เลย เราเข้าถึงได้ผ่าน HTTP ธรรมดาเท่านั้น การรับส่งข้อมูลจึงไม่ถูกเข้ารหัส เบราว์เซอร์แสดงคำเตือนว่าไม่ปลอดภัยเมื่อมีการกรอกข้อมูล และเครื่องมือค้นหาจัดอันดับหน้าเว็บที่ไม่เข้ารหัสต่ำกว่าหน้าเว็บที่เข้ารหัส',
+		en: 'The domain serves nothing over HTTPS at all; we could reach it only over plain HTTP. Traffic to it is unencrypted, browsers mark it as not secure wherever anything is typed in, and search engines rank unencrypted pages below encrypted ones.'
+	}),
+	'dns-failure': () => ({
+		th: 'ชื่อโดเมนนี้ไม่มีอยู่ในระบบ DNS แล้ว ทั้งเมื่อเรียกด้วยเครื่องมือบรรทัดคำสั่งและเมื่อเปิดด้วยเบราว์เซอร์ Chromium จริง เว็บไซต์จึงเข้าถึงไม่ได้จากอินเทอร์เน็ตสาธารณะในช่วงเวลาที่ตรวจสอบ ไม่ใช่แค่ถูกปิดกั้นการเก็บข้อมูล',
+		en: 'The domain name no longer resolves in DNS — from the command line and from a real Chromium browser alike. At the time of checking the site was not reachable from the public internet at all, which is a step beyond being closed to crawlers.'
+	}),
+	'server-error': (r) => ({
+		th: `เซิร์ฟเวอร์ของเว็บไซต์นี้ยังตอบสนอง แต่ตอบกลับด้วยหน้าข้อผิดพลาดของตัวเองด้วยรหัส ${r.chromeStatus} ทั้งเมื่อเรียกด้วยเครื่องมือบรรทัดคำสั่งและเมื่อเปิดด้วยเบราว์เซอร์ Chromium จริง ในช่วงเวลาที่ตรวจสอบจึงไม่มีเนื้อหาให้เครื่องมือค้นหาเก็บ และเราสรุปนโยบายการเก็บข้อมูลของเว็บไซต์ไม่ได้`,
+		en: `The server is still answering but returns its own error page — ${r.chromeStatus} — from the command line and from a real Chromium browser alike. At the time of checking there was no content for a search engine to index, and no way to read the site’s crawling policy.`
+	}),
+	'connection-failed': () => ({
+		th: 'เซิร์ฟเวอร์ของโดเมนนี้ไม่ตอบสนองต่อการเชื่อมต่อ ทั้งเมื่อเรียกด้วยเครื่องมือบรรทัดคำสั่งและเมื่อเปิดด้วยเบราว์เซอร์ Chromium จริง อาจเป็นเพราะเซิร์ฟเวอร์หยุดให้บริการ หรือกรองการเชื่อมต่อจากนอกประเทศหรือจากศูนย์ข้อมูลทิ้งทั้งหมด',
+		en: 'The server accepts no connection at all, from the command line and from a real Chromium browser alike — either it is down, or it drops connections from outside the country or from datacentres entirely.'
 	}),
 	'ua-spoof-guard': () => ({
 		th: 'เว็บไซต์นี้ตอบกลับตามปกติเมื่อเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ แต่ปฏิเสธคำขอที่ประกาศตัวเองว่าเป็น Googlebot ซึ่งเป็นพฤติกรรมมาตรฐานของระบบป้องกันบอตปลอม เพราะใครก็ปลอมชื่อ Googlebot ได้ Googlebot ตัวจริงมาจากช่วงไอพีของ Google และยืนยันตัวตนด้วยการตรวจสอบ DNS ย้อนกลับ จึงน่าจะเข้าถึงเว็บไซต์นี้ได้ตามปกติ',
@@ -85,8 +122,8 @@ const NOTES = {
 		en: 'A request for robots.txt returns an HTML page rather than the expected text file. Crawlers treat that as no robots.txt at all and proceed to crawl normally.'
 	}),
 	unreachable: () => ({
-		th: 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์จากเครื่องที่ใช้ตรวจสอบได้ในช่วงเวลาที่ตรวจ จึงยังสรุปสถานะการเข้าถึงของเครื่องมือค้นหาไม่ได้',
-		en: 'The audit host could not reach the server at the time of checking, so its crawl status remains unconfirmed.'
+		th: 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์จากเครื่องที่ใช้ตรวจสอบได้ในช่วงเวลาที่ตรวจ ทั้งเมื่อเรียกด้วยเครื่องมือบรรทัดคำสั่งและเมื่อเปิดด้วยเบราว์เซอร์ Chromium จริง จึงยังสรุปสถานะการเข้าถึงของเครื่องมือค้นหาไม่ได้',
+		en: 'The audit host could not reach the server at the time of checking, with a command-line client and a real Chromium browser alike, so its crawl status remains unconfirmed.'
 	})
 };
 

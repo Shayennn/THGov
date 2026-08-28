@@ -1,5 +1,6 @@
 import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
+import { markSvg } from './mark.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -10,6 +11,12 @@ const fonts = [
 	{ name: 'Prompt', data: fs.readFileSync(path.join(FONT_DIR, 'Prompt-Regular.ttf')), weight: 400, style: 'normal' },
 	{ name: 'Prompt', data: fs.readFileSync(path.join(FONT_DIR, 'Prompt-SemiBold.ttf')), weight: 600, style: 'normal' }
 ];
+
+/**
+ * Satori draws no SVG of its own, so the mark rides in as an image. The data
+ * URI has to be percent-encoded: a raw '#' would terminate it early.
+ */
+const MARK_DATA_URI = `data:image/svg+xml,${encodeURIComponent(markSvg({ size: 52 }))}`;
 
 const W = 1200;
 const H = 630;
@@ -54,6 +61,9 @@ function wrap(text, maxChars, maxLines) {
 
 const el = (type, style, children) => ({ type, props: { style, children } });
 const text = (value, style) => el('div', { display: 'flex', ...style }, value);
+// Satori reads src/width/height off props, not off style, so images cannot go
+// through `el`.
+const img = (src, size) => ({ type: 'img', props: { src, width: size, height: size } });
 
 const STATUS_COLOR = {
 	blocked: '#ff7b83',
@@ -87,23 +97,8 @@ function card({ eyebrow, title, subtitle, badge, badgeColor }) {
 			// header row: mark + wordmark, optional status badge
 			el('div', { display: 'flex', alignItems: 'center', justifyContent: 'space-between' }, [
 				el('div', { display: 'flex', alignItems: 'center', gap: '18px' }, [
-					el(
-						'div',
-						{
-							display: 'flex',
-							alignItems: 'center',
-							justifyContent: 'center',
-							width: '52px',
-							height: '52px',
-							borderRadius: '15px',
-							background: 'linear-gradient(135deg, #f05223 0%, #ee9b20 100%)',
-							color: '#fff',
-							fontSize: '30px',
-							fontWeight: 600
-						},
-						'T'
-					),
-					text('THGov', { fontSize: '31px', fontWeight: 600, letterSpacing: '-0.01em' })
+					img(MARK_DATA_URI, 52),
+					text('ThaiGov', { fontSize: '31px', fontWeight: 600, letterSpacing: '-0.01em' })
 				]),
 				badge
 					? el(

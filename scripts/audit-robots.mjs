@@ -16,6 +16,14 @@
  *   2. GET / with the same Chrome profile.
  *   3. GET / with Googlebot's user-agent.
  *
+ * curl cannot settle every host: it does not run JavaScript, does not present a
+ * browser's TLS fingerprint, and reports a dead domain, a refused connection and
+ * an expired certificate with the same silent failure. Every host the sweep
+ * leaves refused or unresolved therefore goes through a second stage in
+ * scripts/audit-browser.mjs, which drives headless Chromium — the engine
+ * Googlebot renders with — and, where it gets in, reads robots.txt over that
+ * same connection. A verdict never rests on curl alone.
+ *
  * Sending only a Chrome User-Agent string is not enough: WAFs fingerprint the
  * whole request, so a bare curl still reads as a bot. We send the client hints,
  * fetch-metadata and Accept headers a real browser sends, then classify by the
@@ -36,6 +44,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
+import { browserSweep } from './audit-browser.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'src/lib/content/audit.ts');
@@ -45,6 +54,7 @@ const args = process.argv.slice(2);
 const limitFlag = args.indexOf('--limit');
 const limit = limitFlag >= 0 ? Number(args[limitFlag + 1]) : Infinity;
 const explicit = args.filter((a) => /^[a-z0-9.-]+\.[a-z]{2,}$/i.test(a));
+const skipBrowser = args.includes('--no-browser');
 const CONCURRENCY = 12;
 const TIMEOUT_MS = 30_000;
 
@@ -173,6 +183,31 @@ function classifyRobots(txt, fallbackSnippet) {
 	return { verdict: 'allowed', kind: 'allowed', snippet, googlebotRule: match.specific };
 }
 
+/**
+ * Verdict from a robots.txt fetch, whichever stage obtained it. Only reached
+ * with a status the caller has already decided is a real answer about the file.
+ */
+function robotsVerdict(status, body) {
+	if (status === 404)
+		return {
+			verdict: 'none',
+			kind: 'no-robots',
+			snippet: 'GET /robots.txt  ->  HTTP 404 Not Found',
+			googlebotRule: false
+		};
+	if (status === 200 && (body || '').trim())
+		return classifyRobots(
+			body,
+			'GET /robots.txt  ->  200, but an HTML page was served instead of a robots.txt'
+		);
+	return {
+		verdict: 'none',
+		kind: 'no-robots',
+		snippet: `GET /robots.txt  ->  ${status ?? 'no response'}`,
+		googlebotRule: false
+	};
+}
+
 /** Classify one TSV row emitted by scripts/audit.sh. */
 function auditOne(row) {
 	const { host, robotsStatus: rc, browserStatus: hb, homeStatus: hg } = row;
@@ -181,6 +216,7 @@ function auditOne(row) {
 		robotsStatus: rc === 'LOOP' ? null : rc,
 		homeStatus: hg === 'LOOP' ? null : hg,
 		browserStatus: hb === 'LOOP' ? null : hb,
+		chromeStatus: null,
 		googlebotRule: false
 	};
 	const refused = (code) => code === 403 || code === 401 || code === 429;
@@ -226,17 +262,8 @@ function auditOne(row) {
 				`Googlebot user-agent\n  GET /  ->  ${hg}  (refused)`
 		};
 
-	if (rc === 404)
-		return { ...base, verdict: 'none', kind: 'no-robots', snippet: 'GET /robots.txt  ->  HTTP 404 Not Found' };
-
-	if (rc === 200 && row.robotsBody.trim())
-		return {
-			...base,
-			...classifyRobots(
-				row.robotsBody,
-				'GET /robots.txt  ->  200, but an HTML page was served instead of a robots.txt'
-			)
-		};
+	if (rc === 404 || (rc === 200 && row.robotsBody.trim()))
+		return { ...base, ...robotsVerdict(rc, row.robotsBody) };
 
 	if (rc !== null && rc >= 300 && rc < 400)
 		return {
@@ -260,11 +287,148 @@ function auditOne(row) {
 	return { ...base, verdict: 'unknown', kind: 'unreachable', snippet: 'No response from the audit host' };
 }
 
+/** Kinds where the sweep was refused outright, rather than left unanswered. */
+const REFUSAL_KINDS = new Set(['waf-rule', 'origin-403', 'js-challenge', 'redirect-loop']);
+
+/** Kinds where curl never got a usable answer, so Chromium gets a turn. */
+const NEEDS_BROWSER = new Set([
+	'waf-rule',
+	'origin-403',
+	'js-challenge',
+	'redirect-loop',
+	'unreachable'
+]);
+
+/** Name the network-level failure curl could only report as "no response". */
+function failureKind(err) {
+	if (err === 'ERR_NAME_NOT_RESOLVED') return 'dns-failure';
+	if (/^ERR_(CERT_|SSL|BAD_SSL)/.test(err)) return 'tls-invalid';
+	if (/^ERR_(CONNECTION_|ADDRESS_UNREACHABLE|TIMED_OUT|EMPTY_RESPONSE)/.test(err))
+		return 'connection-failed';
+	return 'unreachable';
+}
+
+/**
+ * Fold a Chromium probe into the curl verdict for the same host.
+ *
+ * robots.txt still decides the verdict wherever the browser could read it — the
+ * file is public and reproducible, and that does not change with the client
+ * that fetched it. What the browser adds is everything curl could not settle:
+ * whether a refusal survives a real browser engine, and, when it does not,
+ * that the site is serving browsers while shutting out every other agent.
+ */
+function reclassify(row, b) {
+	const chrome = (lines) => `${row.snippet}\n\nHeadless Chromium (real browser engine)\n${lines}`;
+
+	// The server is up and answering with its own failure — worth saying plainly,
+	// and not something to read a crawling policy out of.
+	if (b.outcome === 'error')
+		return {
+			...row,
+			chromeStatus: b.status,
+			verdict: 'unknown',
+			kind: 'server-error',
+			snippet: chrome(
+				`  GET /  ->  ${b.status}  (the server's own error page` +
+					`${b.scheme === 'http' ? ', over plain http:// — no working HTTPS' : ''}` +
+					`${b.insecure ? ', past a certificate that does not validate' : ''})`
+			)
+		};
+
+	if (b.outcome === 'unreachable')
+		return {
+			...row,
+			verdict: 'unknown',
+			kind: failureKind(b.error),
+			snippet: chrome(`  GET /  ->  no connection (${b.error})`)
+		};
+
+	// Refused a real browser too: the sweep's reading holds, with better evidence.
+	if (b.outcome === 'barrier') {
+		const kind =
+			b.barrier === 'js-challenge'
+				? 'js-challenge'
+				: row.kind === 'origin-403'
+					? 'origin-403'
+					: 'waf-rule';
+		return {
+			...row,
+			chromeStatus: b.status,
+			// Cloudflare exempts the crawlers it has verified, so a challenge our
+			// browser could not clear still is not evidence that Google is refused.
+			verdict: kind === 'js-challenge' ? 'partial' : 'waf-blocked',
+			kind,
+			snippet: chrome(
+				`  GET /  ->  ${b.status ?? 'no status'}  (${
+					kind === 'js-challenge'
+						? `still held at the ${b.barrierDetail} after 20s`
+						: `refused: ${b.barrierDetail}`
+				})`
+			)
+		};
+	}
+
+	// The browser is served. robots.txt read over that same connection decides.
+	const rob = robotsVerdict(b.robotsStatus, b.robotsBody || '');
+	let { verdict, kind } = rob;
+	const openRobots = verdict === 'allowed' || verdict === 'none';
+
+	/**
+	 * With robots.txt open, the mechanism worth naming is how the site treats
+	 * clients that are not a browser. Each of these keeps people's ordinary
+	 * browsers working while archivers, monitors and AI assistants are refused,
+	 * so none of them is an open site.
+	 */
+	if (openRobots) {
+		if (row.kind === 'js-challenge') {
+			kind = 'js-challenge';
+			verdict = 'partial';
+		} else if (b.scheme === 'http') {
+			kind = 'http-only';
+		} else if (b.insecure) {
+			kind = 'tls-invalid';
+			verdict = 'partial';
+		} else if (REFUSAL_KINDS.has(row.kind)) {
+			// Only where the sweep was actually refused. A host that merely failed
+			// to answer curl may have been slow rather than selective, and that is
+			// not something to call a policy.
+			kind = 'browser-only';
+			verdict = 'partial';
+		}
+	} else if (b.insecure && verdict !== 'blocked') {
+		verdict = 'partial';
+	}
+
+	const transport = b.scheme === 'http'
+		? `  (no working HTTPS: ${b.httpsError}; served over plain http://)\n`
+		: b.insecure
+			? `  (certificate rejected: ${b.certError}; retried with verification off)\n`
+			: '';
+
+	// classifyRobots falls back to a bare status line, which the line above
+	// already carries; only append what actually adds something.
+	const robotsDetail = rob.snippet.startsWith('GET /robots.txt') ? '' : `\n\n${rob.snippet}`;
+
+	return {
+		...row,
+		chromeStatus: b.status,
+		verdict,
+		kind,
+		googlebotRule: rob.googlebotRule,
+		snippet: chrome(
+			`  GET /  ->  ${b.status}  (served normally)\n${transport}` +
+				`  GET /robots.txt  ->  ${b.robotsStatus ?? 'no response'}${robotsDetail}`
+		)
+	};
+}
+
 /** Run the bash sweep and parse its TSV into rows. */
 function sweep(hosts) {
 	const script = path.join(ROOT, 'scripts/audit.sh');
 	const args = hosts ? ['--hosts', ...hosts] : [DOMAIN_FILE, String(CONCURRENCY)];
-	const out = execFileSync(script, args, {
+	// Invoked through bash rather than directly, so the sweep runs from a fresh
+	// checkout whether or not the executable bit survived.
+	const out = execFileSync('bash', [script, ...args], {
 		encoding: 'utf8',
 		maxBuffer: 64 * 1024 * 1024,
 		stdio: ['ignore', 'pipe', 'inherit']
@@ -310,15 +474,23 @@ const HEADER = `import type { CrawlVerdict } from './types';
  * browser sends, not merely a Chrome user-agent string, because WAFs fingerprint
  * the whole request — and then / again with Googlebot's user-agent.
  *
+ * Any host that leaves refused or unreachable is then re-probed with headless
+ * Chromium, which runs the challenge JavaScript, presents a browser's TLS
+ * fingerprint, and names the exact network failure. Where it gets in, robots.txt
+ * is read over that same connection, so the verdict rests on the file rather
+ * than on what curl was allowed to see. \`chromeStatus\` records that stage.
+ *
  * Verdicts are deliberately conservative:
  *   'blocked'     robots.txt itself disallows everything for Googlebot. This is
  *                 authoritative: the file is public and identical for everyone.
- *   'waf-blocked' a real browser profile was refused outright by a WAF rule or
- *                 by the origin. NOT proof that the genuine Googlebot is blocked.
+ *   'waf-blocked' both a full browser request profile and headless Chromium were
+ *                 refused outright. NOT proof that the genuine Googlebot is too.
  *   'partial'     some paths disallowed; or a Cloudflare JavaScript challenge,
  *                 which real browsers and verified crawlers pass while archivers
  *                 and AI assistants do not; or a 403 shown only to a
- *                 self-declared Googlebot while a browser is served normally.
+ *                 self-declared Googlebot while a browser is served normally; or
+ *                 a site that answers a real browser and nothing else.
+ *   'unknown'     no connection at all, with the failure named by \`kind\`.
  */
 export type AuditKind =
 	| 'robots-disallow-all'
@@ -328,8 +500,14 @@ export type AuditKind =
 	| 'origin-403'
 	| 'ua-spoof-guard'
 	| 'redirect-loop'
+	| 'browser-only'
+	| 'tls-invalid'
+	| 'http-only'
 	| 'no-robots'
 	| 'html-not-robots'
+	| 'dns-failure'
+	| 'connection-failed'
+	| 'server-error'
 	| 'unreachable'
 	| 'partial'
 	| 'allowed';
@@ -344,6 +522,8 @@ export interface AuditRow {
 	homeStatus: number | null;
 	/** HTTP status for / with a full desktop-Chrome request profile. */
 	browserStatus: number | null;
+	/** HTTP status headless Chromium got for /, or null if that stage was not needed. */
+	chromeStatus: number | null;
 	/** True when robots.txt carries a Googlebot-specific group overriding \`*\`. */
 	googlebotRule: boolean;
 	snippet: string;
@@ -357,6 +537,28 @@ async function main() {
 
 	const rows = sweep(explicit.length ? hosts : null).map(auditOne);
 
+	// Second stage: whatever curl could not settle goes to a real browser.
+	const pending = rows.filter((r) => NEEDS_BROWSER.has(r.kind));
+	if (pending.length && !skipBrowser) {
+		console.log(`\nRe-checking ${pending.length} unsettled host(s) with headless Chromium…`);
+		const byHost = new Map();
+		for (const b of await browserSweep(pending.map((r) => r.host), {
+			onResult: (b, i, n) =>
+				console.log(
+					`  [${String(i).padStart(3)}/${n}] ${b.host.padEnd(34)} ${b.outcome}` +
+						`${b.status ? ` ${b.status}` : ''}${b.barrier ? ` (${b.barrier})` : ''}` +
+						`${b.error ? ` ${b.error}` : ''}${b.insecure ? ' [cert ignored]' : ''}` +
+						`${b.scheme === 'http' ? ' [http]' : ''}`
+				)
+		}))
+			byHost.set(b.host, b);
+
+		for (let i = 0; i < rows.length; i++) {
+			const b = byHost.get(rows[i].host);
+			if (b) rows[i] = reclassify(rows[i], b);
+		}
+	}
+
 	const order = { blocked: 0, 'waf-blocked': 1, partial: 2, none: 3, allowed: 4, unknown: 5 };
 	rows.sort((a, b) => order[a.verdict] - order[b.verdict] || a.host.localeCompare(b.host));
 
@@ -369,7 +571,10 @@ async function main() {
 
 	if (explicit.length) {
 		console.log('\n');
-		for (const r of rows) console.log(`  ${r.verdict.padEnd(13)} ${r.kind.padEnd(20)} ${r.host}`);
+		for (const r of rows)
+			console.log(
+				`  ${r.verdict.padEnd(13)} ${r.kind.padEnd(20)} ${r.host}\n${r.snippet.replace(/^/gm, '      ')}\n`
+			);
 		console.log('\nDry run for explicit domains — audit.ts was not rewritten.');
 		return;
 	}
@@ -377,7 +582,7 @@ async function main() {
 	const body = rows
 		.map(
 			(r) =>
-				`\t{ host: '${r.host}', verdict: '${r.verdict}', kind: '${r.kind}', robotsStatus: ${r.robotsStatus ?? 'null'}, homeStatus: ${r.homeStatus ?? 'null'}, browserStatus: ${r.browserStatus ?? 'null'}, googlebotRule: ${Boolean(r.googlebotRule)}, snippet: '${esc(r.snippet)}' }`
+				`\t{ host: '${r.host}', verdict: '${r.verdict}', kind: '${r.kind}', robotsStatus: ${r.robotsStatus ?? 'null'}, homeStatus: ${r.homeStatus ?? 'null'}, browserStatus: ${r.browserStatus ?? 'null'}, chromeStatus: ${r.chromeStatus ?? 'null'}, googlebotRule: ${Boolean(r.googlebotRule)}, snippet: '${esc(r.snippet)}' }`
 		)
 		.join(',\n');
 
@@ -414,8 +619,18 @@ export function auditFor(host: string): AuditRow | undefined {
 	rows.filter((r) => r.kind === 'js-challenge').forEach((r) => console.log('  ', r.host));
 	console.log('\nGooglebot explicitly exempted from a site-wide block:');
 	rows.filter((r) => r.kind === 'googlebot-exception').forEach((r) => console.log('  ', r.host));
-	console.log('\nHard-refused a full browser profile:');
+	console.log('\nHard-refused a full browser profile and headless Chromium alike:');
 	rows.filter((r) => r.verdict === 'waf-blocked').forEach((r) => console.log('  ', r.host, `(${r.kind})`));
+	console.log('\nServe a real browser but refuse every other client:');
+	rows.filter((r) => r.kind === 'browser-only').forEach((r) => console.log('  ', r.host));
+	console.log('\nReachable only past a certificate error, or only over plain HTTP:');
+	rows
+		.filter((r) => r.kind === 'tls-invalid' || r.kind === 'http-only')
+		.forEach((r) => console.log('  ', r.host, `(${r.kind})`));
+	console.log('\nNo connection at all, by failure:');
+	rows
+		.filter((r) => ['dns-failure', 'connection-failed', 'unreachable'].includes(r.kind))
+		.forEach((r) => console.log('  ', r.host, `(${r.kind})`));
 }
 
 main().catch((e) => {

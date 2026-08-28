@@ -325,8 +325,8 @@ export const service: Service = {
 		{
 			type: 'p',
 			text: {
-				th: 'อีกเหตุผลคือกฎการเข้าถึงของบอตบนเว็บไซต์ของสถาบัน ซึ่งปิดกั้นบอตทุกตัวเป็นค่าเริ่มต้นและเปิดข้อยกเว้นให้เฉพาะ Googlebot กับ Bingbot ข้อมูลชุดนี้จึงยังค้นเจอผ่านสองเครื่องมือนั้น แต่ไปไม่ถึงเครื่องมือค้นหารายอื่นและผู้ช่วยตอบคำถามด้วยปัญญาประดิษฐ์ที่คนไทยเริ่มใช้ประจำ การมีหน้าเปิดสาธารณะที่อธิบายบริการนี้และเปิดให้ทุกบอตอ่านได้ จึงเพิ่มเส้นทางให้คนเดินมาเจอข้อมูลที่ควรเข้าถึงได้ตั้งแต่แรก ทั้งนี้ THGov เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดหน่วยงานใด',
-				en: 'There is a second reason. The institute’s crawler rules block every bot by default and grant exceptions only to Googlebot and Bingbot, so this material stays findable through those two while never reaching other search engines or the AI assistants people in Thailand increasingly use. A public page that describes the service and stays open to every crawler adds another route to information that should have been reachable from the start. THGov is an independent directory, unaffiliated with any agency.'
+				th: 'อีกเหตุผลคือกฎการเข้าถึงของบอตบนเว็บไซต์ของสถาบัน ซึ่งปิดกั้นบอตทุกตัวเป็นค่าเริ่มต้นและเปิดข้อยกเว้นให้เฉพาะ Googlebot กับ Bingbot ข้อมูลชุดนี้จึงยังค้นเจอผ่านสองเครื่องมือนั้น แต่ไปไม่ถึงเครื่องมือค้นหารายอื่นและผู้ช่วยตอบคำถามด้วยปัญญาประดิษฐ์ที่คนไทยเริ่มใช้ประจำ การมีหน้าเปิดสาธารณะที่อธิบายบริการนี้และเปิดให้ทุกบอตอ่านได้ จึงเพิ่มเส้นทางให้คนเดินมาเจอข้อมูลที่ควรเข้าถึงได้ตั้งแต่แรก ทั้งนี้ ThaiGov.co เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดหน่วยงานใด',
+				en: 'There is a second reason. The institute’s crawler rules block every bot by default and grant exceptions only to Googlebot and Bingbot, so this material stays findable through those two while never reaching other search engines or the AI assistants people in Thailand increasingly use. A public page that describes the service and stays open to every crawler adds another route to information that should have been reachable from the start. ThaiGov.co is an independent directory, unaffiliated with any agency.'
 			}
 		}
 	],
@@ -336,7 +336,7 @@ export const service: Service = {
 		kind: 'googlebot-exception',
 		status: 200,
 		snippet: 'User-agent: *\nDisallow: /\n\nUser-agent: Googlebot\nAllow: /\n\nUser-agent: Bingbot\nAllow: /',
-		checkedAt: '2026-08-27',
+		checkedAt: '2026-08-28',
 		note: {
 			th: 'ไฟล์ robots.txt ปิดกั้นบอตทุกตัวเป็นค่าเริ่มต้น แต่เขียนข้อยกเว้นให้ Googlebot เข้าถึงได้ เว็บไซต์จึงยังค้นเจอผ่าน Google ได้ตามปกติ ขณะที่เครื่องมือค้นหาอื่น บริการเก็บถาวรเว็บ และผู้ช่วย AI ที่ประชาชนเริ่มใช้ค้นหาบริการภาครัฐ ถูกปฏิเสธทั้งหมด',
 			en: 'The robots.txt blocks every crawler by default but writes an explicit exception for Googlebot. The site therefore remains findable through Google, while other search engines, web-archiving services and the AI assistants people increasingly use to look up government services are all refused.'

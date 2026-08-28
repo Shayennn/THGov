@@ -345,8 +345,8 @@ export const service: Service = {
 		{
 			type: 'p',
 			text: {
-				th: 'THGov ไม่ได้ทำสำเนาตัวบทกฎหมายมาเก็บไว้ และไม่ได้มีความเกี่ยวข้องกับหน่วยงานใด สิ่งที่หน้านี้ทำคืออธิบายด้วยคำที่คนค้นหาจริงว่าราชกิจจานุเบกษาคืออะไร ใช้อย่างไร และอ่านการอ้างอิงอย่างไร แล้วส่งคุณไปยังเว็บไซต์ทางการเพื่ออ่านฉบับเต็มด้วยตัวคุณเอง ตราบใดที่ตัวบทต้นทางยังอยู่หลังด่านที่ต้องเปิดด้วยเบราว์เซอร์จริง และยังอยู่นอกมือของบริการเก็บถาวรเว็บกับผู้ช่วย AI ที่คนหันไปถามกันมากขึ้น สะพานเล็ก ๆ แบบนี้ก็ยังจำเป็นสำหรับคนที่ต้องการอ่านของจริง ไม่ใช่คำบอกเล่าที่ผ่านมือคนอื่นมาแล้วหลายทอด',
-				en: 'THGov keeps no copy of any statutory text and is not affiliated with any agency. What this page does is explain, in the words people actually search with, what the Gazette is, how to use it and how to read a citation — then send you to the official site to read the full document for yourself. For as long as the authoritative text sits behind a challenge only a real browser can clear — out of reach of web archives and of the assistants people now put the question to — a small bridge like this remains necessary for anyone who wants the real thing rather than a secondhand account of it.'
+				th: 'ThaiGov.co ไม่ได้ทำสำเนาตัวบทกฎหมายมาเก็บไว้ และไม่ได้มีความเกี่ยวข้องกับหน่วยงานใด สิ่งที่หน้านี้ทำคืออธิบายด้วยคำที่คนค้นหาจริงว่าราชกิจจานุเบกษาคืออะไร ใช้อย่างไร และอ่านการอ้างอิงอย่างไร แล้วส่งคุณไปยังเว็บไซต์ทางการเพื่ออ่านฉบับเต็มด้วยตัวคุณเอง ตราบใดที่ตัวบทต้นทางยังอยู่หลังด่านที่ต้องเปิดด้วยเบราว์เซอร์จริง และยังอยู่นอกมือของบริการเก็บถาวรเว็บกับผู้ช่วย AI ที่คนหันไปถามกันมากขึ้น สะพานเล็ก ๆ แบบนี้ก็ยังจำเป็นสำหรับคนที่ต้องการอ่านของจริง ไม่ใช่คำบอกเล่าที่ผ่านมือคนอื่นมาแล้วหลายทอด',
+				en: 'ThaiGov.co keeps no copy of any statutory text and is not affiliated with any agency. What this page does is explain, in the words people actually search with, what the Gazette is, how to use it and how to read a citation — then send you to the official site to read the full document for yourself. For as long as the authoritative text sits behind a challenge only a real browser can clear — out of reach of web archives and of the assistants people now put the question to — a small bridge like this remains necessary for anyone who wants the real thing rather than a secondhand account of it.'
 			}
 		}
 	],
@@ -355,8 +355,8 @@ export const service: Service = {
 		verdict: 'partial',
 		kind: 'js-challenge',
 		status: 403,
-		snippet: 'Full desktop-Chrome request profile\n  GET /  ->  403  (Cloudflare managed challenge (JavaScript interstitial))\nGooglebot user-agent\n  GET /  ->  403\nGET /robots.txt  ->  403',
-		checkedAt: '2026-08-27',
+		snippet: 'Full desktop-Chrome request profile\n  GET /  ->  403  (Cloudflare managed challenge (JavaScript interstitial))\nGooglebot user-agent\n  GET /  ->  403\nGET /robots.txt  ->  403\n\nHeadless Chromium (real browser engine)\n  GET /  ->  403  (still held at the Cloudflare challenge page after 20s)',
+		checkedAt: '2026-08-28',
 		note: {
 			th: 'เมื่อเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ เซิร์ฟเวอร์ตอบกลับด้วยหน้าท้าทายของ Cloudflare ที่ต้องประมวลผลจาวาสคริปต์ก่อนจึงจะผ่านได้ เบราว์เซอร์จริงผ่านได้ และบอตของเครื่องมือค้นหาที่ Cloudflare ยืนยันตัวตนแล้วมักได้รับการยกเว้น เราจึงไม่สรุปว่า Google ถูกปิดกั้น แต่สิ่งที่ปิดกั้นแน่นอนคือเครื่องมือที่ไม่ประมวลผลจาวาสคริปต์ ทั้งบริการเก็บถาวรเว็บ เครื่องมือตรวจสอบภายนอก และผู้ช่วย AI',
 			en: 'Requested with a full browser profile, the server answers with a Cloudflare challenge that must be solved by running JavaScript. Real browsers pass it, and search-engine crawlers Cloudflare has verified are normally exempted — so we do not conclude that Google is blocked. What is certainly blocked is anything that does not execute JavaScript: web archives, third-party monitoring, and AI assistants.'

@@ -320,8 +320,8 @@ export const service: Service = {
 		{
 			type: 'p',
 			text: {
-				th: 'การเปิดเผยที่ค้นหาไม่เจอ ให้ผลไม่ต่างจากการไม่เปิดเผยสำหรับคนที่ยังไม่รู้ว่าต้องไปดูที่ไหน หน้านี้จึงเป็นประตูที่เครื่องมือค้นหามองเห็น อธิบายระบบด้วยคำที่ผู้ประกอบการใช้จริงอย่าง “ประมูลงานราชการ” หรือ “ขายของให้หน่วยงานรัฐ” แล้วบอกให้ชัดว่าข้อมูลอยู่ในระบบ e-GP ของกรมบัญชีกลาง ก่อนส่งคุณไปยังเว็บไซต์ทางการโดยตรง THGov เป็นไดเรกทอรีอิสระ ไม่เกี่ยวข้องกับหน่วยงานใด ไม่รับลงทะเบียนผู้ค้า ไม่รับเอกสาร และไม่รับข้อเสนอราคาแทนใคร ทุกขั้นตอนที่มีผลทางกฎหมายเกิดขึ้นบนระบบของทางราชการเท่านั้น',
-				en: 'Disclosure that cannot be found amounts, for anyone who does not already know where to look, to very little disclosure at all. This page exists to be the doorway a search engine can see: it describes the system in the words businesses actually use — bidding for government work, selling to a state agency — says plainly that the records live in the Comptroller General’s Department’s e-GP system, and hands you to the official site. THGov is an independent directory with no connection to any agency. We take no supplier registrations, no documents and no bids on anyone’s behalf; every step with legal effect happens on the government’s own system.'
+				th: 'การเปิดเผยที่ค้นหาไม่เจอ ให้ผลไม่ต่างจากการไม่เปิดเผยสำหรับคนที่ยังไม่รู้ว่าต้องไปดูที่ไหน หน้านี้จึงเป็นประตูที่เครื่องมือค้นหามองเห็น อธิบายระบบด้วยคำที่ผู้ประกอบการใช้จริงอย่าง “ประมูลงานราชการ” หรือ “ขายของให้หน่วยงานรัฐ” แล้วบอกให้ชัดว่าข้อมูลอยู่ในระบบ e-GP ของกรมบัญชีกลาง ก่อนส่งคุณไปยังเว็บไซต์ทางการโดยตรง ThaiGov.co เป็นไดเรกทอรีอิสระ ไม่เกี่ยวข้องกับหน่วยงานใด ไม่รับลงทะเบียนผู้ค้า ไม่รับเอกสาร และไม่รับข้อเสนอราคาแทนใคร ทุกขั้นตอนที่มีผลทางกฎหมายเกิดขึ้นบนระบบของทางราชการเท่านั้น',
+				en: 'Disclosure that cannot be found amounts, for anyone who does not already know where to look, to very little disclosure at all. This page exists to be the doorway a search engine can see: it describes the system in the words businesses actually use — bidding for government work, selling to a state agency — says plainly that the records live in the Comptroller General’s Department’s e-GP system, and hands you to the official site. ThaiGov.co is an independent directory with no connection to any agency. We take no supplier registrations, no documents and no bids on anyone’s behalf; every step with legal effect happens on the government’s own system.'
 			}
 		}
 	],
@@ -331,7 +331,7 @@ export const service: Service = {
 		kind: 'robots-disallow-all',
 		status: 200,
 		snippet: 'User-agent: *\nDisallow: /',
-		checkedAt: '2026-08-27',
+		checkedAt: '2026-08-28',
 		note: {
 			th: 'ไฟล์ robots.txt ของเว็บไซต์นี้สั่งห้ามเครื่องมือค้นหาทุกตัวเก็บข้อมูลทุกหน้า และไม่มีข้อยกเว้นให้ Googlebot นี่เป็นหลักฐานที่หนักแน่นที่สุด เพราะไฟล์ robots.txt เป็นสาธารณะและให้ผลเหมือนกันกับทุกคนที่เรียกดู ใครก็ตรวจสอบซ้ำได้',
 			en: 'This site’s robots.txt instructs every crawler not to fetch any page, with no exception for Googlebot. This is the strongest form of evidence available, because robots.txt is public and identical for every requester — anyone can reproduce the check.'

@@ -47,7 +47,7 @@
 
 <header class="masthead no-print">
 	<div class="container bar">
-		<a class="brand" href={href('/')} aria-label="THGov">
+		<a class="brand" href={href('/')} aria-label="ThaiGov.co">
 			<Logo />
 		</a>
 

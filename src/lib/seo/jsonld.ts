@@ -11,7 +11,7 @@ const ORG_ID = `${SITE_URL}/#organization`;
 const SITE_ID = `${SITE_URL}/#website`;
 
 /** The publisher of this directory. Deliberately typed as an Organization —
- *  THGov is independent and must never present itself as a government body. */
+ *  ThaiGov.co is independent and must never present itself as a government body. */
 export function organizationNode(locale: Locale): Node {
 	return {
 		'@type': 'Organization',

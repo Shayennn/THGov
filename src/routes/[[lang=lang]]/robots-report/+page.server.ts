@@ -46,6 +46,7 @@ export const load: PageServerLoad = ({ params }) => {
 			(r) => r.kind === 'waf-rule' || r.kind === 'origin-403' || r.kind === 'redirect-loop'
 		).length,
 		googlebotOnlyCount: AUDIT_ROWS.filter((r) => r.kind === 'googlebot-exception').length,
+		browserOnlyCount: AUDIT_ROWS.filter((r) => r.kind === 'browser-only').length,
 		serviceByHost: Object.fromEntries(SERVICES.map((s) => [s.crawl.host, s.slug])),
 		jsonld: graph([
 			organizationNode(locale),
@@ -64,7 +65,8 @@ export const load: PageServerLoad = ({ params }) => {
 				variableMeasured: [
 					'robots.txt directives',
 					'HTTP status for Googlebot user-agent',
-					'HTTP status for browser user-agent'
+					'HTTP status for browser user-agent',
+					'HTTP status for headless Chromium'
 				]
 			}
 		])

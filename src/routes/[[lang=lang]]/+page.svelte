@@ -162,8 +162,8 @@
 			<h2>{lc({ th: 'พอร์ทัลนี้ทำงานอย่างไร', en: 'How this portal works' })}</h2>
 			<p class="lede">
 				{lc({
-					th: 'THGov ไม่ได้ทำหน้าที่แทนหน่วยงานรัฐ แต่ทำหน้าที่เป็นป้ายบอกทางที่ค้นเจอได้ ระหว่างคำที่ประชาชนใช้ค้นหา กับระบบราชการที่มีอยู่จริง',
-					en: 'THGov does not stand in for any agency. It is a findable signpost between the words people search for and the systems that already exist.'
+					th: 'ThaiGov.co ไม่ได้ทำหน้าที่แทนหน่วยงานรัฐ แต่ทำหน้าที่เป็นป้ายบอกทางที่ค้นเจอได้ ระหว่างคำที่ประชาชนใช้ค้นหา กับระบบราชการที่มีอยู่จริง',
+					en: 'ThaiGov.co does not stand in for any agency. It is a findable signpost between the words people search for and the systems that already exist.'
 				})}
 			</p>
 		</header>

@@ -252,8 +252,8 @@ export const guide: Guide = {
 		{
 			q: { th: 'ต้องเสียเงินหรือสมัครสมาชิกไหม', en: 'Does checking cost anything?' },
 			a: {
-				th: 'การค้นข้อมูลนิติบุคคลพื้นฐานใช้ได้ฟรี ฟังก์ชันเชิงลึกบางส่วนอาจให้สมัครสมาชิกก่อน ซึ่งสมัครกับหน่วยงานรัฐโดยตรงและไม่มีค่าใช้จ่าย ทั้งนี้ THGov เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดหน่วยงานใด',
-				en: 'Basic lookups are free. Some deeper features may ask you to register first, which goes directly to the agency and costs nothing. THGov, for its part, is an independent directory with no affiliation to any agency.'
+				th: 'การค้นข้อมูลนิติบุคคลพื้นฐานใช้ได้ฟรี ฟังก์ชันเชิงลึกบางส่วนอาจให้สมัครสมาชิกก่อน ซึ่งสมัครกับหน่วยงานรัฐโดยตรงและไม่มีค่าใช้จ่าย ทั้งนี้ ThaiGov.co เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดหน่วยงานใด',
+				en: 'Basic lookups are free. Some deeper features may ask you to register first, which goes directly to the agency and costs nothing. ThaiGov.co, for its part, is an independent directory with no affiliation to any agency.'
 			}
 		},
 		{

@@ -348,8 +348,8 @@ export const service: Service = {
 		{
 			type: 'p',
 			text: {
-				th: 'แทบไม่มีใครค้นหาด้วยคำว่า MWA e-Service คนส่วนใหญ่พิมพ์ว่า “เช็คค่าน้ำ” “น้ำไม่ไหลวันนี้” หรือ “ค่าน้ำแพงผิดปกติ” ในจังหวะที่กำลังเดือดร้อน เว็บไซต์ของการประปานครหลวงเปิดให้เครื่องมือค้นหาเก็บข้อมูลได้ก็จริง แต่ยอดค่าน้ำและประวัติการใช้น้ำอยู่หลังหน้าเข้าสู่ระบบ จึงไม่ปรากฏในผลการค้นหา หน้านี้จึงเป็นป้ายบอกทางด้วยภาษาที่คนใช้จริง แล้วส่งต่อไปยังเว็บไซต์ทางการโดยตรง THGov เป็นไดเรกทอรีอิสระ ไม่มีส่วนเกี่ยวข้องกับการประปานครหลวง และไม่รับข้อมูลส่วนบุคคลหรือการชำระเงิน',
-				en: 'Hardly anyone searches for “MWA e-Service”. People type “check water bill”, “no water today” or “why is my water bill so high”, at the moment the problem is in front of them. MWA’s site is open to search engines, but the parts that matter most — your balance and your consumption history — sit behind a sign-in and never surface in results. This page is the signpost in between: ordinary language about what the system does, then a direct hand-off to the official site. THGov is an independent directory with no connection to MWA, and it never takes personal details or payments.'
+				th: 'แทบไม่มีใครค้นหาด้วยคำว่า MWA e-Service คนส่วนใหญ่พิมพ์ว่า “เช็คค่าน้ำ” “น้ำไม่ไหลวันนี้” หรือ “ค่าน้ำแพงผิดปกติ” ในจังหวะที่กำลังเดือดร้อน เว็บไซต์ของการประปานครหลวงเปิดให้เครื่องมือค้นหาเก็บข้อมูลได้ก็จริง แต่ยอดค่าน้ำและประวัติการใช้น้ำอยู่หลังหน้าเข้าสู่ระบบ จึงไม่ปรากฏในผลการค้นหา หน้านี้จึงเป็นป้ายบอกทางด้วยภาษาที่คนใช้จริง แล้วส่งต่อไปยังเว็บไซต์ทางการโดยตรง ThaiGov.co เป็นไดเรกทอรีอิสระ ไม่มีส่วนเกี่ยวข้องกับการประปานครหลวง และไม่รับข้อมูลส่วนบุคคลหรือการชำระเงิน',
+				en: 'Hardly anyone searches for “MWA e-Service”. People type “check water bill”, “no water today” or “why is my water bill so high”, at the moment the problem is in front of them. MWA’s site is open to search engines, but the parts that matter most — your balance and your consumption history — sit behind a sign-in and never surface in results. This page is the signpost in between: ordinary language about what the system does, then a direct hand-off to the official site. ThaiGov.co is an independent directory with no connection to MWA, and it never takes personal details or payments.'
 			}
 		}
 	],
@@ -359,7 +359,7 @@ export const service: Service = {
 		kind: 'allowed',
 		status: 200,
 		snippet: '# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nAllow: /\n\n# ---------------------------\n# END YOAST BLOCK',
-		checkedAt: '2026-08-27',
+		checkedAt: '2026-08-28',
 		note: {
 			th: 'ไฟล์ robots.txt อนุญาตให้เครื่องมือค้นหาเก็บข้อมูลได้ทั้งเว็บไซต์ อย่างไรก็ตาม บริการที่ต้องเข้าสู่ระบบยังคงไม่ปรากฏในผลการค้นหา ซึ่งเป็นเรื่องปกติของระบบที่ต้องยืนยันตัวตน',
 			en: 'The robots.txt permits crawling across the whole site. Services behind a sign-in still do not appear in search results, which is normal for authenticated systems.'

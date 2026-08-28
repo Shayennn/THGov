@@ -18,7 +18,7 @@ set -uo pipefail
 UA_CHROME='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36'
 UA_BOT='Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
 TIMEOUT="${AUDIT_TIMEOUT:-30}"
-OUTDIR="${AUDIT_OUTDIR:-$(mktemp -d -t thgov-audit-XXXXXX)}"
+OUTDIR="${AUDIT_OUTDIR:-$(mktemp -d -t thaigov-audit-XXXXXX)}"
 mkdir -p "$OUTDIR/robots"
 
 chrome_headers=(

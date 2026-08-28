@@ -36,6 +36,7 @@
 	const challenge = $derived(data.challengeCount);
 	const hardBlock = $derived(data.hardBlockCount);
 	const googlebotOnly = $derived(data.googlebotOnlyCount);
+	const browserOnly = $derived(data.browserOnlyCount);
 
 	function count(key: 'all' | CrawlVerdict): number {
 		return key === 'all' ? data.total : (data.counts[key] ?? 0);
@@ -94,6 +95,12 @@
 			en: 'We assembled a list of Thai government and state-enterprise domains, then requested each one’s robots.txt and homepage with Googlebot’s user-agent, and requested the homepage again with an ordinary browser user-agent — to separate two very different situations.'
 		})}
 	</p>
+	<p>
+		{lc({
+			th: 'โดเมนใดที่การเรียกแบบแรกถูกปฏิเสธหรือเชื่อมต่อไม่ได้ เราจะตรวจซ้ำด้วยเบราว์เซอร์ Chromium จริงแบบไม่มีหน้าจอ ซึ่งประมวลผลจาวาสคริปต์ได้และมีลายนิ้วมือการเชื่อมต่อแบบเบราว์เซอร์จริง เพราะการปฏิเสธจำนวนมากเกิดจากข้อจำกัดของเครื่องมือที่ใช้ตรวจ ไม่ใช่นโยบายของเว็บไซต์ เมื่อเบราว์เซอร์เข้าถึงได้ เราจะอ่านไฟล์ robots.txt ผ่านช่องทางเดียวกันนั้น และตัดสินจากไฟล์จริงแทนการเดา',
+			en: 'Any domain that refuses the first pass, or that we cannot connect to at all, is checked again with a real headless Chromium — a browser that runs JavaScript and carries a browser’s connection fingerprint — because a large share of refusals are a limitation of the measuring tool rather than a policy of the site. Where the browser gets in, we read robots.txt over that same connection and judge from the file instead of guessing.'
+		})}
+	</p>
 	<ul>
 		<li>
 			{lc({
@@ -103,8 +110,14 @@
 		</li>
 		<li>
 			{lc({
-				th: 'เว็บไซต์ที่เซิร์ฟเวอร์ปฏิเสธคำขอของเราด้วยรหัส 403 — กรณีนี้สรุปไม่ได้ว่าปิดกั้น Google จริงหรือไม่ เพราะอาจเป็นการกรองทราฟฟิกจากศูนย์ข้อมูลตามปกติ',
-				en: 'Sites whose servers refused our request with a 403 — from which we cannot conclude that Google itself is blocked, since this is often ordinary datacentre-traffic filtering.'
+				th: 'เว็บไซต์ที่ปฏิเสธคำขอของเรา แม้เมื่อเปิดด้วยเบราว์เซอร์จริง — กรณีนี้สรุปไม่ได้ว่าปิดกั้น Google จริงหรือไม่ เพราะอาจเป็นการกรองทราฟฟิกจากศูนย์ข้อมูลตามปกติ',
+				en: 'Sites that refused us even through a real browser — from which we cannot conclude that Google itself is blocked, since this is often ordinary datacentre-traffic filtering.'
+			})}
+		</li>
+		<li>
+			{lc({
+				th: 'เว็บไซต์ที่ตอบกลับเฉพาะเบราว์เซอร์จริง — คนทั่วไปใช้งานได้ตามปกติ แต่บริการเก็บถาวรเว็บ เครื่องมือตรวจสอบ และผู้ช่วย AI ที่ไม่ประมวลผลจาวาสคริปต์ เข้าไม่ถึงเนื้อหาเลย',
+				en: 'Sites that answer only a real browser — ordinary visitors are unaffected, while web archives, monitoring tools and AI assistants that do not run JavaScript reach nothing at all.'
 			})}
 		</li>
 	</ul>
@@ -115,8 +128,8 @@
 			<strong>{lc({ th: 'ข้อจำกัดที่เราระบุไว้อย่างตรงไปตรงมา', en: 'A limitation we state plainly' })}</strong>
 			<p>
 				{lc({
-					th: 'การตรวจสอบทั้งหมดทำจากเครื่องเดียวในช่วงเวลาเดียว Googlebot ตัวจริงมาจากช่วงไอพีของ Google และยืนยันตัวตนด้วยการตรวจสอบ DNS ย้อนกลับ ดังนั้นผลลัพธ์ 403 ที่เราได้รับจึงไม่ใช่ข้อพิสูจน์ว่า Google เข้าไม่ได้ เราจึงแยกหมวด “ปิดกั้นทั้งเว็บไซต์” ซึ่งพิสูจน์ได้จาก robots.txt ออกจากหมวด “ปฏิเสธการตรวจสอบ” อย่างชัดเจน',
-					en: 'Every check ran from a single host at a single point in time. The real Googlebot comes from Google’s IP ranges and verifies itself by reverse DNS, so a 403 to us is not proof that Google is shut out. That is why we keep “blocked site-wide”, which robots.txt proves, strictly separate from “refused our check”.'
+					th: 'การตรวจสอบทั้งหมดทำจากเครื่องเดียวในช่วงเวลาเดียว แม้จะตรวจซ้ำด้วยเบราว์เซอร์จริงแล้วก็ตาม Googlebot ตัวจริงมาจากช่วงไอพีของ Google และยืนยันตัวตนด้วยการตรวจสอบ DNS ย้อนกลับ ดังนั้นผลลัพธ์ 403 ที่เราได้รับจึงไม่ใช่ข้อพิสูจน์ว่า Google เข้าไม่ได้ เราจึงแยกหมวด “ปิดกั้นทั้งเว็บไซต์” ซึ่งพิสูจน์ได้จาก robots.txt ออกจากหมวด “ปฏิเสธการตรวจสอบ” อย่างชัดเจน',
+					en: 'Every check ran from a single host at a single point in time, second-stage browser pass included. The real Googlebot comes from Google’s IP ranges and verifies itself by reverse DNS, so a 403 to us is not proof that Google is shut out. That is why we keep “blocked site-wide”, which robots.txt proves, strictly separate from “refused our check”.'
 				})}
 			</p>
 		</div>
@@ -142,8 +155,8 @@
 			<h3>{lc({ th: 'ปฏิเสธแม้แต่เบราว์เซอร์จริง', en: 'Refuse even a real browser' })}</h3>
 			<p>
 				{lc({
-					th: 'ตอบกลับด้วยหน้าบล็อกหรือเปลี่ยนเส้นทางวนซ้ำ แม้เรียกด้วยโปรไฟล์เบราว์เซอร์เต็มรูปแบบ',
-					en: 'A block page or an endless redirect, even with a full browser request profile.'
+					th: 'ตอบกลับด้วยหน้าบล็อก แม้เปิดด้วยเบราว์เซอร์ Chromium จริงที่ประมวลผลจาวาสคริปต์',
+					en: 'A block page even to a real Chromium browser running the page’s JavaScript.'
 				})}
 			</p>
 		</div>
@@ -166,8 +179,25 @@
 				<strong>{lc({ th: 'กรณีพิเศษ: เปิดให้เฉพาะ Google', en: 'A special case: open to Google alone' })}</strong>
 				<p>
 					{lc({
-						th: 'มีเว็บไซต์ที่ปิดกั้นบอตทุกตัวใน robots.txt แล้วเขียนข้อยกเว้นให้ Googlebot โดยเฉพาะ เว็บไซต์เหล่านี้ยังค้นเจอผ่าน Google ได้ แต่เครื่องมือค้นหาอื่น บริการเก็บถาวรเว็บ และผู้ช่วย AI ถูกปฏิเสธทั้งหมด ซึ่งเท่ากับผูกการเข้าถึงข้อมูลสาธารณะไว้กับบริษัทเดียว',
+						th: 'มีเว็บไซต์ที่ปิดกั้นบอตทุกตัวใน robots.txt แล้วเขียนข้อยกเว้นให้ Googlebot โดยเฉพาะ เว็บไซต์เหล่านี้ยังค้นเจอผ่าน Google ได้ แต่เครื่องมือค้นหาอื่น บริการเก็บถาวรเว็บ และผู้ช่วย AI ถูกปฏิเสธทั้งหมด แปลว่าผูกการเข้าถึงข้อมูลสาธารณะไว้กับบริษัทเดียว',
 						en: 'One site blocks every crawler in robots.txt and then writes an exception for Googlebot alone. It stays findable through Google while every other search engine, web archive and AI assistant is refused — which ties access to public information to a single company.'
+					})}
+				</p>
+			</div>
+		</aside>
+	{/if}
+
+	{#if browserOnly}
+		<aside class="callout callout-info gb-note">
+			<Icon name="shield" size={18} class="c-icon" />
+			<div>
+				<strong>
+					{lc({ th: 'เปิดให้เฉพาะเบราว์เซอร์จริง', en: 'Open to real browsers only' })}
+				</strong>
+				<p>
+					{lc({
+						th: `เว็บไซต์ ${formatNumber(browserOnly, data.locale)} แห่งปฏิเสธคำขอจากโปรแกรมทั่วไป แต่ตอบกลับตามปกติเมื่อเปิดด้วยเบราว์เซอร์ Chromium จริง เราจึงอ่านไฟล์ robots.txt ของเว็บไซต์เหล่านี้ได้และยืนยันว่าไฟล์ไม่ได้ปิดกั้นเครื่องมือค้นหา ประชาชนที่เปิดผ่านเบราว์เซอร์ใช้งานได้ตามปกติ แต่บริการเก็บถาวรเว็บ เครื่องมือตรวจสอบภายนอก และผู้ช่วย AI เข้าไม่ถึงเนื้อหาเลย`,
+						en: `${formatNumber(browserOnly, data.locale)} sites refuse ordinary clients but answer a real Chromium browser normally — which let us read their robots.txt and confirm that the file itself does not shut crawlers out. People browsing them are unaffected, while web archives, third-party monitoring and AI assistants reach nothing at all.`
 					})}
 				</p>
 			</div>
