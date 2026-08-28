@@ -345,13 +345,13 @@ export const service: Service = {
 	crawl: {
 		host: 'www.sec.or.th',
 		verdict: 'waf-blocked',
-		kind: 'waf-rule',
+		kind: 'origin-403',
 		status: 403,
-		snippet: 'Full desktop-Chrome request profile\n  GET /  ->  403  (F5 BIG-IP ASM block page)\nGooglebot user-agent\n  GET /  ->  403\nGET /robots.txt  ->  403',
-		checkedAt: '2026-08-27',
+		snippet: 'Full desktop-Chrome request profile\n  GET /  ->  403  (origin refused the request)\nGooglebot user-agent\n  GET /  ->  403\nGET /robots.txt  ->  403\n\nHeadless Chromium (real browser engine)\n  GET /  ->  403  (refused: Block Response)',
+		checkedAt: '2026-08-28',
 		note: {
-			th: 'แม้จะเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ ทั้งส่วนหัวการระบุตัวตนเบราว์เซอร์ ภาษา และ fetch metadata ครบถ้วน เซิร์ฟเวอร์ก็ยังปฏิเสธคำขอด้วยหน้าบล็อกของระบบไฟร์วอลล์ การปิดกั้นลักษณะนี้มักกรองทราฟฟิกจากศูนย์ข้อมูลเป็นวงกว้าง เราจึงยืนยันนโยบายที่แท้จริงของเว็บไซต์จากภายนอกไม่ได้ และไม่สรุปว่า Googlebot ตัวจริงถูกปิดกั้นด้วยหรือไม่',
-			en: 'Even with a full browser request profile — complete client hints, language and fetch-metadata headers — the server refuses with a firewall block page. Blocks shaped like this usually filter datacentre traffic broadly, so the site’s real policy cannot be verified from outside, and we draw no conclusion about whether the genuine Googlebot is refused too.'
+			th: 'เซิร์ฟเวอร์ต้นทางปฏิเสธคำขอด้วยรหัส 403 แม้จะเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ และเมื่อเปิดด้วยเบราว์เซอร์ Chromium จริงที่ประมวลผลจาวาสคริปต์ครบถ้วน ก็ยังถูกปฏิเสธด้วยรหัส 403 เช่นกัน การปฏิเสธเกิดที่ตัวเซิร์ฟเวอร์เอง ไม่ใช่ที่ระบบป้องกันด้านหน้า เราจึงอ่านนโยบายของเว็บไซต์จากภายนอกไม่ได้ และไม่สรุปแทนว่าเครื่องมือค้นหาเข้าถึงได้หรือไม่',
+			en: 'The origin server itself answers 403 even to a full browser request profile — the refusal comes from the server rather than an edge protection layer. A real Chromium browser running the page’s JavaScript is refused in the same way, with 403. We therefore cannot read the site’s policy from outside, and make no claim either way about what search engines receive.'
 		}
 	},
 	priority: 86,

@@ -139,8 +139,11 @@ Reproduce or refresh it:
 npm run audit:robots                          # sweep build-assets/domains.txt, rewrite audit.ts
 npm run audit:robots -- example.go.th         # dry run for specific domains
 npm run audit:robots -- --limit 20
+npm run audit:robots -- --no-browser          # curl stage only, skip the browser re-check
 npm run sync:crawl                            # push results into the service pages
 npm run sync:crawl -- --check                 # fail if any page has drifted
+
+node scripts/audit-browser.mjs example.go.th  # the browser stage on its own
 ```
 
 The network sweep is a plain bash + curl script (`scripts/audit.sh`) so a few
@@ -155,6 +158,18 @@ that are not there. The sweep sends the client hints, `Accept-Language` and
 `Sec-Fetch-*` headers a real Chrome navigation sends, then classifies by the
 *mechanism* doing the refusing — because these are not equivalent:
 
+**Headers are still not enough for every site.** curl runs no JavaScript, carries
+no browser TLS fingerprint, and reports a dead domain, a refused connection and
+an expired certificate with the same silent failure. So every host the sweep
+leaves refused or unreachable goes through a second stage,
+`scripts/audit-browser.mjs`, which drives headless Chromium via Playwright: it
+waits out self-reloading interstitials, retries once without certificate
+verification and once over plain HTTP when — and only when — that is what stands
+in the way, and records which of those steps got in. Where the browser is served,
+`robots.txt` is fetched over that same connection, so the verdict comes from the
+file rather than from what curl was allowed to see. `chromeStatus` in `audit.ts`
+records that stage; `null` means it was not needed.
+
 | Kind | What it means |
 | ---- | ------------- |
 | `robots-disallow-all` | `robots.txt` disallows everything for Googlebot |
@@ -164,17 +179,23 @@ that are not there. The sweep sends the client hints, `Accept-Language` and
 | `origin-403` | The origin server itself refuses |
 | `ua-spoof-guard` | 403 only to a self-declared Googlebot; a browser is served normally |
 | `redirect-loop` | Redirects to itself past the limit — usually a cookie or session challenge |
+| `browser-only` | Refuses ordinary clients but serves a real Chromium; `robots.txt` read through it does not block |
+| `tls-invalid` | Answers only once certificate verification is switched off |
+| `http-only` | No working HTTPS at all; reachable over plain HTTP |
+| `dns-failure` | The domain name does not resolve, for curl and Chromium alike |
+| `connection-failed` | No connection accepted, for curl and Chromium alike |
+| `server-error` | The server answers, with a 5xx of its own |
 
 Those roll up into six verdicts:
 
 | Verdict        | Meaning                                                                        |
 | -------------- | ------------------------------------------------------------------------------ |
 | `blocked`      | The site's own `robots.txt` disallows everything for Googlebot. Authoritative.  |
-| `waf-blocked`  | A full browser profile was refused outright. **Not** proof that Google is blocked. |
-| `partial`      | Some paths disallowed, a JavaScript challenge, a Google-only exemption, or anti-spoofing. |
+| `waf-blocked`  | Refused a full browser profile **and** headless Chromium. Still not proof that Google is blocked. |
+| `partial`      | Some paths disallowed, a JavaScript challenge, a Google-only exemption, anti-spoofing, or served to a real browser and nothing else. |
 | `none`         | No `robots.txt`, which conventionally permits crawling.                        |
 | `allowed`      | Fully crawlable.                                                               |
-| `unknown`      | No response from the audit host.                                               |
+| `unknown`      | No connection at all, with the failure named by the kind.                      |
 
 Two limits are stated on the report page itself rather than hidden here: a
 refusal aimed at one machine is not evidence about the real Googlebot, which

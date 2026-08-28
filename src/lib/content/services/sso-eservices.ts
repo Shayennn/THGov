@@ -355,7 +355,7 @@ export const service: Service = {
 		kind: 'no-robots',
 		status: 200,
 		snippet: 'GET /  ->  200 (site reachable)\nGET /robots.txt  ->  no response',
-		checkedAt: '2026-08-27',
+		checkedAt: '2026-08-28',
 		note: {
 			th: 'เว็บไซต์นี้ไม่มีไฟล์ robots.txt ซึ่งตามมาตรฐานถือว่าอนุญาตให้เครื่องมือค้นหาเก็บข้อมูลได้ทั้งหมด แต่เนื้อหาที่อยู่หลังการเข้าสู่ระบบยังคงไม่ปรากฏในผลการค้นหาอยู่ดี',
 			en: 'The site serves no robots.txt, which by convention means crawling is permitted throughout. Content behind a sign-in still never appears in search results.'

@@ -328,7 +328,7 @@ export const service: Service = {
 		kind: 'partial',
 		status: 200,
 		snippet: '# If the Joomla site is installed within a folder\n# eg www.example.com/joomla/ then the robots.txt file\n# MUST be moved to the site root\n# eg www.example.com/robots.txt\n# AND the joomla folder name MUST be prefixed to all of the\n# paths.\n# eg the Disallow rule for the /administrator/ folder MUST\n# be changed to read\n# ',
-		checkedAt: '2026-08-27',
+		checkedAt: '2026-08-28',
 		note: {
 			th: 'ไฟล์ robots.txt ปิดกั้นบางเส้นทางไว้ แต่ไม่ได้ปิดกั้นทั้งเว็บไซต์ หน้าเนื้อหาทั่วไปจึงยังถูกจัดทำดัชนีได้ ส่วนบริการที่ต้องเข้าสู่ระบบยังไม่ปรากฏในผลการค้นหาตามปกติของระบบที่ต้องยืนยันตัวตน',
 			en: 'The robots.txt closes some paths but does not block the site as a whole, so ordinary content pages remain indexable. Services behind a sign-in still do not appear in search results, as is normal for authenticated systems.'

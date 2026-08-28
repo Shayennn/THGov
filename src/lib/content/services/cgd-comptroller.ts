@@ -347,14 +347,14 @@ export const service: Service = {
 	],
 	crawl: {
 		host: 'www.cgd.go.th',
-		verdict: 'waf-blocked',
-		kind: 'waf-rule',
+		verdict: 'partial',
+		kind: 'browser-only',
 		status: 403,
-		snippet: 'Full desktop-Chrome request profile\n  GET /  ->  403  (Cloudflare WAF rule (hard block))\nGooglebot user-agent\n  GET /  ->  403\nGET /robots.txt  ->  403',
-		checkedAt: '2026-08-27',
+		snippet: 'Full desktop-Chrome request profile\n  GET /  ->  403  (Cloudflare edge refusal)\nGooglebot user-agent\n  GET /  ->  403\nGET /robots.txt  ->  403\n\nHeadless Chromium (real browser engine)\n  GET /  ->  200  (served normally)\n  GET /robots.txt  ->  200\n\nUser-agent: *\nAllow: /cs\n \nSitemap: http://www.cgd.go.th/sitemap.xml',
+		checkedAt: '2026-08-28',
 		note: {
-			th: 'แม้จะเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ ทั้งส่วนหัวการระบุตัวตนเบราว์เซอร์ ภาษา และ fetch metadata ครบถ้วน เซิร์ฟเวอร์ก็ยังปฏิเสธคำขอด้วยหน้าบล็อกของระบบไฟร์วอลล์ การปิดกั้นลักษณะนี้มักกรองทราฟฟิกจากศูนย์ข้อมูลเป็นวงกว้าง เราจึงยืนยันนโยบายที่แท้จริงของเว็บไซต์จากภายนอกไม่ได้ และไม่สรุปว่า Googlebot ตัวจริงถูกปิดกั้นด้วยหรือไม่',
-			en: 'Even with a full browser request profile — complete client hints, language and fetch-metadata headers — the server refuses with a firewall block page. Blocks shaped like this usually filter datacentre traffic broadly, so the site’s real policy cannot be verified from outside, and we draw no conclusion about whether the genuine Googlebot is refused too.'
+			th: 'เมื่อเรียกด้วยโปรแกรมทั่วไป เว็บไซต์นี้ปฏิเสธคำขอ แต่เมื่อเปิดด้วยเบราว์เซอร์ Chromium จริงที่ประมวลผลจาวาสคริปต์ครบถ้วน เว็บไซต์กลับตอบกลับตามปกติ และเราอ่านไฟล์ robots.txt ได้จากช่องทางนั้น ผู้ใช้ที่เปิดผ่านเบราว์เซอร์จึงไม่ได้รับผลกระทบ ขณะที่บริการเก็บถาวรเว็บ เครื่องมือตรวจสอบภายนอก และผู้ช่วย AI ที่ประชาชนเริ่มใช้ค้นหาบริการภาครัฐ เข้าไม่ถึงเนื้อหาเลย',
+			en: 'The site refuses ordinary clients but answers a real Chromium browser that runs the page’s JavaScript, and we read its robots.txt over that connection. People using a browser are unaffected, while web archives, third-party monitoring and the AI assistants people increasingly use to look up government services get nothing at all.'
 		}
 	},
 	priority: 82,

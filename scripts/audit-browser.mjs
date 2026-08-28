@@ -44,17 +44,25 @@ const CERT_ERRORS =
 const CONNECT_ERRORS =
 	/^ERR_(CONNECTION_|ADDRESS_UNREACHABLE|NETWORK_CHANGED|TIMED_OUT|EMPTY_RESPONSE|SOCKET_NOT_CONNECTED)/;
 
-/** A block or challenge page can arrive with any status, so match on content. */
+/**
+ * A block or challenge page can arrive with any status, so match on content.
+ * `pollable` marks the interstitials that reload themselves once their script
+ * has run — those deserve the wait, and are only a block if they never clear.
+ */
 function pageBarrier(status, title, body) {
-	const t = `${title}`;
-	const head = body.slice(0, 4000);
-	if (/just a moment|checking your browser|cf-browser-verification|challenge-platform/i.test(t + head))
-		return 'js-challenge';
-	if (/attention required/i.test(t + head)) return 'waf-rule';
-	if (/incapsula|_Incapsula_Resource|imperva/i.test(head)) return 'waf-rule';
-	if (/request unsuccessful|block response|access denied|forbidden/i.test(t) && status !== 200)
-		return 'waf-rule';
-	if (status === 403 || status === 401 || status === 429) return 'waf-rule';
+	const head = `${title}\n${body.slice(0, 4000)}`;
+	if (/just a moment|checking your browser|cf-browser-verification|challenge-platform/i.test(head))
+		return { kind: 'js-challenge', detail: 'Cloudflare challenge page', pollable: true };
+	if (/attention required/i.test(head))
+		return { kind: 'waf-rule', detail: 'Cloudflare WAF block page' };
+	if (/incapsula|_Incapsula_Resource|imperva/i.test(head))
+		return status === 200
+			? { kind: 'waf-rule', detail: 'Imperva / Incapsula block page', pollable: true }
+			: { kind: 'waf-rule', detail: 'Imperva / Incapsula block page' };
+	if (/request unsuccessful|block response|access denied|forbidden/i.test(title) && status !== 200)
+		return { kind: 'waf-rule', detail: title.trim() || 'block page' };
+	if (status === 403 || status === 401 || status === 429)
+		return { kind: 'waf-rule', detail: `HTTP ${status}` };
 	return null;
 }
 
@@ -75,9 +83,10 @@ async function navigate(ctx, url) {
 		let title = await page.title().catch(() => '');
 		let body = await page.content().catch(() => '');
 
-		// Cloudflare's interstitial reloads itself once solved; poll for that.
+		// A self-reloading interstitial needs the time it asks for; give it that
+		// before calling the site refused.
 		for (let i = 0; i < CHALLENGE_POLLS; i++) {
-			if (pageBarrier(status, title, body) !== 'js-challenge') break;
+			if (!pageBarrier(status, title, body)?.pollable) break;
 			await page.waitForTimeout(CHALLENGE_INTERVAL);
 			status = docs.length ? docs[docs.length - 1].status() : status;
 			title = await page.title().catch(() => title);
@@ -115,9 +124,10 @@ async function robotsVia(page, origin) {
  * and recording how far we had to go.
  *
  * Returns { host, outcome, status, title, robotsStatus, robotsBody, scheme,
- *           insecure, error, barrier }, where outcome is one of:
+ *           insecure, error, barrier, barrierDetail }, where outcome is one of:
  *   'served'        a real browser is served real content
  *   'barrier'       a real browser is refused or held at a challenge page
+ *   'error'         the server answered, with a 5xx of its own
  *   'unreachable'   no connection at all, with `error` naming the failure
  */
 async function probeHost(browser, host, ua) {
@@ -139,7 +149,8 @@ async function probeHost(browser, host, ua) {
 				insecure: ignoreHTTPSErrors,
 				status: nav.status,
 				title: (nav.title || '').trim().slice(0, 80),
-				barrier
+				barrier: barrier?.kind ?? null,
+				barrierDetail: barrier?.detail ?? null
 			};
 			if (barrier) return out;
 			const robots = await robotsVia(nav.page, `${scheme}://${host}`);
@@ -168,7 +179,8 @@ async function probeHost(browser, host, ua) {
 	return { host, outcome: outcomeOf(r), ...r };
 }
 
-const outcomeOf = (r) => (r.barrier ? 'barrier' : 'served');
+const outcomeOf = (r) =>
+	r.barrier ? 'barrier' : r.status >= 500 ? 'error' : 'served';
 
 /**
  * Drive `hosts` through Chromium, `BROWSER_CONCURRENCY` at a time. One browser

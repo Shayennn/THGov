@@ -336,7 +336,7 @@ export const service: Service = {
 		kind: 'googlebot-exception',
 		status: 200,
 		snippet: 'User-agent: *\nDisallow: /\n\nUser-agent: Googlebot\nAllow: /\n\nUser-agent: Bingbot\nAllow: /',
-		checkedAt: '2026-08-27',
+		checkedAt: '2026-08-28',
 		note: {
 			th: 'ไฟล์ robots.txt ปิดกั้นบอตทุกตัวเป็นค่าเริ่มต้น แต่เขียนข้อยกเว้นให้ Googlebot เข้าถึงได้ เว็บไซต์จึงยังค้นเจอผ่าน Google ได้ตามปกติ ขณะที่เครื่องมือค้นหาอื่น บริการเก็บถาวรเว็บ และผู้ช่วย AI ที่ประชาชนเริ่มใช้ค้นหาบริการภาครัฐ ถูกปฏิเสธทั้งหมด',
 			en: 'The robots.txt blocks every crawler by default but writes an explicit exception for Googlebot. The site therefore remains findable through Google, while other search engines, web-archiving services and the AI assistants people increasingly use to look up government services are all refused.'

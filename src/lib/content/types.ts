@@ -3,7 +3,7 @@ import type { LocalizedString } from '$lib/i18n';
 /** How discoverable a site is to search engines, as measured by our own audit. */
 export type CrawlVerdict =
 	| 'blocked' // robots.txt: User-agent: * → Disallow: /
-	| 'waf-blocked' // server answers 403 to crawler user-agents
+	| 'waf-blocked' // refuses curl and a real browser engine alike
 	| 'partial' // some paths disallowed
 	| 'allowed' // fully crawlable
 	| 'none' // no robots.txt at all
@@ -18,8 +18,14 @@ export type CrawlKind =
 	| 'origin-403'
 	| 'ua-spoof-guard'
 	| 'redirect-loop'
+	| 'browser-only'
+	| 'tls-invalid'
+	| 'http-only'
 	| 'no-robots'
 	| 'html-not-robots'
+	| 'dns-failure'
+	| 'connection-failed'
+	| 'server-error'
 	| 'unreachable'
 	| 'partial'
 	| 'allowed';

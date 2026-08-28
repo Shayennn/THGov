@@ -337,13 +337,13 @@ export const service: Service = {
 	crawl: {
 		host: 'www.nbtc.go.th',
 		verdict: 'partial',
-		kind: 'js-challenge',
+		kind: 'partial',
 		status: 403,
-		snippet: 'Full desktop-Chrome request profile\n  GET /  ->  403  (Cloudflare managed challenge (JavaScript interstitial))\nGooglebot user-agent\n  GET /  ->  403\nGET /robots.txt  ->  200',
-		checkedAt: '2026-08-27',
+		snippet: 'Full desktop-Chrome request profile\n  GET /  ->  403  (Cloudflare managed challenge (JavaScript interstitial))\nGooglebot user-agent\n  GET /  ->  403\nGET /robots.txt  ->  200\n\nHeadless Chromium (real browser engine)\n  GET /  ->  200  (served normally)\n  GET /robots.txt  ->  200\n\nUser-agent: *\nDisallow: /wps/contenthandler/',
+		checkedAt: '2026-08-28',
 		note: {
-			th: 'เมื่อเรียกด้วยโปรไฟล์คำขอแบบเบราว์เซอร์เต็มรูปแบบ เซิร์ฟเวอร์ตอบกลับด้วยหน้าท้าทายของ Cloudflare ที่ต้องประมวลผลจาวาสคริปต์ก่อนจึงจะผ่านได้ เบราว์เซอร์จริงผ่านได้ และบอตของเครื่องมือค้นหาที่ Cloudflare ยืนยันตัวตนแล้วมักได้รับการยกเว้น เราจึงไม่สรุปว่า Google ถูกปิดกั้น แต่สิ่งที่ปิดกั้นแน่นอนคือเครื่องมือที่ไม่ประมวลผลจาวาสคริปต์ ทั้งบริการเก็บถาวรเว็บ เครื่องมือตรวจสอบภายนอก และผู้ช่วย AI',
-			en: 'Requested with a full browser profile, the server answers with a Cloudflare challenge that must be solved by running JavaScript. Real browsers pass it, and search-engine crawlers Cloudflare has verified are normally exempted — so we do not conclude that Google is blocked. What is certainly blocked is anything that does not execute JavaScript: web archives, third-party monitoring, and AI assistants.'
+			th: 'ไฟล์ robots.txt ปิดกั้นบางเส้นทางไว้ แต่ไม่ได้ปิดกั้นทั้งเว็บไซต์ หน้าเนื้อหาทั่วไปจึงยังถูกจัดทำดัชนีได้ ส่วนบริการที่ต้องเข้าสู่ระบบยังไม่ปรากฏในผลการค้นหาตามปกติของระบบที่ต้องยืนยันตัวตน',
+			en: 'The robots.txt closes some paths but does not block the site as a whole, so ordinary content pages remain indexable. Services behind a sign-in still do not appear in search results, as is normal for authenticated systems.'
 		}
 	},
 	priority: 76,
