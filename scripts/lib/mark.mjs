@@ -1,5 +1,5 @@
 /**
- * The THGov mark, in one place. `scripts/lib/icons.mjs`, `scripts/lib/og.mjs`
+ * The ThaiGov mark, in one place. `scripts/lib/icons.mjs`, `scripts/lib/og.mjs`
  * and `scripts/lib/coming-soon.mjs` all render from here; the Svelte component
  * `src/lib/components/Logo.svelte` carries the same geometry inline so the
  * header does not need a build step to draw itself. Change both together.
@@ -84,7 +84,7 @@ export function glassGroup(gradientId) {
  *   zone because the platform may crop the artwork to a circle.
  */
 export function markSvg({ size = 512, padding = 0, background = null } = {}) {
-	const id = 'thgov-mark';
+	const id = 'thaigov-mark';
 	// The tile is authored in a 32-unit box; padding is expressed in canvas
 	// units, so convert it before insetting.
 	const inset = (padding / size) * 32;

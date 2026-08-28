@@ -55,7 +55,7 @@
 
 		<div class="bottom">
 			<p>
-				&copy; {year} THGov · {t('footer.rights')}
+				&copy; {year} ThaiGov.co · {t('footer.rights')}
 			</p>
 			<p class="meta">
 				{t('footer.updated')}: {formatDate(SITE.lastAudit, currentLocale())} ·

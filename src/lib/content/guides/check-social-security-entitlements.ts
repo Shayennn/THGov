@@ -246,8 +246,8 @@ export const guide: Guide = {
 		{
 			type: 'p',
 			text: {
-				th: 'THGov เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดสำนักงานประกันสังคมหรือหน่วยงานใด เราไม่รับข้อมูลส่วนบุคคลและไม่รับชำระเงิน ตัวเลขอย่างอัตราเงินสมทบ จำนวนเดือนขั้นต่ำ และกำหนดเวลายื่นเรื่อง เปลี่ยนแปลงได้ตามประกาศ จึงควรยึดตัวเลขล่าสุดจากเว็บไซต์ทางการ',
-				en: 'THGov is an independent directory, unaffiliated with the Social Security Office or any agency. We take no personal data and accept no payments. Figures such as contribution rates, minimum qualifying months and filing deadlines change by announcement, so always take the current numbers from the official site.'
+				th: 'ThaiGov.co เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดสำนักงานประกันสังคมหรือหน่วยงานใด เราไม่รับข้อมูลส่วนบุคคลและไม่รับชำระเงิน ตัวเลขอย่างอัตราเงินสมทบ จำนวนเดือนขั้นต่ำ และกำหนดเวลายื่นเรื่อง เปลี่ยนแปลงได้ตามประกาศ จึงควรยึดตัวเลขล่าสุดจากเว็บไซต์ทางการ',
+				en: 'ThaiGov.co is an independent directory, unaffiliated with the Social Security Office or any agency. We take no personal data and accept no payments. Figures such as contribution rates, minimum qualifying months and filing deadlines change by announcement, so always take the current numbers from the official site.'
 			}
 		}
 	],

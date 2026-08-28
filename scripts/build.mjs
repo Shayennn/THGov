@@ -32,9 +32,9 @@ const branch =
 const isProdBranch = branch === 'main' || branch === 'master' || branch === '';
 const mode = process.env.SITE_MODE || (isProdBranch ? 'coming-soon' : 'full');
 
-const PROD_URL = 'https://www.thgov.co';
-/** Preview deployments land on `<branch>-thgov.phitchawat.workers.dev`. */
-const PREVIEW_SUFFIX = process.env.PUBLIC_PREVIEW_SUFFIX || 'thgov.phitchawat.workers.dev';
+const PROD_URL = 'https://www.thaigov.co';
+/** Preview deployments land on `<branch>-thaigov.phitchawat.workers.dev`. */
+const PREVIEW_SUFFIX = process.env.PUBLIC_PREVIEW_SUFFIX || 'thaigov.phitchawat.workers.dev';
 
 /** Cloudflare derives a version alias from the branch name this way. */
 function previewOrigin(name) {
@@ -209,17 +209,17 @@ function verifyBuild(content) {
  * Generated rather than shipped as a static file, because the sitemap URL and
  * the crawl policy both depend on which environment is being built. A preview
  * carries the full site while production still serves the holding page, so a
- * preview must refuse crawlers outright or it would compete with www.thgov.co.
+ * preview must refuse crawlers outright or it would compete with www.thaigov.co.
  */
 function writeRobots() {
 	const body = isPreview
-		? `# Preview deployment of THGov — not the public site.
+		? `# Preview deployment of ThaiGov.co — not the public site.
 # The production site is ${PROD_URL}. This copy must not be indexed.
 
 User-agent: *
 Disallow: /
 `
-		: `# THGov — an independent directory of Thai government online services.
+		: `# ThaiGov.co — an independent directory of Thai government online services.
 # We publish this file the way we wish every agency would: open, explicit,
 # and pointing at a sitemap. See /robots-report for why that matters.
 
@@ -252,7 +252,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
 
 async function main() {
 	console.log(
-		`\nTHGov build — mode: \x1b[1m${mode}\x1b[0m${branch ? ` · branch: ${branch}` : ''}` +
+		`\nThaiGov.co build — mode: \x1b[1m${mode}\x1b[0m${branch ? ` · branch: ${branch}` : ''}` +
 			`${isPreview ? ' · \x1b[33mpreview (noindex)\x1b[0m' : ''}\n  origin: ${SITE_URL}\n`
 	);
 

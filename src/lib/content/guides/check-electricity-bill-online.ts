@@ -291,8 +291,8 @@ export const guide: Guide = {
 		{
 			type: 'p',
 			text: {
-				th: 'THGov เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดหรือเกี่ยวข้องกับการไฟฟ้านครหลวง การไฟฟ้าส่วนภูมิภาค หรือหน่วยงานใด เราไม่รับชำระเงินและไม่เก็บข้อมูลมิเตอร์ ขั้นตอนเปลี่ยนแปลงได้เสมอ จึงขอให้ยึดข้อมูลบนเว็บไซต์ทางการเป็นหลัก',
-				en: 'THGov is an independent directory, not affiliated with the Metropolitan Electricity Authority, the Provincial Electricity Authority or any other agency. We take no payments and store no meter details. Procedures and terms change, so treat what the utility itself publishes as authoritative.'
+				th: 'ThaiGov.co เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดหรือเกี่ยวข้องกับการไฟฟ้านครหลวง การไฟฟ้าส่วนภูมิภาค หรือหน่วยงานใด เราไม่รับชำระเงินและไม่เก็บข้อมูลมิเตอร์ ขั้นตอนเปลี่ยนแปลงได้เสมอ จึงขอให้ยึดข้อมูลบนเว็บไซต์ทางการเป็นหลัก',
+				en: 'ThaiGov.co is an independent directory, not affiliated with the Metropolitan Electricity Authority, the Provincial Electricity Authority or any other agency. We take no payments and store no meter details. Procedures and terms change, so treat what the utility itself publishes as authoritative.'
 			}
 		}
 	],

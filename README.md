@@ -1,4 +1,4 @@
-# THGov — สารบัญบริการภาครัฐไทย
+# ThaiGov.co — สารบัญบริการภาครัฐไทย
 
 An independent, static directory of Thai government online services. It exists
 because a surprising number of Thai government systems cannot be found on
@@ -6,11 +6,11 @@ Google — some block every crawler in their own `robots.txt`, others refuse
 automated requests entirely — so citizens searching for a real service land on
 scrapers, lookalike sites and outdated summaries instead.
 
-THGov describes each service in the words people actually search with, in Thai
+ThaiGov.co describes each service in the words people actually search with, in Thai
 and English, then links straight to the agency's official site. It collects no
 personal data, takes no payments and has no login.
 
-> **THGov is not a government website** and is not affiliated with any agency it
+> **ThaiGov.co is not a government website** and is not affiliated with any agency it
 > lists. Every transaction happens on the agency's own site.
 
 ## Stack
@@ -18,7 +18,7 @@ personal data, takes no payments and has no login.
 - **SvelteKit 2 + Svelte 5**, fully prerendered with `@sveltejs/adapter-static`
 - **Zero runtime dependencies** — the output is plain HTML, CSS and a small JS bundle
 - **Self-hosted [Prompt](https://fonts.google.com/specimen/Prompt)** (SIL OFL 1.1), Thai + Latin subsets only
-- Deployed to **Cloudflare Workers** static assets at [www.thgov.co](https://www.thgov.co)
+- Deployed to **Cloudflare Workers** static assets at [www.thaigov.co](https://www.thaigov.co)
 
 ## Getting started
 
@@ -51,13 +51,13 @@ decides both what to build and which origin to build it for:
 
 | Branch            | Output                                | Origin                                  | Indexed |
 | ----------------- | ------------------------------------- | --------------------------------------- | ------- |
-| `main` / `master` | Standalone bilingual coming-soon page | `https://www.thgov.co`                  | Yes     |
-| any other branch  | The full directory                    | `https://<branch>-thgov.phitchawat.workers.dev` | **No** |
+| `main` / `master` | Standalone bilingual coming-soon page | `https://www.thaigov.co`                  | Yes     |
+| any other branch  | The full directory                    | `https://<branch>-thaigov.phitchawat.workers.dev` | **No** |
 
 Preview deployments carry the full site while production still serves the
 holding page, so they are deliberately locked down: every page gets
 `noindex, follow` and `robots.txt` disallows everything. An indexed preview
-would compete with `www.thgov.co` for its own content.
+would compete with `www.thaigov.co` for its own content.
 
 Canonicals are always self-referential — a preview points at the preview
 origin, never at production, which serves different content.

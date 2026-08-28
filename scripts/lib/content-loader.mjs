@@ -37,7 +37,7 @@ export async function loadContent() {
 		`export const GUIDES = [${guides.map((_, i) => `g${i}`).join(', ')}];`
 	].join('\n');
 
-	const outDir = path.join(ROOT, '.svelte-kit', 'thgov-build');
+	const outDir = path.join(ROOT, '.svelte-kit', 'thaigov-build');
 	fs.mkdirSync(outDir, { recursive: true });
 	const outFile = path.join(outDir, 'content.mjs');
 

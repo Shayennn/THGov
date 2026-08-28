@@ -10,6 +10,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const locale = isLocale(seg) ? seg : DEFAULT_LOCALE;
 
 	return resolve(event, {
-		transformPageChunk: ({ html }) => html.replace('%thgov.lang%', HTML_LANG[locale])
+		transformPageChunk: ({ html }) => html.replace('%thaigov.lang%', HTML_LANG[locale])
 	});
 };

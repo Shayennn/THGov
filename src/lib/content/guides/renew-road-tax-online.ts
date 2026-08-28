@@ -239,8 +239,8 @@ export const guide: Guide = {
 			tone: 'info',
 			title: { th: 'เกี่ยวกับหน้านี้', en: 'About this page' },
 			text: {
-				th: 'THGov เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดกรมการขนส่งทางบกหรือหน่วยงานใด เราไม่รับชำระภาษีและไม่เก็บข้อมูลส่วนบุคคล ส่วนอัตราภาษี เกณฑ์อายุรถ และกำหนดเวลา ให้ยึดตามประกาศทางการล่าสุด',
-				en: 'THGov is an independent directory, not affiliated with the Department of Land Transport or any other agency. We take no payments and collect none of your personal data. For rates, age thresholds and deadlines, always defer to the latest official announcement.'
+				th: 'ThaiGov.co เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดกรมการขนส่งทางบกหรือหน่วยงานใด เราไม่รับชำระภาษีและไม่เก็บข้อมูลส่วนบุคคล ส่วนอัตราภาษี เกณฑ์อายุรถ และกำหนดเวลา ให้ยึดตามประกาศทางการล่าสุด',
+				en: 'ThaiGov.co is an independent directory, not affiliated with the Department of Land Transport or any other agency. We take no payments and collect none of your personal data. For rates, age thresholds and deadlines, always defer to the latest official announcement.'
 			}
 		}
 	],

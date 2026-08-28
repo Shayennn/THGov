@@ -128,19 +128,19 @@ export const UI = {
 	'crawl.checkedOn': { th: 'ตรวจสอบเมื่อ {date}', en: 'Checked on {date}' },
 
 	'disclaimer.short': {
-		th: 'THGov เป็นสารบัญอิสระ ไม่ใช่หน่วยงานราชการ และไม่มีความเกี่ยวข้องกับหน่วยงานที่กล่าวถึง',
-		en: 'THGov is an independent directory. It is not a government body and is not affiliated with the agencies listed.'
+		th: 'ThaiGov.co เป็นสารบัญอิสระ ไม่ใช่หน่วยงานราชการ และไม่มีความเกี่ยวข้องกับหน่วยงานที่กล่าวถึง',
+		en: 'ThaiGov.co is an independent directory. It is not a government body and is not affiliated with the agencies listed.'
 	},
 	'disclaimer.long': {
-		th: 'THGov ไม่ใช่เว็บไซต์ของทางราชการ เราไม่รับส่งข้อมูลส่วนบุคคล ไม่รับชำระเงิน และไม่มีระบบล็อกอินใด ๆ ทุกธุรกรรมต้องทำบนเว็บไซต์ทางการของหน่วยงานเท่านั้น โปรดตรวจสอบชื่อโดเมนก่อนกรอกข้อมูลทุกครั้ง',
-		en: 'THGov is not a government website. We never collect personal data, take payments, or provide logins. All transactions must be completed on the agency’s own official website — always check the domain name before entering any information.'
+		th: 'ThaiGov.co ไม่ใช่เว็บไซต์ของทางราชการ เราไม่รับส่งข้อมูลส่วนบุคคล ไม่รับชำระเงิน และไม่มีระบบล็อกอินใด ๆ ทุกธุรกรรมต้องทำบนเว็บไซต์ทางการของหน่วยงานเท่านั้น โปรดตรวจสอบชื่อโดเมนก่อนกรอกข้อมูลทุกครั้ง',
+		en: 'ThaiGov.co is not a government website. We never collect personal data, take payments, or provide logins. All transactions must be completed on the agency’s own official website — always check the domain name before entering any information.'
 	},
 	'disclaimer.leaving': {
-		th: 'คุณกำลังจะออกจาก THGov ไปยังเว็บไซต์ทางการของหน่วยงาน',
-		en: 'You are leaving THGov for the agency’s official website'
+		th: 'คุณกำลังจะออกจาก ThaiGov.co ไปยังเว็บไซต์ทางการของหน่วยงาน',
+		en: 'You are leaving ThaiGov.co for the agency’s official website'
 	},
 
-	'footer.about': { th: 'เกี่ยวกับ THGov', en: 'About THGov' },
+	'footer.about': { th: 'เกี่ยวกับ ThaiGov.co', en: 'About ThaiGov.co' },
 	'footer.explore': { th: 'สำรวจ', en: 'Explore' },
 	'footer.legal': { th: 'ข้อกำหนด', en: 'Legal' },
 	'footer.privacy': { th: 'นโยบายความเป็นส่วนตัว', en: 'Privacy policy' },

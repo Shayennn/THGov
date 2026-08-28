@@ -98,7 +98,7 @@ function card({ eyebrow, title, subtitle, badge, badgeColor }) {
 			el('div', { display: 'flex', alignItems: 'center', justifyContent: 'space-between' }, [
 				el('div', { display: 'flex', alignItems: 'center', gap: '18px' }, [
 					img(MARK_DATA_URI, 52),
-					text('THGov', { fontSize: '31px', fontWeight: 600, letterSpacing: '-0.01em' })
+					text('ThaiGov', { fontSize: '31px', fontWeight: 600, letterSpacing: '-0.01em' })
 				]),
 				badge
 					? el(

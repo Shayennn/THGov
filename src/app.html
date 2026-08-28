@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="%thgov.lang%" class="text-size-md">
+<html lang="%thaigov.lang%" class="text-size-md">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -31,12 +31,12 @@
 			(function () {
 				try {
 					var d = document.documentElement;
-					var size = localStorage.getItem('thgov:fontSize');
+					var size = localStorage.getItem('thaigov:fontSize');
 					if (size === 'sm' || size === 'md' || size === 'lg') {
 						d.classList.remove('text-size-sm', 'text-size-md', 'text-size-lg');
 						d.classList.add('text-size-' + size);
 					}
-					var mode = localStorage.getItem('thgov:colorMode');
+					var mode = localStorage.getItem('thaigov:colorMode');
 					if (!mode || mode === 'auto') {
 						mode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 					}

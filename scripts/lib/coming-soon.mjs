@@ -3,15 +3,15 @@ import path from 'node:path';
 import { renderOg } from './og.mjs';
 import { markSvg } from './mark.mjs';
 
-const SITE_URL = (process.env.PUBLIC_SITE_URL || 'https://www.thgov.co').replace(/\/+$/, '');
+const SITE_URL = (process.env.PUBLIC_SITE_URL || 'https://www.thaigov.co').replace(/\/+$/, '');
 
 const PAGE = `<!doctype html>
 <html lang="th">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>THGov — สารบัญบริการภาครัฐไทย | เร็ว ๆ นี้</title>
-<meta name="description" content="THGov กำลังจะเปิดให้บริการ — สารบัญอิสระที่รวบรวมบริการออนไลน์ของหน่วยงานรัฐไทย พร้อมคำอธิบายภาษาไทยและลิงก์ตรงไปยังเว็บไซต์ทางการ">
+<title>ThaiGov.co — สารบัญบริการภาครัฐไทย | เร็ว ๆ นี้</title>
+<meta name="description" content="ThaiGov.co กำลังจะเปิดให้บริการ — สารบัญอิสระที่รวบรวมบริการออนไลน์ของหน่วยงานรัฐไทย พร้อมคำอธิบายภาษาไทยและลิงก์ตรงไปยังเว็บไซต์ทางการ">
 <link rel="canonical" href="__SITE__/">
 <link rel="alternate" hreflang="th-TH" href="__SITE__/">
 <link rel="alternate" hreflang="en" href="__SITE__/">
@@ -23,22 +23,22 @@ const PAGE = `<!doctype html>
 <meta name="theme-color" content="#0b0820">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="THGov">
-<meta property="og:title" content="THGov — สารบัญบริการภาครัฐไทย">
-<meta property="og:description" content="ค้นหาบริการออนไลน์ของหน่วยงานรัฐไทย แล้วไปยังเว็บไซต์ทางการโดยตรง — เปิดให้บริการเร็ว ๆ นี้">
+<meta property="og:site_name" content="ThaiGov.co">
+<meta property="og:title" content="ThaiGov.co — สารบัญบริการภาครัฐไทย">
+<meta property="og:description" content="เรามีทุกเว็บไซท์ของหน่วยงานรัฐไทยที่หายไป — เปิดให้บริการเร็ว ๆ นี้">
 <meta property="og:url" content="__SITE__/">
 <meta property="og:image" content="__SITE__/og/coming-soon.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="th_TH">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="THGov — สารบัญบริการภาครัฐไทย">
-<meta name="twitter:description" content="ค้นหาบริการออนไลน์ของหน่วยงานรัฐไทย แล้วไปยังเว็บไซต์ทางการโดยตรง">
+<meta name="twitter:title" content="ThaiGov.co — สารบัญบริการภาครัฐไทย">
+<meta name="twitter:description" content="เรามีทุกเว็บไซท์ของหน่วยงานรัฐไทยที่หายไป">
 <meta name="twitter:image" content="__SITE__/og/coming-soon.png">
 <link rel="preload" href="/fonts/prompt-thai-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/prompt.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","name":"THGov — สารบัญบริการภาครัฐไทย","alternateName":"THGov","url":"__SITE__/","inLanguage":["th-TH","en"],"description":"สารบัญอิสระที่รวบรวมบริการออนไลน์ของหน่วยงานราชการไทยไว้ในที่เดียว พร้อมลิงก์ตรงไปยังเว็บไซต์ทางการ","publisher":{"@type":"Organization","name":"THGov","url":"__SITE__/"}}
+{"@context":"https://schema.org","@type":"WebSite","name":"ThaiGov.co — สารบัญบริการภาครัฐไทย","alternateName":"ThaiGov.co","url":"__SITE__/","inLanguage":["th-TH","en"],"description":"สารบัญอิสระที่รวบรวมบริการออนไลน์ของหน่วยงานราชการไทยไว้ในที่เดียว พร้อมลิงก์ตรงไปยังเว็บไซต์ทางการ","publisher":{"@type":"Organization","name":"ThaiGov.co","url":"__SITE__/"}}
 </script>
 <style>
 *,*::before,*::after{box-sizing:border-box}
@@ -117,7 +117,7 @@ html[data-lang=en] [lang=en]{display:revert}
 <main class="wrap">
 <div class="mark">
 __MARK__
-<b>THGov</b>
+<b>ThaiGov</b>
 </div>
 
 <p class="pill"><span class="dot" aria-hidden="true"></span>
@@ -150,8 +150,8 @@ __MARK__
 
 <footer>
 <p>
-<span lang="th">THGov เป็นสารบัญอิสระ ไม่ใช่เว็บไซต์ของทางราชการ และไม่มีความเกี่ยวข้องกับหน่วยงานที่กล่าวถึง</span>
-<span lang="en">THGov is an independent directory. It is not a government website and is not affiliated with the agencies it lists.</span>
+<span lang="th">ThaiGov.co เป็นสารบัญอิสระ ไม่ใช่เว็บไซต์ของทางราชการ และไม่มีความเกี่ยวข้องกับหน่วยงานที่กล่าวถึง</span>
+<span lang="en">ThaiGov.co is an independent directory. It is not a government website and is not affiliated with the agencies it lists.</span>
 </p>
 </footer>
 
@@ -164,10 +164,10 @@ __MARK__
 		document.querySelectorAll('.lang button').forEach(function(b){
 			b.setAttribute('aria-pressed', String(b.dataset.set===l));
 		});
-		try{localStorage.setItem('thgov:lang',l)}catch(e){}
+		try{localStorage.setItem('thaigov:lang',l)}catch(e){}
 	}
 	var stored=null;
-	try{stored=localStorage.getItem('thgov:lang')}catch(e){}
+	try{stored=localStorage.getItem('thaigov:lang')}catch(e){}
 	if(!stored && !/^th\\b/i.test(navigator.language||'')) stored='en';
 	set(stored==='en'?'en':'th');
 	document.querySelectorAll('.lang button').forEach(function(b){

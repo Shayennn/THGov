@@ -222,8 +222,8 @@ export const guide: Guide = {
 		{
 			type: 'p',
 			text: {
-				th: 'THGov เป็นเว็บรวมลิงก์บริการออนไลน์ของราชการไทยที่จัดทำขึ้นอย่างอิสระ ไม่ได้สังกัดหน่วยงานใด เราไม่รับข้อมูลส่วนบุคคลและไม่รับชำระเงินแทนหน่วยงานใดทั้งสิ้น สิ่งที่หน้านี้ตั้งใจให้คือทักษะการอ่านที่อยู่เว็บ ซึ่งใช้ได้กับทุกหน้าที่คุณจะเจอต่อจากนี้',
-				en: 'THGov is an independently made directory of Thai government online services. We are not part of any agency; we never collect personal data and never take payments for anyone. What this page is really for is the habit of reading an address — a skill that travels with you to every page you meet from here on, not only the ones we happen to list.'
+				th: 'ThaiGov.co เป็นเว็บรวมลิงก์บริการออนไลน์ของราชการไทยที่จัดทำขึ้นอย่างอิสระ ไม่ได้สังกัดหน่วยงานใด เราไม่รับข้อมูลส่วนบุคคลและไม่รับชำระเงินแทนหน่วยงานใดทั้งสิ้น สิ่งที่หน้านี้ตั้งใจให้คือทักษะการอ่านที่อยู่เว็บ ซึ่งใช้ได้กับทุกหน้าที่คุณจะเจอต่อจากนี้',
+				en: 'ThaiGov.co is an independently made directory of Thai government online services. We are not part of any agency; we never collect personal data and never take payments for anyone. What this page is really for is the habit of reading an address — a skill that travels with you to every page you meet from here on, not only the ones we happen to list.'
 			}
 		}
 	],

@@ -15,14 +15,14 @@ const UPDATED = '2026-08-28';
 export const PAGES: Record<string, StaticPage> = {
 	about: {
 		slug: 'about',
-		title: { th: 'เกี่ยวกับ THGov', en: 'About THGov' },
+		title: { th: 'เกี่ยวกับ ThaiGov.co', en: 'About ThaiGov.co' },
 		deck: {
 			th: 'สารบัญอิสระที่ทำให้บริการภาครัฐไทยค้นเจอได้ แล้วส่งคุณต่อไปยังเว็บไซต์ทางการ',
 			en: 'An independent directory that makes Thai government services findable, then hands you to the official site.'
 		},
 		summary: {
-			th: 'THGov คือสารบัญอิสระที่รวบรวมบริการออนไลน์ของหน่วยงานรัฐไทย ไม่ใช่เว็บไซต์ราชการ ไม่รับข้อมูลส่วนบุคคล และไม่รับชำระเงิน',
-			en: 'THGov is an independent directory of Thai government online services. It is not a government website, collects no personal data and takes no payments.'
+			th: 'ThaiGov.co คือสารบัญอิสระที่รวบรวมบริการออนไลน์ของหน่วยงานรัฐไทย ไม่ใช่เว็บไซต์ราชการ ไม่รับข้อมูลส่วนบุคคล และไม่รับชำระเงิน',
+			en: 'ThaiGov.co is an independent directory of Thai government online services. It is not a government website, collects no personal data and takes no payments.'
 		},
 		updated: UPDATED,
 		body: [
@@ -30,7 +30,7 @@ export const PAGES: Record<string, StaticPage> = {
 			{
 				type: 'p',
 				text: {
-					th: 'บริการออนไลน์ของภาครัฐไทยมีอยู่จริงและใช้งานได้ดีกว่าที่หลายคนคิด แต่ประชาชนจำนวนมากหาไม่เจอ สาเหตุมีสองข้อที่ทับซ้อนกัน ข้อแรกคือชื่อระบบราชการไม่ตรงกับคำที่คนใช้ค้นหา ไม่มีใครพิมพ์ว่า “ระบบการให้บริการธุรกรรมทางอิเล็กทรอนิกส์” แต่พิมพ์ว่า “เช็คค่าไฟ” หรือ “ต่อภาษีรถ”',
+					th: 'บริการออนไลน์ที่ภาครัฐไทยมี ใช้งานได้ได้ดีกว่าที่หลายคนคิด แต่ประชาชนจำนวนมากหาไม่เจอ สาเหตุมีสองข้อที่ทับซ้อนกัน ข้อแรกคือชื่อระบบราชการไม่ตรงกับคำที่คนใช้ค้นหา ไม่มีใครพิมพ์ว่า “ระบบการให้บริการธุรกรรมทางอิเล็กทรอนิกส์” แต่พิมพ์ว่า “เช็คค่าไฟ” หรือ “ต่อภาษีรถ”',
 					en: 'Thailand’s government online services exist, and many work better than people expect — yet citizens routinely cannot find them. Two problems overlap. The first is naming: nobody types the formal system name into a search box. They type “check my electricity bill” or “renew road tax”.'
 				}
 			},
@@ -41,7 +41,7 @@ export const PAGES: Record<string, StaticPage> = {
 					en: 'The second problem is more serious: a number of government sites block search engines themselves. Some declare in robots.txt that no page may be crawled; others configure their servers to refuse Google’s crawler with a 403. The result is public information — disclosure that the law requires — which in practice cannot be found.'
 				}
 			},
-			{ type: 'h2', text: { th: 'สิ่งที่ THGov ทำ', en: 'What THGov does' } },
+			{ type: 'h2', text: { th: 'สิ่งที่ ThaiGov.co ทำ', en: 'What ThaiGov.co does' } },
 			{
 				type: 'ul',
 				items: [
@@ -63,14 +63,14 @@ export const PAGES: Record<string, StaticPage> = {
 					}
 				]
 			},
-			{ type: 'h2', text: { th: 'สิ่งที่ THGov ไม่ทำ', en: 'What THGov does not do' } },
+			{ type: 'h2', text: { th: 'สิ่งที่ ThaiGov.co ไม่ทำ', en: 'What ThaiGov.co does not do' } },
 			{
 				type: 'callout',
 				tone: 'danger',
 				title: { th: 'เราไม่ใช่หน่วยงานราชการ', en: 'We are not a government body' },
 				text: {
-					th: 'THGov ไม่ได้เป็นส่วนหนึ่งของรัฐบาลไทย ไม่มีความเกี่ยวข้องกับหน่วยงานที่ปรากฏในเว็บไซต์นี้ และไม่ได้รับมอบหมายจากหน่วยงานใด เราไม่รับคำร้อง ไม่ออกเอกสาร ไม่รับชำระเงิน และไม่มีระบบล็อกอิน หากมีเว็บไซต์ใดอ้างชื่อ THGov เพื่อขอข้อมูลส่วนตัวหรือเงิน นั่นคือการหลอกลวง',
-					en: 'THGov is not part of the Thai government, is not affiliated with any agency listed here, and acts on no agency’s instruction. We accept no applications, issue no documents, take no payments and operate no login. Any site using the THGov name to request personal data or money is fraudulent.'
+					th: 'ThaiGov.co ไม่ได้เป็นส่วนหนึ่งของรัฐบาลไทย ไม่มีความเกี่ยวข้องกับหน่วยงานที่ปรากฏในเว็บไซต์นี้ และไม่ได้รับมอบหมายจากหน่วยงานใด เราไม่รับคำร้อง ไม่ออกเอกสาร ไม่รับชำระเงิน และไม่มีระบบล็อกอิน หากมีเว็บไซต์ใดอ้างชื่อ ThaiGov.co เพื่อขอข้อมูลส่วนตัวหรือเงิน นั่นคือการหลอกลวง',
+					en: 'ThaiGov.co is not part of the Thai government, is not affiliated with any agency listed here, and acts on no agency’s instruction. We accept no applications, issue no documents, take no payments and operate no login. Any site using the ThaiGov.co name to request personal data or money is fraudulent.'
 				}
 			},
 			{ type: 'h2', text: { th: 'วิธีตรวจสอบของเรา', en: 'How we audit' } },
@@ -103,12 +103,12 @@ export const PAGES: Record<string, StaticPage> = {
 		slug: 'privacy',
 		title: { th: 'นโยบายความเป็นส่วนตัว', en: 'Privacy policy' },
 		deck: {
-			th: 'THGov เป็นเว็บไซต์สถิต ไม่เก็บข้อมูลส่วนบุคคล และไม่ใช้คุกกี้เพื่อการติดตาม',
-			en: 'THGov is a static website. It stores no personal data and sets no tracking cookies.'
+			th: 'ThaiGov.co เป็นเว็บไซต์สถิต ไม่เก็บข้อมูลส่วนบุคคล และไม่ใช้คุกกี้เพื่อการติดตาม',
+			en: 'ThaiGov.co is a static website. It stores no personal data and sets no tracking cookies.'
 		},
 		summary: {
-			th: 'นโยบายความเป็นส่วนตัวของ THGov ตามหลัก PDPA เว็บไซต์เป็นไฟล์สถิต ไม่มีบัญชีผู้ใช้ ไม่เก็บข้อมูลส่วนบุคคล และไม่ใช้คุกกี้ติดตามผู้ใช้',
-			en: 'THGov’s privacy policy under Thailand’s PDPA. The site is fully static, has no user accounts, stores no personal data and uses no tracking cookies.'
+			th: 'นโยบายความเป็นส่วนตัวของ ThaiGov.co ตามหลัก PDPA เว็บไซต์เป็นไฟล์สถิต ไม่มีบัญชีผู้ใช้ ไม่เก็บข้อมูลส่วนบุคคล และไม่ใช้คุกกี้ติดตามผู้ใช้',
+			en: 'ThaiGov.co’s privacy policy under Thailand’s PDPA. The site is fully static, has no user accounts, stores no personal data and uses no tracking cookies.'
 		},
 		updated: UPDATED,
 		body: [
@@ -124,16 +124,16 @@ export const PAGES: Record<string, StaticPage> = {
 			{
 				type: 'p',
 				text: {
-					th: 'หากคุณปรับขนาดตัวอักษรหรือเปลี่ยนโหมดสีผ่านเมนูการเข้าถึง เราจะบันทึกค่านั้นไว้ใน localStorage ของเบราว์เซอร์คุณ ภายใต้คีย์ thgov:fontSize และ thgov:colorMode ค่าดังกล่าวอยู่ในเครื่องของคุณเท่านั้น ไม่ถูกส่งมายังเซิร์ฟเวอร์ และคุณลบได้เองด้วยการล้างข้อมูลเว็บไซต์ในเบราว์เซอร์',
-					en: 'If you change the text size or colour mode from the accessibility menu, we save that choice in your browser’s localStorage under the keys `thgov:fontSize` and `thgov:colorMode`. It stays on your device, is never sent to a server, and you can remove it by clearing site data in your browser.'
+					th: 'หากคุณปรับขนาดตัวอักษรหรือเปลี่ยนโหมดสีผ่านเมนูการเข้าถึง เราจะบันทึกค่านั้นไว้ใน localStorage ของเบราว์เซอร์คุณ ภายใต้คีย์ thaigov:fontSize และ thaigov:colorMode ค่าดังกล่าวอยู่ในเครื่องของคุณเท่านั้น ไม่ถูกส่งมายังเซิร์ฟเวอร์ และคุณลบได้เองด้วยการล้างข้อมูลเว็บไซต์ในเบราว์เซอร์',
+					en: 'If you change the text size or colour mode from the accessibility menu, we save that choice in your browser’s localStorage under the keys `thaigov:fontSize` and `thaigov:colorMode`. It stays on your device, is never sent to a server, and you can remove it by clearing site data in your browser.'
 				}
 			},
 			{ type: 'h2', text: { th: 'คุกกี้', en: 'Cookies' } },
 			{
 				type: 'p',
 				text: {
-					th: 'THGov ไม่ตั้งคุกกี้ใด ๆ และไม่ใช้เครื่องมือวิเคราะห์พฤติกรรมผู้ใช้ที่ระบุตัวบุคคล จึงไม่มีแบนเนอร์ขอความยินยอมคุกกี้บนเว็บไซต์นี้',
-					en: 'THGov sets no cookies and runs no analytics that identify individuals — which is why you see no cookie-consent banner here.'
+					th: 'ThaiGov.co ไม่ตั้งคุกกี้ใด ๆ และไม่ใช้เครื่องมือวิเคราะห์พฤติกรรมผู้ใช้ที่ระบุตัวบุคคล จึงไม่มีแบนเนอร์ขอความยินยอมคุกกี้บนเว็บไซต์นี้',
+					en: 'ThaiGov.co sets no cookies and runs no analytics that identify individuals — which is why you see no cookie-consent banner here.'
 				}
 			},
 			{ type: 'h2', text: { th: 'บันทึกของผู้ให้บริการโฮสติ้ง', en: 'Hosting provider logs' } },
@@ -149,16 +149,16 @@ export const PAGES: Record<string, StaticPage> = {
 				type: 'callout',
 				tone: 'warn',
 				text: {
-					th: 'เมื่อคุณกดลิงก์ไปยังเว็บไซต์ของหน่วยงานรัฐ คุณจะออกจาก THGov ทันที และอยู่ภายใต้นโยบายความเป็นส่วนตัวของเว็บไซต์นั้นแทน โปรดอ่านนโยบายของหน่วยงานก่อนกรอกข้อมูลส่วนตัวใด ๆ',
-					en: 'The moment you follow a link to an agency’s website you leave THGov and come under that site’s privacy policy instead. Read the agency’s policy before entering any personal information.'
+					th: 'เมื่อคุณกดลิงก์ไปยังเว็บไซต์ของหน่วยงานรัฐ คุณจะออกจาก ThaiGov.co ทันที และอยู่ภายใต้นโยบายความเป็นส่วนตัวของเว็บไซต์นั้นแทน โปรดอ่านนโยบายของหน่วยงานก่อนกรอกข้อมูลส่วนตัวใด ๆ',
+					en: 'The moment you follow a link to an agency’s website you leave ThaiGov.co and come under that site’s privacy policy instead. Read the agency’s policy before entering any personal information.'
 				}
 			},
 			{ type: 'h2', text: { th: 'สิทธิของคุณตาม PDPA', en: 'Your rights under the PDPA' } },
 			{
 				type: 'p',
 				text: {
-					th: 'พระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 ให้สิทธิเจ้าของข้อมูลในการเข้าถึง แก้ไข ลบ และคัดค้านการประมวลผลข้อมูลส่วนบุคคลของตน เนื่องจาก THGov ไม่ได้เก็บข้อมูลส่วนบุคคลไว้เลย จึงไม่มีข้อมูลให้เข้าถึงหรือลบ หากคุณมีข้อสงสัย ติดต่อเราได้ตามช่องทางในหน้าเกี่ยวกับเรา',
-					en: 'Thailand’s Personal Data Protection Act B.E. 2562 (2019) gives data subjects rights to access, correct, erase and object to processing of their personal data. Because THGov holds none, there is nothing to retrieve or erase. If you have questions, the contact details are on the About page.'
+					th: 'พระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 ให้สิทธิเจ้าของข้อมูลในการเข้าถึง แก้ไข ลบ และคัดค้านการประมวลผลข้อมูลส่วนบุคคลของตน เนื่องจาก ThaiGov.co ไม่ได้เก็บข้อมูลส่วนบุคคลไว้เลย จึงไม่มีข้อมูลให้เข้าถึงหรือลบ หากคุณมีข้อสงสัย ติดต่อเราได้ตามช่องทางในหน้าเกี่ยวกับเรา',
+					en: 'Thailand’s Personal Data Protection Act B.E. 2562 (2019) gives data subjects rights to access, correct, erase and object to processing of their personal data. Because ThaiGov.co holds none, there is nothing to retrieve or erase. If you have questions, the contact details are on the About page.'
 				}
 			}
 		]
@@ -168,12 +168,12 @@ export const PAGES: Record<string, StaticPage> = {
 		slug: 'terms',
 		title: { th: 'เงื่อนไขการใช้งาน', en: 'Terms of use' },
 		deck: {
-			th: 'ข้อมูลบน THGov เป็นข้อมูลอ้างอิงเพื่อการค้นหา ไม่ใช่คำแนะนำทางกฎหมายหรือประกาศของทางราชการ',
-			en: 'THGov is a reference directory. Nothing here is legal advice or an official government notice.'
+			th: 'ข้อมูลบน ThaiGov.co เป็นข้อมูลอ้างอิงเพื่อการค้นหา ไม่ใช่คำแนะนำทางกฎหมายหรือประกาศของทางราชการ',
+			en: 'ThaiGov.co is a reference directory. Nothing here is legal advice or an official government notice.'
 		},
 		summary: {
-			th: 'เงื่อนไขการใช้งาน THGov ข้อมูลเป็นการอ้างอิงเพื่อช่วยค้นหาบริการภาครัฐ ไม่ใช่ประกาศราชการ โปรดยืนยันข้อมูลกับเว็บไซต์ทางการเสมอ',
-			en: 'Terms of use for THGov. The directory helps you find government services; it is not an official notice. Always confirm details on the agency’s own website.'
+			th: 'เงื่อนไขการใช้งาน ThaiGov.co ข้อมูลเป็นการอ้างอิงเพื่อช่วยค้นหาบริการภาครัฐ ไม่ใช่ประกาศราชการ โปรดยืนยันข้อมูลกับเว็บไซต์ทางการเสมอ',
+			en: 'Terms of use for ThaiGov.co. The directory helps you find government services; it is not an official notice. Always confirm details on the agency’s own website.'
 		},
 		updated: UPDATED,
 		body: [
@@ -181,8 +181,8 @@ export const PAGES: Record<string, StaticPage> = {
 			{
 				type: 'p',
 				text: {
-					th: 'THGov เป็นโครงการอิสระที่จัดทำสารบัญบริการภาครัฐไทย ไม่ได้เป็นหน่วยงานของรัฐ ไม่ได้รับมอบอำนาจจากหน่วยงานใด และไม่ได้เป็นตัวแทนของหน่วยงานที่ปรากฏชื่อในเว็บไซต์ ชื่อหน่วยงานและชื่อระบบที่กล่าวถึงเป็นการอ้างอิงเพื่อการอธิบายเท่านั้น',
-					en: 'THGov is an independent project that catalogues Thai government services. It is not a state body, holds no delegated authority, and does not represent any agency named here. Agency and system names appear for identification and explanation only.'
+					th: 'ThaiGov.co เป็นโครงการอิสระที่จัดทำสารบัญบริการภาครัฐไทย ไม่ได้เป็นหน่วยงานของรัฐ ไม่ได้รับมอบอำนาจจากหน่วยงานใด และไม่ได้เป็นตัวแทนของหน่วยงานที่ปรากฏชื่อในเว็บไซต์ ชื่อหน่วยงานและชื่อระบบที่กล่าวถึงเป็นการอ้างอิงเพื่อการอธิบายเท่านั้น',
+					en: 'ThaiGov.co is an independent project that catalogues Thai government services. It is not a state body, holds no delegated authority, and does not represent any agency named here. Agency and system names appear for identification and explanation only.'
 				}
 			},
 			{ type: 'h2', text: { th: 'ความถูกต้องของข้อมูล', en: 'Accuracy' } },
@@ -198,7 +198,7 @@ export const PAGES: Record<string, StaticPage> = {
 				tone: 'warn',
 				title: { th: 'ไม่ใช่คำแนะนำทางวิชาชีพ', en: 'Not professional advice' },
 				text: {
-					th: 'เนื้อหาบน THGov ไม่ใช่คำแนะนำทางกฎหมาย ภาษี การเงิน หรือการแพทย์ หากเรื่องของคุณมีผลผูกพันทางกฎหมายหรือมีมูลค่าสูง โปรดปรึกษาผู้เชี่ยวชาญหรือสอบถามหน่วยงานโดยตรง',
+					th: 'เนื้อหาบน ThaiGov.co ไม่ใช่คำแนะนำทางกฎหมาย ภาษี การเงิน หรือการแพทย์ หากเรื่องของคุณมีผลผูกพันทางกฎหมายหรือมีมูลค่าสูง โปรดปรึกษาผู้เชี่ยวชาญหรือสอบถามหน่วยงานโดยตรง',
 					en: 'Nothing here is legal, tax, financial or medical advice. If your situation is legally binding or financially significant, consult a professional or ask the agency directly.'
 				}
 			},
@@ -206,7 +206,7 @@ export const PAGES: Record<string, StaticPage> = {
 			{
 				type: 'p',
 				text: {
-					th: 'ลิงก์ทุกลิงก์ที่ชี้ออกจาก THGov นำไปยังเว็บไซต์ที่เราเชื่อว่าเป็นช่องทางทางการของหน่วยงานนั้น ณ วันที่ตรวจสอบ เราไม่ได้ควบคุมเนื้อหา ความปลอดภัย หรือความพร้อมใช้งานของเว็บไซต์ปลายทาง และไม่รับผิดชอบต่อความเสียหายที่เกิดจากการใช้งานเว็บไซต์เหล่านั้น',
+					th: 'ลิงก์ทุกลิงก์ที่ชี้ออกจาก ThaiGov.co นำไปยังเว็บไซต์ที่เราเชื่อว่าเป็นช่องทางทางการของหน่วยงานนั้น ณ วันที่ตรวจสอบ เราไม่ได้ควบคุมเนื้อหา ความปลอดภัย หรือความพร้อมใช้งานของเว็บไซต์ปลายทาง และไม่รับผิดชอบต่อความเสียหายที่เกิดจากการใช้งานเว็บไซต์เหล่านั้น',
 					en: 'Every outbound link points to what we believe was the agency’s official channel on the date we checked. We do not control the destination’s content, security or availability, and we accept no liability for loss arising from its use.'
 				}
 			},
@@ -214,8 +214,8 @@ export const PAGES: Record<string, StaticPage> = {
 			{
 				type: 'p',
 				text: {
-					th: 'เนื้อหาที่ THGov เขียนขึ้นเอง เผยแพร่ภายใต้สัญญาอนุญาต Creative Commons Attribution 4.0 คุณนำไปใช้ ดัดแปลง และเผยแพร่ต่อได้ โดยต้องอ้างอิงแหล่งที่มา ส่วนชื่อหน่วยงาน เครื่องหมายราชการ และเนื้อหาที่เป็นของหน่วยงานยังคงเป็นสิทธิของเจ้าของเดิม',
-					en: 'Content written by THGov is published under Creative Commons Attribution 4.0 — reuse, adapt and redistribute it with credit. Agency names, official emblems and agency-owned content remain the property of their owners.'
+					th: 'เนื้อหาที่ ThaiGov.co เขียนขึ้นเอง เผยแพร่ภายใต้สัญญาอนุญาต Creative Commons Attribution 4.0 คุณนำไปใช้ ดัดแปลง และเผยแพร่ต่อได้ โดยต้องอ้างอิงแหล่งที่มา ส่วนชื่อหน่วยงาน เครื่องหมายราชการ และเนื้อหาที่เป็นของหน่วยงานยังคงเป็นสิทธิของเจ้าของเดิม',
+					en: 'Content written by ThaiGov.co is published under Creative Commons Attribution 4.0 — reuse, adapt and redistribute it with credit. Agency names, official emblems and agency-owned content remain the property of their owners.'
 				}
 			},
 			{ type: 'h2', text: { th: 'การเปลี่ยนแปลงเงื่อนไข', en: 'Changes to these terms' } },
@@ -233,12 +233,12 @@ export const PAGES: Record<string, StaticPage> = {
 		slug: 'accessibility',
 		title: { th: 'แถลงการณ์การเข้าถึง', en: 'Accessibility statement' },
 		deck: {
-			th: 'เราออกแบบ THGov ตามมาตรฐานเว็บไซต์ภาครัฐและแนวทาง WCAG 2.1 ระดับ AA',
-			en: 'THGov is built to the Thai Government Website Standard and WCAG 2.1 Level AA.'
+			th: 'เราออกแบบ ThaiGov.co ตามมาตรฐานเว็บไซต์ภาครัฐและแนวทาง WCAG 2.1 ระดับ AA',
+			en: 'ThaiGov.co is built to the Thai Government Website Standard and WCAG 2.1 Level AA.'
 		},
 		summary: {
-			th: 'แถลงการณ์การเข้าถึงของ THGov ครอบคลุมการปรับขนาดตัวอักษร โหมดคอนทราสต์สูง การใช้งานด้วยแป้นพิมพ์ และการรองรับโปรแกรมอ่านหน้าจอ',
-			en: 'THGov’s accessibility statement: text resizing, a high-contrast mode, full keyboard operation and screen-reader support.'
+			th: 'แถลงการณ์การเข้าถึงของ ThaiGov.co ครอบคลุมการปรับขนาดตัวอักษร โหมดคอนทราสต์สูง การใช้งานด้วยแป้นพิมพ์ และการรองรับโปรแกรมอ่านหน้าจอ',
+			en: 'ThaiGov.co’s accessibility statement: text resizing, a high-contrast mode, full keyboard operation and screen-reader support.'
 		},
 		updated: UPDATED,
 		body: [
@@ -246,8 +246,8 @@ export const PAGES: Record<string, StaticPage> = {
 			{
 				type: 'p',
 				text: {
-					th: 'THGov ออกแบบตามแนวทางมาตรฐานเว็บไซต์ภาครัฐของสำนักงานพัฒนารัฐบาลดิจิทัล (สพร.) ซึ่งอ้างอิงหลักเกณฑ์ Web Content Accessibility Guidelines (WCAG) 2.1 ระดับ AA แม้เราจะไม่ใช่หน่วยงานราชการ แต่เห็นว่าเว็บไซต์ที่พูดถึงบริการสาธารณะควรเข้าถึงได้ไม่แพ้กัน',
-					en: 'THGov follows the Digital Government Development Agency’s Government Website Standard, which builds on the Web Content Accessibility Guidelines (WCAG) 2.1 at Level AA. We are not a government body, but a site about public services should be no less accessible than one.'
+					th: 'ThaiGov.co ออกแบบตามแนวทางมาตรฐานเว็บไซต์ภาครัฐของสำนักงานพัฒนารัฐบาลดิจิทัล (สพร.) ซึ่งอ้างอิงหลักเกณฑ์ Web Content Accessibility Guidelines (WCAG) 2.1 ระดับ AA แม้เราจะไม่ใช่หน่วยงานราชการ แต่เห็นว่าเว็บไซต์ที่พูดถึงบริการสาธารณะควรเข้าถึงได้ไม่แพ้กัน',
+					en: 'ThaiGov.co follows the Digital Government Development Agency’s Government Website Standard, which builds on the Web Content Accessibility Guidelines (WCAG) 2.1 at Level AA. We are not a government body, but a site about public services should be no less accessible than one.'
 				}
 			},
 			{ type: 'h2', text: { th: 'สิ่งที่ทำได้บนเว็บไซต์นี้', en: 'What you can do here' } },
@@ -276,35 +276,20 @@ export const PAGES: Record<string, StaticPage> = {
 					}
 				]
 			},
-			{ type: 'h2', text: { th: 'โครงสร้างและเทคนิค', en: 'Structure and technique' } },
-			{
-				type: 'p',
-				text: {
-					th: 'ทุกหน้าเป็น HTML ที่เรนเดอร์ล่วงหน้าแบบสถิต จึงอ่านได้แม้ปิดจาวาสคริปต์ เราใช้ลำดับหัวข้อที่ถูกต้องตั้งแต่ h1 ลงไป ใช้ landmark ของ HTML5 อย่าง header, nav, main และ footer และกำกับตารางด้วย th ที่มี scope เพื่อให้โปรแกรมอ่านหน้าจออ่านความสัมพันธ์ของข้อมูลได้ถูกต้อง',
-					en: 'Every page is prerendered static HTML, so it still reads with JavaScript disabled. We use a correct heading order from h1 downward, HTML5 landmarks (`header`, `nav`, `main`, `footer`), and scoped table headers so screen readers announce data relationships correctly.'
-				}
-			},
-			{
-				type: 'p',
-				text: {
-					th: 'ข้อความทั้งหมดใช้หน่วยแบบสัมพัทธ์ จึงขยายตามการตั้งค่าขนาดตัวอักษรของเบราว์เซอร์ได้ถึง 200% โดยเนื้อหาไม่ล้นหรือถูกตัดหาย และเราเลือกใช้ฟอนต์ Prompt ซึ่งออกแบบมาสำหรับภาษาไทยโดยเฉพาะ ทำให้สระและวรรณยุกต์วางตำแหน่งถูกต้องและอ่านง่าย',
-					en: 'All text uses relative units, so it scales to 200% with your browser’s own zoom without content overflowing or being cut off. We use the Prompt typeface, designed for Thai, so vowels and tone marks sit correctly and read clearly.'
-				}
-			},
 			{ type: 'h2', text: { th: 'ข้อจำกัดที่เรารู้', en: 'Known limitations' } },
 			{
 				type: 'p',
 				text: {
-					th: 'เนื้อหาที่ THGov เขียนเองผ่านการตรวจสอบตามแนวทางข้างต้น แต่เมื่อคุณกดลิงก์ออกไปยังเว็บไซต์ของหน่วยงาน ระดับการเข้าถึงจะขึ้นอยู่กับเว็บไซต์นั้น ซึ่งเราไม่สามารถควบคุมได้ หากพบปัญหาการเข้าถึงบนเว็บไซต์ของหน่วยงาน ขอแนะนำให้แจ้งไปยังหน่วยงานนั้นโดยตรง',
-					en: 'Content written by THGov is checked against the guidance above, but once you follow a link to an agency’s site, its accessibility is out of our hands. If you meet a barrier on an agency site, reporting it to that agency directly is the most effective route.'
+					th: 'เนื้อหาที่ ThaiGov.co เขียนเองผ่านการตรวจสอบตามแนวทางข้างต้น แต่เมื่อคุณกดลิงก์ออกไปยังเว็บไซต์ของหน่วยงาน ระดับการเข้าถึงจะขึ้นอยู่กับเว็บไซต์นั้น ซึ่งเราไม่สามารถควบคุมได้ หากพบปัญหาการเข้าถึงบนเว็บไซต์ของหน่วยงาน ขอแนะนำให้แจ้งไปยังหน่วยงานนั้นโดยตรง',
+					en: 'Content written by ThaiGov.co is checked against the guidance above, but once you follow a link to an agency’s site, its accessibility is out of our hands. If you meet a barrier on an agency site, reporting it to that agency directly is the most effective route.'
 				}
 			},
 			{ type: 'h2', text: { th: 'แจ้งปัญหาการเข้าถึง', en: 'Report an accessibility problem' } },
 			{
 				type: 'p',
 				text: {
-					th: 'หากคุณพบส่วนใดของ THGov ที่ใช้งานได้ยากหรือใช้งานไม่ได้ โปรดแจ้งเราทางอีเมลหรือเปิดประเด็นบน GitHub พร้อมระบุหน้าที่พบปัญหาและอุปกรณ์หรือโปรแกรมช่วยเหลือที่คุณใช้ เราถือว่าเรื่องนี้เป็นข้อบกพร่องที่ต้องแก้ ไม่ใช่คำขอเพิ่มความสามารถ',
-					en: 'If any part of THGov is hard or impossible to use, tell us by email or open a GitHub issue, noting the page and the device or assistive technology you use. We treat these as defects to fix, not feature requests.'
+					th: 'หากคุณพบส่วนใดของ ThaiGov.co ที่ใช้งานได้ยากหรือใช้งานไม่ได้ โปรดแจ้งเราทางอีเมลหรือเปิดประเด็นบน GitHub พร้อมระบุหน้าที่พบปัญหาและอุปกรณ์หรือโปรแกรมช่วยเหลือที่คุณใช้ เราถือว่าเรื่องนี้เป็นข้อบกพร่องที่ต้องแก้ ไม่ใช่คำขอเพิ่มความสามารถ',
+					en: 'If any part of ThaiGov.co is hard or impossible to use, tell us by email or open a GitHub issue, noting the page and the device or assistive technology you use. We treat these as defects to fix, not feature requests.'
 				}
 			}
 		]

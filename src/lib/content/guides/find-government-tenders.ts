@@ -248,8 +248,8 @@ export const guide: Guide = {
 				en: 'Nobody can guarantee you a win'
 			},
 			text: {
-				th: 'ถ้ามีคนเสนอว่าจ่ายเงินแล้วช่วยให้ได้งาน ให้ถือเป็นสัญญาณอันตราย ค่าใช้จ่ายที่ถูกต้องมีเฉพาะที่ประกาศระบุ และชำระผ่านช่องทางที่ประกาศกำหนด เว็บเอกชนที่รวบรวมประกาศไปขายต่อ ควรกลับไปยืนยันกับระบบทางการเสมอ THGov เป็นไดเรกทอรีอิสระ ไม่เกี่ยวข้องกับหน่วยงานรัฐใด และไม่รับยื่นเอกสารหรือรับเงินแทนใคร',
-				en: 'If somebody offers to secure you a contract for a fee, treat it as a red flag. The only legitimate charges are the ones the notice states, paid through the channel it names. Private sites that repackage these notices work as an alert service, but go back to the official system to confirm. THGov is an independent directory with no affiliation to any agency, and we never file documents or take payments on anyone’s behalf.'
+				th: 'ถ้ามีคนเสนอว่าจ่ายเงินแล้วช่วยให้ได้งาน ให้ถือเป็นสัญญาณอันตราย ค่าใช้จ่ายที่ถูกต้องมีเฉพาะที่ประกาศระบุ และชำระผ่านช่องทางที่ประกาศกำหนด เว็บเอกชนที่รวบรวมประกาศไปขายต่อ ควรกลับไปยืนยันกับระบบทางการเสมอ ThaiGov.co เป็นไดเรกทอรีอิสระ ไม่เกี่ยวข้องกับหน่วยงานรัฐใด และไม่รับยื่นเอกสารหรือรับเงินแทนใคร',
+				en: 'If somebody offers to secure you a contract for a fee, treat it as a red flag. The only legitimate charges are the ones the notice states, paid through the channel it names. Private sites that repackage these notices work as an alert service, but go back to the official system to confirm. ThaiGov.co is an independent directory with no affiliation to any agency, and we never file documents or take payments on anyone’s behalf.'
 			}
 		}
 	],

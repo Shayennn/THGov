@@ -361,12 +361,12 @@ export const guide: Guide = {
 		},
 		{
 			q: {
-				th: 'THGov เกี่ยวข้องกับกรมสรรพากรหรือไม่',
-				en: 'Is THGov connected to the Revenue Department?'
+				th: 'ThaiGov.co เกี่ยวข้องกับกรมสรรพากรหรือไม่',
+				en: 'Is ThaiGov.co connected to the Revenue Department?'
 			},
 			a: {
-				th: 'ไม่เกี่ยวข้องกัน THGov เป็นเว็บไซต์รวบรวมบริการออนไลน์ของภาครัฐที่จัดทำขึ้นอย่างอิสระ ไม่ได้สังกัดหรือได้รับมอบหมายจากหน่วยงานใด หน้านี้อธิบายขั้นตอนด้วยภาษาที่คนทั่วไปเข้าใจ แล้วส่งคุณไปยังระบบทางการเพื่อทำรายการจริง เราไม่รับข้อมูลภาษี ไม่รับเอกสาร และไม่รับชำระเงินใด ๆ',
-				en: 'No. THGov is an independently produced directory of Thai government online services, not affiliated with or appointed by any agency. This page explains the process in plain language and then sends you to the official system to do the actual work. We never collect tax data, documents or payments.'
+				th: 'ไม่เกี่ยวข้องกัน ThaiGov.co เป็นเว็บไซต์รวบรวมบริการออนไลน์ของภาครัฐที่จัดทำขึ้นอย่างอิสระ ไม่ได้สังกัดหรือได้รับมอบหมายจากหน่วยงานใด หน้านี้อธิบายขั้นตอนด้วยภาษาที่คนทั่วไปเข้าใจ แล้วส่งคุณไปยังระบบทางการเพื่อทำรายการจริง เราไม่รับข้อมูลภาษี ไม่รับเอกสาร และไม่รับชำระเงินใด ๆ',
+				en: 'No. ThaiGov.co is an independently produced directory of Thai government online services, not affiliated with or appointed by any agency. This page explains the process in plain language and then sends you to the official system to do the actual work. We never collect tax data, documents or payments.'
 			}
 		}
 	],

@@ -325,8 +325,8 @@ export const service: Service = {
 		{
 			type: 'p',
 			text: {
-				th: 'อีกเหตุผลคือกฎการเข้าถึงของบอตบนเว็บไซต์ของสถาบัน ซึ่งปิดกั้นบอตทุกตัวเป็นค่าเริ่มต้นและเปิดข้อยกเว้นให้เฉพาะ Googlebot กับ Bingbot ข้อมูลชุดนี้จึงยังค้นเจอผ่านสองเครื่องมือนั้น แต่ไปไม่ถึงเครื่องมือค้นหารายอื่นและผู้ช่วยตอบคำถามด้วยปัญญาประดิษฐ์ที่คนไทยเริ่มใช้ประจำ การมีหน้าเปิดสาธารณะที่อธิบายบริการนี้และเปิดให้ทุกบอตอ่านได้ จึงเพิ่มเส้นทางให้คนเดินมาเจอข้อมูลที่ควรเข้าถึงได้ตั้งแต่แรก ทั้งนี้ THGov เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดหน่วยงานใด',
-				en: 'There is a second reason. The institute’s crawler rules block every bot by default and grant exceptions only to Googlebot and Bingbot, so this material stays findable through those two while never reaching other search engines or the AI assistants people in Thailand increasingly use. A public page that describes the service and stays open to every crawler adds another route to information that should have been reachable from the start. THGov is an independent directory, unaffiliated with any agency.'
+				th: 'อีกเหตุผลคือกฎการเข้าถึงของบอตบนเว็บไซต์ของสถาบัน ซึ่งปิดกั้นบอตทุกตัวเป็นค่าเริ่มต้นและเปิดข้อยกเว้นให้เฉพาะ Googlebot กับ Bingbot ข้อมูลชุดนี้จึงยังค้นเจอผ่านสองเครื่องมือนั้น แต่ไปไม่ถึงเครื่องมือค้นหารายอื่นและผู้ช่วยตอบคำถามด้วยปัญญาประดิษฐ์ที่คนไทยเริ่มใช้ประจำ การมีหน้าเปิดสาธารณะที่อธิบายบริการนี้และเปิดให้ทุกบอตอ่านได้ จึงเพิ่มเส้นทางให้คนเดินมาเจอข้อมูลที่ควรเข้าถึงได้ตั้งแต่แรก ทั้งนี้ ThaiGov.co เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดหน่วยงานใด',
+				en: 'There is a second reason. The institute’s crawler rules block every bot by default and grant exceptions only to Googlebot and Bingbot, so this material stays findable through those two while never reaching other search engines or the AI assistants people in Thailand increasingly use. A public page that describes the service and stays open to every crawler adds another route to information that should have been reachable from the start. ThaiGov.co is an independent directory, unaffiliated with any agency.'
 			}
 		}
 	],

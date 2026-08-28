@@ -10,7 +10,7 @@
 		<h2 id="faq-title">{title || t('label.faq')}</h2>
 		<div class="items">
 			{#each faq as item, i (i)}
-				<details name="thgov-faq">
+				<details name="thaigov-faq">
 					<summary>
 						<span>{lc(item.q)}</span>
 						<svg viewBox="0 0 24 24" aria-hidden="true" class="chev">

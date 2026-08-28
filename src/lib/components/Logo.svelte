@@ -1,6 +1,6 @@
 <script lang="ts">
 	/**
-	 * The THGov mark: a magnifying glass held over Thailand — the country as it
+	 * The ThaiGov mark: a magnifying glass held over Thailand — the country as it
 	 * really is on a map, not a symbol of one — with a question mark under the
 	 * lens, and three dots for the question mark's dot because the confusion
 	 * belongs to everyone, not one person. It deliberately borrows nothing from
@@ -40,19 +40,19 @@
 		class="mark"
 	>
 		<defs>
-			<linearGradient id="thgov-{uid}" x1="0" y1="0" x2="1" y2="1">
+			<linearGradient id="thaigov-{uid}" x1="0" y1="0" x2="1" y2="1">
 				<stop offset="0%" stop-color="var(--brand)" />
 				<stop offset="100%" stop-color="var(--brand-2)" />
 			</linearGradient>
 		</defs>
-		<rect x="1.5" y="1.5" width="29" height="29" rx="9" fill="url(#thgov-{uid})" />
+		<rect x="1.5" y="1.5" width="29" height="29" rx="9" fill="url(#thaigov-{uid})" />
 
 		<g transform="translate(4.449,4.5) scale(0.23)"><path d={THAILAND} fill="#fff" /></g>
 
 		<!-- The glass is stroked twice: once in the tile's own gradient at a wider
 		     width, which cuts a gap out of the coastline underneath, then in white.
 		     That keeps the lens readable over the map without a third colour. -->
-		<g fill="none" stroke="url(#thgov-{uid})" stroke-linecap="round">
+		<g fill="none" stroke="url(#thaigov-{uid})" stroke-linecap="round">
 			<circle cx="19.7" cy="14.6" r="7.1" stroke-width="3.8" />
 			<path d="M24.72 19.62 L27.05 21.95" stroke-width="4.4" />
 		</g>
@@ -82,7 +82,7 @@
 	</svg>
 	{#if showText}
 		<span class="word">
-			<strong>THGov</strong>
+			<strong>ThaiGov</strong>
 		</span>
 	{/if}
 </span>
@@ -106,13 +106,15 @@
 		/* Prompt's ascent-to-descent box is taller than its cap height and sits
 		   off-centre within it, so centring the *box* against the mark leaves the
 		   capitals riding high. Trim the box to cap height and baseline where the
-		   browser can, and shift by the same amount where it cannot. */
-		transform: translateY(0.023em);
+		   browser can, and correct by the same amount where it cannot — then drop
+		   the result 0.06em, because capitals read top-heavy beside a solid tile
+		   and a true geometric centre still looks high. */
+		transform: translateY(0.083em);
 	}
 	@supports (text-box: trim-both cap alphabetic) {
 		.word {
 			text-box: trim-both cap alphabetic;
-			transform: none;
+			transform: translateY(0.06em);
 		}
 	}
 	.word strong {

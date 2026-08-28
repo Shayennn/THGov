@@ -12,8 +12,8 @@ import {
 
 const TITLE = { th: 'บริการภาครัฐไทยทั้งหมด', en: 'All Thai government services' };
 const DESC = {
-	th: 'รวมบริการออนไลน์ของหน่วยงานราชการไทยทั้งหมดที่ THGov รวบรวมไว้ พร้อมสถานะการค้นเจอบน Google คำอธิบายภาษาไทย และลิงก์ตรงไปยังเว็บไซต์ทางการ',
-	en: 'Every Thai government online service indexed by THGov, with its search-engine visibility status, a plain-language explanation and a direct link to the official website.'
+	th: 'รวมบริการออนไลน์ของหน่วยงานราชการไทยทั้งหมดที่ ThaiGov.co รวบรวมไว้ พร้อมสถานะการค้นเจอบน Google คำอธิบายภาษาไทย และลิงก์ตรงไปยังเว็บไซต์ทางการ',
+	en: 'Every Thai government online service indexed by ThaiGov.co, with its search-engine visibility status, a plain-language explanation and a direct link to the official website.'
 };
 
 export const load: PageServerLoad = ({ params }) => {

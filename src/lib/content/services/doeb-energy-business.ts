@@ -321,8 +321,8 @@ export const service: Service = {
 		{
 			type: 'p',
 			text: {
-				th: 'หน้านี้จึงทำหน้าที่เป็นป้ายบอกทางที่ค้นเจอได้ อธิบายขอบเขตงานของกรมด้วยคำที่คนใช้จริง แยกให้ชัดว่าเรื่องไหนของกรมนี้และเรื่องไหนของหน่วยงานอื่น แล้วส่งต่อไปยังเว็บไซต์ทางการเพื่ออ่านตัวบทฉบับปัจจุบัน THGov เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดกรมธุรกิจพลังงาน ไม่รับคำขออนุญาต ไม่รับเรื่องร้องเรียน และไม่รับชำระค่าธรรมเนียมใด ๆ',
-				en: 'So this page stands in as the signpost that can be found: it explains the department’s remit in the words people actually use, separates what belongs to it from what belongs elsewhere, and hands you on to the official site for the current text. THGov is an independent directory with no affiliation to the department. We take no applications, no complaints and no fees.'
+				th: 'หน้านี้จึงทำหน้าที่เป็นป้ายบอกทางที่ค้นเจอได้ อธิบายขอบเขตงานของกรมด้วยคำที่คนใช้จริง แยกให้ชัดว่าเรื่องไหนของกรมนี้และเรื่องไหนของหน่วยงานอื่น แล้วส่งต่อไปยังเว็บไซต์ทางการเพื่ออ่านตัวบทฉบับปัจจุบัน ThaiGov.co เป็นไดเรกทอรีอิสระ ไม่ได้สังกัดกรมธุรกิจพลังงาน ไม่รับคำขออนุญาต ไม่รับเรื่องร้องเรียน และไม่รับชำระค่าธรรมเนียมใด ๆ',
+				en: 'So this page stands in as the signpost that can be found: it explains the department’s remit in the words people actually use, separates what belongs to it from what belongs elsewhere, and hands you on to the official site for the current text. ThaiGov.co is an independent directory with no affiliation to the department. We take no applications, no complaints and no fees.'
 			}
 		}
 	],

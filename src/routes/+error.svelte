@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>{is404 ? t('error.404.title') : t('error.generic.title')} | THGov</title>
+	<title>{is404 ? t('error.404.title') : t('error.generic.title')} | ThaiGov.co</title>
 	<meta name="robots" content="noindex, follow" />
 </svelte:head>
 
