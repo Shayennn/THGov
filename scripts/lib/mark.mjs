@@ -36,8 +36,11 @@ export const MARK = {
 	map: { height: 23, cx: 10.7, cy: 16 },
 	lens: { cx: 19.7, cy: 14.6, r: 6.5, ring: 2, gap: 0.9 },
 	handle: { from: [24.3, 19.2], to: [26.63, 21.53], width: 2.6 },
-	query: { cx: 19.7, cy: 13.9, scale: 0.92, width: 1.9 },
-	dots: { cx: 19.8, cy: 18.2, r: 0.8, gap: 2 }
+	// Sits low in the lens on purpose: the bowl of the question mark reaches
+	// further above its origin than the stem reaches below, so an origin on the
+	// lens centre would push the bowl into the ring.
+	query: { cx: 19.7, cy: 14.61, scale: 0.88, width: 1.9 },
+	dots: { cx: 19.7, cy: 18.7, r: 0.72, gap: 1.9 }
 };
 
 const f = (n) => Number(n.toFixed(3));
