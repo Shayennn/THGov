@@ -53,31 +53,31 @@
 		     width, which cuts a gap out of the coastline underneath, then in white.
 		     That keeps the lens readable over the map without a third colour. -->
 		<g fill="none" stroke="url(#thgov-{uid})" stroke-linecap="round">
-			<circle cx="19.7" cy="14.6" r="6.5" stroke-width="3.8" />
-			<path d="M24.3 19.2 L26.63 21.53" stroke-width="4.4" />
+			<circle cx="19.7" cy="14.6" r="7.1" stroke-width="3.8" />
+			<path d="M24.72 19.62 L27.05 21.95" stroke-width="4.4" />
 		</g>
 		<g fill="none" stroke="#fff" stroke-linecap="round">
-			<circle cx="19.7" cy="14.6" r="6.5" stroke-width="2" />
-			<path d="M24.3 19.2 L26.63 21.53" stroke-width="2.6" />
+			<circle cx="19.7" cy="14.6" r="7.1" stroke-width="2" />
+			<path d="M24.72 19.62 L27.05 21.95" stroke-width="2.6" />
 		</g>
 
 		<!-- Low in the lens on purpose: the bowl reaches further above the origin
 		     than the stem reaches below, so centring the origin on the lens would
 		     push the bowl into the ring. -->
-		<g transform="translate(19.7 15.05) scale(0.84)">
+		<g transform="translate(19.7 15.55) scale(0.88)">
 			<path
 				d="M-2.75 -2.6a2.85 2.85 0 1 1 3.55 2.95 v1.75"
 				fill="none"
 				stroke="#fff"
-				stroke-width="2.262"
+				stroke-width="2.159"
 				stroke-linecap="round"
 				stroke-linejoin="round"
 			/>
 		</g>
 		<g fill="#fff">
-			<circle cx="17.9" cy="18.9" r="0.68" />
-			<circle cx="19.7" cy="18.9" r="0.68" />
-			<circle cx="21.5" cy="18.9" r="0.68" />
+			<circle cx="17.85" cy="19.45" r="0.7" />
+			<circle cx="19.7" cy="19.45" r="0.7" />
+			<circle cx="21.55" cy="19.45" r="0.7" />
 		</g>
 	</svg>
 	{#if showText}

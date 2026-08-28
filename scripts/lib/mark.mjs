@@ -34,13 +34,14 @@ export const BRAND = { from: '#F05223', to: '#EE9B20' };
 export const MARK = {
 	tile: { x: 1.5, y: 1.5, size: 29, radius: 9 },
 	map: { height: 23, cx: 10.7, cy: 16 },
-	lens: { cx: 19.7, cy: 14.6, r: 6.5, ring: 2, gap: 0.9 },
-	handle: { from: [24.3, 19.2], to: [26.63, 21.53], width: 2.6 },
+	lens: { cx: 19.7, cy: 14.6, r: 7.1, ring: 2, gap: 0.9 },
+	// Anchored on the lens edge at 45 degrees, so it follows the lens radius.
+	handle: { from: [24.72, 19.62], to: [27.05, 21.95], width: 2.6 },
 	// Sits low in the lens on purpose: the bowl of the question mark reaches
 	// further above its origin than the stem reaches below, so an origin on the
 	// lens centre would push the bowl into the ring.
-	query: { cx: 19.7, cy: 15.05, scale: 0.84, width: 1.9 },
-	dots: { cx: 19.7, cy: 18.9, r: 0.68, gap: 1.8 }
+	query: { cx: 19.7, cy: 15.55, scale: 0.88, width: 1.9 },
+	dots: { cx: 19.7, cy: 19.45, r: 0.7, gap: 1.85 }
 };
 
 const f = (n) => Number(n.toFixed(3));
