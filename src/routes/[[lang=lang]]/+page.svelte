@@ -491,7 +491,9 @@
 	}
 	.trust-inner p {
 		flex: 1;
-		min-width: 16rem;
+		/* A flat 16rem floor is wider than a small phone at the largest text
+		   setting; min() keeps the wrap behaviour without forcing overflow. */
+		min-width: min(16rem, 100%);
 		font-size: var(--fs-sm);
 		color: var(--text-muted);
 		line-height: 1.7;

@@ -44,8 +44,12 @@
 		align-items: flex-start;
 		justify-content: space-between;
 		gap: 0.6rem;
+		/* The verdict chip never wraps internally, so let it drop to its own line
+		   rather than push the card wider than the viewport. */
+		flex-wrap: wrap;
 	}
 	h3 {
+		min-width: 0;
 		font-size: var(--fs-h4);
 		font-weight: 600;
 		line-height: 1.35;

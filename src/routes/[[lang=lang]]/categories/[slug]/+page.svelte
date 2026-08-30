@@ -82,6 +82,7 @@
 		box-shadow: var(--sh-glow);
 	}
 	h1 {
+		min-width: 0;
 		font-size: var(--fs-h1);
 	}
 	.rule {

@@ -295,6 +295,12 @@
 		gap: clamp(2rem, 5vw, 3.5rem);
 		padding-block: clamp(2.25rem, 5vw, 3.5rem) clamp(3rem, 8vw, 5.5rem);
 	}
+	/* Grid items default to min-width:auto, which lets a wide child (a table at
+	   its 34rem minimum) push the whole column past the viewport instead of
+	   scrolling inside its own .scroll-x wrapper. */
+	.main {
+		min-width: 0;
+	}
 	/* Sections rendered by child components carry their own scoping class, not
 	   this page's, so the stack rule has to reach past Svelte's style scoping. */
 	.main > :global(* + *) {

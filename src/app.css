@@ -218,6 +218,7 @@ html {
 }
 
 body {
+	overflow-wrap: break-word;
 	min-height: 100svh;
 	font-family: var(--font);
 	font-size: var(--fs-base);
@@ -384,6 +385,12 @@ html.color-mode-contrast .rule { background: var(--brand); }
 		background-color var(--dur) var(--ease), color var(--dur) var(--ease),
 		border-color var(--dur) var(--ease);
 	white-space: nowrap;
+	max-width: 100%;
+}
+
+@media (max-width: 30rem) {
+	/* Wrapping beats spilling off the side of the screen. */
+	.btn { white-space: normal; }
 }
 .btn:hover { transform: translateY(-1px); }
 .btn:active { transform: translateY(0); }
@@ -444,6 +451,7 @@ a.card:hover,
 	color: var(--text-muted);
 	text-decoration: none;
 	white-space: nowrap;
+	max-width: 100%;
 }
 a.chip:hover { border-color: var(--brand); color: var(--brand); }
 
@@ -514,6 +522,12 @@ a.chip:hover { border-color: var(--brand); color: var(--brand); }
 	overflow-x: auto;
 	-webkit-overflow-scrolling: touch;
 	overscroll-behavior-x: contain;
+}
+
+/* At the largest text setting the masthead controls no longer fit beside the
+   wordmark on a small phone. Keep the mark, which is still the home link. */
+@media (max-width: 30rem) {
+	html.text-size-lg .masthead .word { display: none; }
 }
 
 @media print {

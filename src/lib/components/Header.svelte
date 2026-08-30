@@ -125,13 +125,15 @@
 	.bar {
 		display: flex;
 		align-items: center;
-		gap: clamp(0.75rem, 2vw, 1.75rem);
+		gap: clamp(0.5rem, 2vw, 1.75rem);
 		min-height: 4.25rem;
 	}
 	.brand {
 		text-decoration: none;
 		color: var(--text);
-		flex: none;
+		/* Yield rather than push the tools past the viewport when space is tight. */
+		flex: 0 1 auto;
+		min-width: 0;
 	}
 	.desktop-nav {
 		display: none;
@@ -172,8 +174,9 @@
 	.tools {
 		display: flex;
 		align-items: center;
-		gap: 0.45rem;
+		gap: 0.35rem;
 		margin-inline-start: auto;
+		flex: none;
 	}
 	.tool {
 		display: inline-flex;
